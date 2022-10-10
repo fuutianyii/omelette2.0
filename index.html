@@ -1,0 +1,12 @@
+<body>
+  <form action="login.php" method="POST" name="tokenform">
+  	<input type="hidden" name="token" value="" id="token">
+  </form>
+    <script> 
+      var token=localStorage.getItem('token');
+      var tokeninput=document.getElementById("token");
+      tokeninput.value=token;
+      console.log(token);
+      document.tokenform.submit();
+	</script> 
+</body>
