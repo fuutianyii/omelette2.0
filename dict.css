@@ -32,7 +32,7 @@ html,body{
     height: 100%;
     width: 80px;
     background-color: rgb(0,49,79);
-    transition: 0.3s;
+    transition: 0.4s;
 }
 #left:hover{
     width: 195px;
@@ -67,7 +67,7 @@ html,body{
 #left span{
     position:absolute;
     white-space: nowrap;
-    transition: 0.3s;
+    transition: 0.4s;
     opacity: 0;
     margin-left: 8px;
     top: 2px;
@@ -82,4 +82,98 @@ html,body{
 }
 #left:hover span{
    opacity: 1;
+}
+
+
+
+.no_search_div{
+    height: 20%;
+}
+
+
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-image:linear-gradient(90deg, #70e1f5 0%,#ffd194 100%);
+    
+}
+.search-bar{ 
+    margin: 0 auto;
+    display: flex;
+    width: 240px;
+    background: rgb(0,49,79);
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px; 
+    max-width: 600px;
+    transition: 1.5s;
+}
+
+.search-bar:hover .search-txt {
+    width: 100%;
+    padding: 0 6px;
+}
+
+ .search-bar:hover{
+    width: 80%;
+    transition: 1.5s;
+}
+
+.search-btn{
+    color: #70e1f5;
+    /* float: right; */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgb(0,49,79);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 25px;
+    /* transition: 0.8s; */
+}
+
+.search-txt{
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: rgb(255, 255, 255) ;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search_history{
+    display: flex;
+    margin:0 auto;
+    /* flex-direction: column; */
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    overflow: hidden;
+    margin: 30px auto;
+    max-width: 1000px;
+    width: 80%;
+    height: 76px;
+}
+
+.history_span {
+    background-color: rgba(255,255,255,0.5);
+    margin:2.5px 3px ;
+    padding: 5px;
+    border-radius: 30px;
+    color: grey;
+}
+
+.history_span:hover {
+    color: black;
 }

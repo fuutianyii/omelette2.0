@@ -16,7 +16,32 @@
             <a href="#"><img src="img/test.png" alt=""><span>测试</span></a>
             <a href="#"><img src="img/control.png" alt=""><span>偏好</span></a>
         </div>
-        <div id="right"></div>
+        <div id="right">
+            
+            <div class="container">
+            <div class="no_search_div"></div>
+                <div class="search-bar">
+                <script src="search.js"></script>
+                    <input class="search-txt" type="text" placeholder="Enter a word for searching" onkeydown="enter(event);">
+                    <img src="img/search.png" alt="" class="search-btn">
+                </div>
+
+                <div class="search_history">
+                </div>
+                <script>
+                    value=localStorage.history;
+                    array=JSON.parse(value);
+                    console.log();
+                    
+                    // console.log(document.getElementByClassName("search_history").innerHTML);
+                    for(i=0;i<array.length;i++)
+                    {
+                        document.getElementsByClassName("search_history")[0].innerHTML=document.getElementsByClassName("search_history")[0].innerHTML+"<span class=\"history_span\">"+array[i]+"</span>"
+                        
+                    }
+                </script>
+            </div>
+        </div>
     </div>
 </body>
 </html>
