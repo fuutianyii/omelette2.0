@@ -28,6 +28,10 @@
 
                 <div class="search_history">
                 </div>
+                <script src="dic_api.js"></script>
+
+                <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+                    </script>
                 <script>
                     value=localStorage.history;
                     array=JSON.parse(value);
@@ -37,9 +41,13 @@
                     for(i=0;i<array.length;i++)
                     {
                         document.getElementsByClassName("search_history")[0].innerHTML=document.getElementsByClassName("search_history")[0].innerHTML+"<span class=\"history_span\">"+array[i]+"</span>"
-                        
+                        console.log("add")
                     }
+
+
                 </script>
+
+
             </div>
         </div>
     </div>

@@ -85,12 +85,14 @@ html,body{
 }
 
 
-
 .no_search_div{
     height: 20%;
 }
 
-
+.search_div{
+    height: 0px;
+    transition: 1s;
+}
 
 
 .container{
@@ -167,13 +169,46 @@ html,body{
 }
 
 .history_span {
+    display: block;
+    box-sizing:border-box;
     background-color: rgba(255,255,255,0.5);
-    margin:2.5px 3px ;
+    margin:3px ;
     padding: 5px;
     border-radius: 30px;
     color: grey;
+    overflow: hidden;
+
 }
 
-.history_span:hover {
+
+
+.history_span:hover{
     color: black;
+    overflow: hidden;
+
+    
 }
+
+
+ul {
+    background-color: yellow;
+    overflow: hidden;
+    transition-duration: 1s;
+    transition-property: max-height;
+    height: auto;
+    max-height: 0;
+  }
+  
+  ul.active {
+    max-height: 600px;
+  }
+
+
+.no_search_content_box{
+    height: 0px;
+}
+
+.searched_content_box{
+    height: 0px;
+}
+
