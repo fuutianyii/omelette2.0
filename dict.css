@@ -36,7 +36,9 @@ html,body{
 }
 #left:hover{
     width: 195px;
+    transition: 0.4s;
 }
+
 #left a{
     /* overflow: hidden; */
     margin: 0 auto;
@@ -103,15 +105,16 @@ html,body{
     
 }
 .search-bar{ 
-    margin: 0 auto;
+    margin: 10px auto;
     display: flex;
     width: 240px;
     background: rgb(0,49,79);
     height: 40px;
     border-radius: 40px;
     padding: 10px; 
-    max-width: 600px;
-    transition: 1.5s;
+    max-width: 400px;
+    transition: 1.5S;
+    transition-delay: 3s;
 }
 
 .search-bar:hover .search-txt {
@@ -121,6 +124,7 @@ html,body{
 
  .search-bar:hover{
     width: 80%;
+    max-width: 400px;
     transition: 1.5s;
 }
 
@@ -162,7 +166,7 @@ html,body{
     justify-content: center;
     align-content: flex-start;
     overflow: hidden;
-    margin: 30px auto;
+    margin: 30px auto 10px auto;
     max-width: 1000px;
     width: 80%;
     height: 76px;
@@ -210,5 +214,114 @@ ul {
 
 .searched_content_box{
     height: 0px;
+}
+
+.margin_div{
+    margin:10px;
+}
+
+.basic_div{
+    height: auto;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1000px;
+    border-radius: 30px;
+    padding: 30px 0;
+    transition: 5s;
+    background-color: white;
+    overflow: hidden;
+}
+
+.content_div{
+    /* background-color: white; */
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 0px;
+    height: 100%;
+    /* width: 100%; */
+    overflow: hidden;
+    transition: 1s;
+}
+
+.content_div_hidden{
+    /* background-color: white; */
+    margin: 0 auto;
+    border-radius: 30px;
+    padding: 0px;
+    height: 0%;
+    width: 0%;
+    overflow: hidden;
+}
+
+.mean_part
+{
+    width: auto;
+    height: auto;
+    list-style: none;
+}
+i{
+    font-weight: 700;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(0,0,0,.45);
+    display: inline-block;
+    min-width: 50px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.means{
+    display: inline-block;
+}
+
+.mean_word{
+    font-weight: 600;
+    font-size: 32px;
+    color: rgba(0,0,0,.85);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    word-break: break-all;
+}
+
+.mean_tag{
+    font-size: 14px;
+    color: rgba(0,0,0,.45);
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.mean_title
+{
+    font-weight: 600;
+    font-size: 20px;
+    color: #000;
+    line-height: 3;
+    margin-top: 10px;
+}
+
+
+
+.audio_img {
+    width: 18px;
+    height: 16px;
+    margin-left: 8px;
+    vertical-align: middle;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.mean_symbols{
+    margin-bottom: 10px;
+}
+
+.mean_symbols li{
+    font-size: 16px;
+    color: rgba(0,0,0,.65);
+    line-height: 22px;
+    display: inline-block;
+    margin-right: 33px;
+}
+
+hr{
+    color: rgba(0,0,0,.45);
+    margin:  20px 0 0 0 ;
 }
 

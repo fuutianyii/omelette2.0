@@ -2,13 +2,21 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-12 20:35:59
+ * @LastEditTime: 2022-10-13 21:54:04
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
  */
+function len(o) {
+  var n=0;
+  for (var i in o){
+      n++;
+  }
+  return n;
+}
 
-function get_data(word){
+
+function write_data(word){
   const Http = new XMLHttpRequest();
   const url='http://127.0.0.1/search_dict.php?word='+word;
   Http.open("GET", url);
@@ -22,12 +30,35 @@ function get_data(word){
         {
           data=JSON.parse(response_data);
           console.log(data);
-        }
 
+
+          var mean_part="";
+          var explains=data["basic"]["explains"];
+
+          for (i=0;i<len(explains);i++)
+          {
+              console.log(mean_part);
+              var str = explains[i];
+              if (str.indexOf(".") == -1)
+              {
+                mean_part=mean_part+'<li><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
+              }
+              else if(str.indexOf(".") >=5){
+                mean_part=mean_part+'<li><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
+              }
+              else{
+                mean_part=mean_part+'<li><i>'+str.slice(0,str.indexOf("."))+'</i><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
+              }
+          }
+          console.log(mean_part);
+          document.getElementsByClassName("mean_part")[0].innerHTML=mean_part
+        }
+      return explains;
   };
 
   // return data["basic"];
 }
+  
 function GetRequest() {
   var url = location.search; //获取url中"?"符后的字串
   var theRequest = new Object();
