@@ -17,8 +17,9 @@ function len(o) {
 
 
 function write_data(word){
+  document.getElementsByClassName("mean_word")[0].innerText=word;
   const Http = new XMLHttpRequest();
-  const url='http://127.0.0.1/search_dict.php?word='+word;
+  const url='http://'+window.location.host+'/search_dict.php?word='+word;
   Http.open("GET", url);
   Http.send(null);
   Http.onreadystatechange=function()
@@ -30,14 +31,13 @@ function write_data(word){
         {
           data=JSON.parse(response_data);
           console.log(data);
-
-
           var mean_part="";
           var explains=data["basic"]["explains"];
-
+          document.getElementById("uk").innerText="英["+data["basic"]["uk-phonetic"]+"]";
+          document.getElementById("us").innerText="美["+data["basic"]["us-phonetic"]+"]";
           for (i=0;i<len(explains);i++)
           {
-              console.log(mean_part);
+              // console.log(mean_part);
               var str = explains[i];
               if (str.indexOf(".") == -1)
               {
@@ -50,12 +50,28 @@ function write_data(word){
                 mean_part=mean_part+'<li><i>'+str.slice(0,str.indexOf("."))+'</i><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
               }
           }
-          console.log(mean_part);
+          // console.log(mean_part);
           document.getElementsByClassName("mean_part")[0].innerHTML=mean_part
         }
-      return explains;
   };
 
+
+
+  const Http_sentence = new XMLHttpRequest();
+  const url_sentence='http://'+window.location.host+'/api_sentence.php?word='+word;
+  Http_sentence.open("GET", url_sentence);
+  Http_sentence.send(null);
+  Http_sentence.onreadystatechange=function()
+  {
+      var response_data=undefined;
+      if(Http_sentence.readyState==4)
+        response_data=Http_sentence.responseText;
+        if (response_data != undefined)
+        {
+          // console.log(response_data);
+          document.getElementsByClassName("margin_div")[1].innerHTML=response_data;
+        }
+  };
   // return data["basic"];
 }
   
@@ -75,3 +91,7 @@ function GetRequest() {
   }
   
 } 
+
+function hlgt(e){$(e).addClass("highLight")}
+
+function unhlgt(e){$(e).removeClass("highLight")}

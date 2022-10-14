@@ -1,27 +1,441 @@
-<!--
- * @Author: fuutianyii
- * @Date: 2022-10-12 18:47:02
- * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-12 19:56:55
- * @github: https://github.com/fuutianyii
- * @mail: fuutianyii@gmail.com
- * @QQ: 1587873181
--->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ch">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script>
-        function api(){
-
-        }api();
-    </script>
-
+    <style>@import url(dict.css);</style>
     <title>Document</title>
 </head>
 <body>
+    <div id="main">
+        <div id="left">
+            <a href="#"><img src="img/menu.png" alt=""></a>
+            <a href="#"><img src="img/user.jpg" alt=""><span>用户名</span></a>
+            <a href="#"><img src="img/search.png" alt=""><span>查词</span></a>
+            <a href="#"><img src="img/test.png" alt=""><span>测试</span></a>
+            <a href="#"><img src="img/control.png" alt=""><span>偏好</span></a>
+        </div>
+        <div id="right">
+            
+            <div class="container">
+            <div class="no_search_div"></div>
+                <div class="search-bar">
+                <script src="dic_api.js"></script>
+                <script src="search.js"></script>
+                    <input class="search-txt" type="text" placeholder="Enter a word for searching" onkeydown="enter(event);">
+                    <img src="img/search.png" alt="" class="search-btn">
+                </div>
 
+                <div class="search_history">
+                </div>
+                <div class="content_div">
+                    <div class="basic_div">
+                    <div class="margin_div">
+                        <div>
+                            <div>
+                                <h1 class="mean_word">orange</h1>
+                                <p class="mean_tag">高中/CET4/CET6</p>
+                                <dl class="mean_symbols">
+                                    <li>英[ˈɒrɪndʒ]
+                                    <img class="audio_img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABgCAMAAADPemeEAAAAnFBMVEUAAABEq/88qf9Rrv88qv88q/88qf9WuP87qf89qv9f0/9Arf87qf87qP87qf87qf9Brv88qf87qf88qf88qf88qf88qf87qf8+qv87qf87qf88qv8/rf9BsP88qf89q/87qf88qf87qf88qf88qf88qf87qP87qf88qv88qv8+rP87qf87qf89q/87qf88qv88qf88qf87qP87qP93cczaAAAAM3RSTlMADvkJeED8Be47AiP26t/ZF8bBqZKKg30t8rJzHRJaMuXRbWXVrqGcVE4nu6RFzDa3mF9wVIiXAAAEUUlEQVRo3r2Z2YKiMBBFS1A2QUFxBcQNt9ZWJ///bzPTVEg6KosS7huleEzlpioE+EinoWHMp9CINjb5JzsG+WoNSaoBSNe1R1CaDpIVKCRTC6TKvSGnAdhlSZqC6WONNAULPWQ0ADsYpClYa4+ABmBmn2PYAkymM1ZT5TVMXZ/96yes6Ypw8lV4DWv9/6o2eX9YE4VDOUeAHFg7/WD8Jiv+NawvF3Jh1Eajt0w44mdLCQDyYX/I+7TDkvxyBhTBrDlBbar63eNR2kiHQhjolKZ1nnxoLtbt5/oivPomQC5MpBldsdztDVJKmq9CEUykbdXfRrULKWxYZWGgfj8xibUviVLGKlSAQehgOrhSMirJGpwAKsHAxC/01SyilUL1FgBFMHMRi4Uk1QRQXhmUE6hQBHM9LC1MFk7bDKNxCdT3GlG5sCRNWQicaGPw08txVu4WnecyI0DlwwzMN1tX7OeVNDjAG4YWVJQIo07vR3xRRUfuf65o1TvBp7AOvfT4pAfY1X/+AV3P+scwONLrHTCpOJqfRkFQ6ucwRjs8Dq1fIwxpGhZfzpIRfqtTNwwCajdgGqL7a4fBEEMmC11wSdQPixx0JDBhaFo7DBYY4xr0Dgtk3TBWJeYP/JsE2AWDXZba1KOOBBh4rK2gtmkklADDPePqwaIHCbDWTMxjG8cqAUYH8geojmngLgO2oV2FaooGlQHr4n4RqFycRRkwSCdNsQBl4UZGCsyjVkfhjsGQAjuLxdiRCPPT8FGAzaTAxriIhTTaMmEL5hiJaRwJI1NxGyJzzi7CwhtIgeFj4BVQHdyYSIFhS3GF7unLgOlp3BDncCMDdhX3PANMqwxYQLOGslLna6oMmCcUkCl1vgRYiI/tkdCo9zJgbfE9hpetcY3eUBdMX6L3hNaptQB6dAdbFww3V3YWXONIucfcpBYYe/jbi0t8zT/A+2otsAkmrSvUKiVKfYlybrvd+by7+5P18WS9CYsxdgaqBAsjt7xF2avzolUdpm7x9mxgU433RIxXj1J8txqMHftNxA7QZ1l+pV63EswaYmCrA8okQtfev6YllWA7OgcxULyHdIs56GUmjSqw++MhdPDkrMIcvID1K8DWBHUHqpONJ23COeRoNaO+cHq9fs/OViKckuV2rBbAWC3aWWIStRgepEdR5Loq9ew6+Qqs7O/dCmGOyAK/+puEBNtTEWwksjZ0LirUJix24yKYPlLIrI0s7pROM6G8VlhIi62vhwwFsYGfBlBBbb4AxfPl7VLm9PtKWWeoIv1/XZgduMPzr1MhzKTe/q7aTMz2JgT+aNYOrHxYl46rF8K7anFv63JhI1Zc35ZOMjmXPNj9IxbqxmjaJAd2qYEFpyVhmucYZGP8S3UIn8md9Mq9gVenLnyuVvIEJk/jJmGwUBqEgek0CINuv0EYRIMGYaCfm4GJptR0kK+Nxh6G5Ovy07RmMTSi7tAwkimU1V8yBRUSWK7iaQAAAABJRU5ErkJggg==" alt="" class="jsx-1500050861">
+                                    </li>
+                                    <li>美[ˈɔːrɪndʒ]
+                                    <img class="audio_img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABgCAMAAADPemeEAAAAnFBMVEUAAABEq/88qf9Rrv88qv88q/88qf9WuP87qf89qv9f0/9Arf87qf87qP87qf87qf9Brv88qf87qf88qf88qf88qf88qf87qf8+qv87qf87qf88qv8/rf9BsP88qf89q/87qf88qf87qf88qf88qf88qf87qP87qf88qv88qv8+rP87qf87qf89q/87qf88qv88qf88qf87qP87qP93cczaAAAAM3RSTlMADvkJeED8Be47AiP26t/ZF8bBqZKKg30t8rJzHRJaMuXRbWXVrqGcVE4nu6RFzDa3mF9wVIiXAAAEUUlEQVRo3r2Z2YKiMBBFS1A2QUFxBcQNt9ZWJ///bzPTVEg6KosS7huleEzlpioE+EinoWHMp9CINjb5JzsG+WoNSaoBSNe1R1CaDpIVKCRTC6TKvSGnAdhlSZqC6WONNAULPWQ0ADsYpClYa4+ABmBmn2PYAkymM1ZT5TVMXZ/96yes6Ypw8lV4DWv9/6o2eX9YE4VDOUeAHFg7/WD8Jiv+NawvF3Jh1Eajt0w44mdLCQDyYX/I+7TDkvxyBhTBrDlBbar63eNR2kiHQhjolKZ1nnxoLtbt5/oivPomQC5MpBldsdztDVJKmq9CEUykbdXfRrULKWxYZWGgfj8xibUviVLGKlSAQehgOrhSMirJGpwAKsHAxC/01SyilUL1FgBFMHMRi4Uk1QRQXhmUE6hQBHM9LC1MFk7bDKNxCdT3GlG5sCRNWQicaGPw08txVu4WnecyI0DlwwzMN1tX7OeVNDjAG4YWVJQIo07vR3xRRUfuf65o1TvBp7AOvfT4pAfY1X/+AV3P+scwONLrHTCpOJqfRkFQ6ucwRjs8Dq1fIwxpGhZfzpIRfqtTNwwCajdgGqL7a4fBEEMmC11wSdQPixx0JDBhaFo7DBYY4xr0Dgtk3TBWJeYP/JsE2AWDXZba1KOOBBh4rK2gtmkklADDPePqwaIHCbDWTMxjG8cqAUYH8geojmngLgO2oV2FaooGlQHr4n4RqFycRRkwSCdNsQBl4UZGCsyjVkfhjsGQAjuLxdiRCPPT8FGAzaTAxriIhTTaMmEL5hiJaRwJI1NxGyJzzi7CwhtIgeFj4BVQHdyYSIFhS3GF7unLgOlp3BDncCMDdhX3PANMqwxYQLOGslLna6oMmCcUkCl1vgRYiI/tkdCo9zJgbfE9hpetcY3eUBdMX6L3hNaptQB6dAdbFww3V3YWXONIucfcpBYYe/jbi0t8zT/A+2otsAkmrSvUKiVKfYlybrvd+by7+5P18WS9CYsxdgaqBAsjt7xF2avzolUdpm7x9mxgU433RIxXj1J8txqMHftNxA7QZ1l+pV63EswaYmCrA8okQtfev6YllWA7OgcxULyHdIs56GUmjSqw++MhdPDkrMIcvID1K8DWBHUHqpONJ23COeRoNaO+cHq9fs/OViKckuV2rBbAWC3aWWIStRgepEdR5Loq9ew6+Qqs7O/dCmGOyAK/+puEBNtTEWwksjZ0LirUJix24yKYPlLIrI0s7pROM6G8VlhIi62vhwwFsYGfBlBBbb4AxfPl7VLm9PtKWWeoIv1/XZgduMPzr1MhzKTe/q7aTMz2JgT+aNYOrHxYl46rF8K7anFv63JhI1Zc35ZOMjmXPNj9IxbqxmjaJAd2qYEFpyVhmucYZGP8S3UIn8md9Mq9gVenLnyuVvIEJk/jJmGwUBqEgek0CINuv0EYRIMGYaCfm4GJptR0kK+Nxh6G5Ovy07RmMTSi7tAwkimU1V8yBRUSWK7iaQAAAABJRU5ErkJggg==" alt="" class="jsx-1500050861">
+                                    </li>
+                                </dl>
+                                <div>
+                                    <hr>
+                                    <div>
+                                        <h3 class="mean_title">释义</h3>
+                                        <dl class="mean_part">
+                                            <!-- <li>
+                                                <i>n.</i>
+                                                <p class="means">桔子，橙子; [植]桔树; 橙色; 桔色; 橙汁饮料</p>
+                                            </li>
+                                            <li>
+                                                <i>adj.</i>
+                                                <p class="means">橙色的; 橘色的; 桔红色的</p>
+                                            </li> -->
+                                        </dl>
+                                        </p>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                
+
+
+                
+                </div>
+<div class="basic_div">
+    <div class="margin_div"><div id="results-contents" class="results-content" style="
+">
+                                              
+                        
+<div id="examples_sentences" class="trans-wrapper">
+        <div id="bilingual" class="trans-container  tab-content" style="display:block">
+                                                                                  
+    <dl class="ol">
+                                                     
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_0_0" onmouseover="hlgt('#src_0_0,#tran_0_0')" onmouseout="unhlgt('#src_0_0,#tran_0_0')">You</span><span> </span><span id="src_0_1" onmouseover="hlgt('#src_0_1,#tran_0_1')" onmouseout="unhlgt('#src_0_1,#tran_0_1')">can</span><span> </span><span id="src_0_2" onmouseover="hlgt('#src_0_2,#tran_0_5')" onmouseout="unhlgt('#src_0_2,#tran_0_5')">contact</span><span> </span><span id="src_0_3" onmouseover="hlgt('#src_0_3,#tran_0_4')" onmouseout="unhlgt('#src_0_3,#tran_0_4')">us</span><span> </span><span id="src_0_4" onmouseover="hlgt('#src_0_4,#tran_0_2')" onmouseout="unhlgt('#src_0_4,#tran_0_2')">by</span><span> </span><span id="src_0_5" onmouseover="hlgt('#src_0_5,#tran_0_3')" onmouseout="unhlgt('#src_0_5,#tran_0_3')">e-<b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="You+can+contact+us+by+e-mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_0_0" onmouseover="hlgt('#src_0_0,#tran_0_0')" onmouseout="unhlgt('#src_0_0,#tran_0_0')">你</span><span id="tran_0_1" onmouseover="hlgt('#src_0_1,#tran_0_1')" onmouseout="unhlgt('#src_0_1,#tran_0_1')">可以</span><span id="tran_0_2" onmouseover="hlgt('#src_0_4,#tran_0_2')" onmouseout="unhlgt('#src_0_4,#tran_0_2')">通过</span><span id="tran_0_3" onmouseover="hlgt('#src_0_5,#tran_0_3')" onmouseout="unhlgt('#src_0_5,#tran_0_3')">电子邮件</span><span>跟</span><span id="tran_0_4" onmouseover="hlgt('#src_0_3,#tran_0_4')" onmouseout="unhlgt('#src_0_3,#tran_0_4')">我们</span><span id="tran_0_5" onmouseover="hlgt('#src_0_2,#tran_0_5')" onmouseout="unhlgt('#src_0_2,#tran_0_5')">联系</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_1_0" onmouseover="hlgt('#src_1_0,#tran_1_2')" onmouseout="unhlgt('#src_1_0,#tran_1_2')">There isn't much</span><span> </span><span id="src_1_1" onmouseover="hlgt('#src_1_1,#tran_1_1')" onmouseout="unhlgt('#src_1_1,#tran_1_1')"><b>mail</b></span><span> </span><span id="src_1_2" onmouseover="hlgt('#src_1_2,#tran_1_0')" onmouseout="unhlgt('#src_1_2,#tran_1_0')">today</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="There+isn%27t+much+mail+today.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_1_0" onmouseover="hlgt('#src_1_2,#tran_1_0')" onmouseout="unhlgt('#src_1_2,#tran_1_0')">今天</span><span id="tran_1_1" onmouseover="hlgt('#src_1_1,#tran_1_1')" onmouseout="unhlgt('#src_1_1,#tran_1_1')">邮件</span><span id="tran_1_2" onmouseover="hlgt('#src_1_0,#tran_1_2')" onmouseout="unhlgt('#src_1_0,#tran_1_2')">不多</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_2_0" onmouseover="hlgt('#src_2_0,#tran_2_0')" onmouseout="unhlgt('#src_2_0,#tran_2_0')">We</span><span> do our </span><span id="src_2_1" onmouseover="hlgt('#src_2_1,#tran_2_3')" onmouseout="unhlgt('#src_2_1,#tran_2_3')">business</span><span> </span><span id="src_2_2" onmouseover="hlgt('#src_2_2,#tran_2_1')" onmouseout="unhlgt('#src_2_2,#tran_2_1')">by</span><span> </span><span id="src_2_3" onmouseover="hlgt('#src_2_3,#tran_2_2')" onmouseout="unhlgt('#src_2_3,#tran_2_2')"><b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="We+do+our+business+by+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_2_0" onmouseover="hlgt('#src_2_0,#tran_2_0')" onmouseout="unhlgt('#src_2_0,#tran_2_0')">我们</span><span id="tran_2_1" onmouseover="hlgt('#src_2_2,#tran_2_1')" onmouseout="unhlgt('#src_2_2,#tran_2_1')">通过</span><span id="tran_2_2" onmouseover="hlgt('#src_2_3,#tran_2_2')" onmouseout="unhlgt('#src_2_3,#tran_2_2')">邮递</span><span id="tran_2_3" onmouseover="hlgt('#src_2_1,#tran_2_3')" onmouseout="unhlgt('#src_2_1,#tran_2_3')">做生意</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_3_0" onmouseover="hlgt('#src_3_0,#tran_3_0')" onmouseout="unhlgt('#src_3_0,#tran_3_0')">Your</span><span> </span><span id="src_3_1" onmouseover="hlgt('#src_3_1,#tran_3_1')" onmouseout="unhlgt('#src_3_1,#tran_3_1')">cheque</span><span> is </span><span id="src_3_2" onmouseover="hlgt('#src_3_2,#tran_3_2')" onmouseout="unhlgt('#src_3_2,#tran_3_2')">in</span><span> </span><span id="src_3_3" onmouseover="hlgt('#src_3_3,#tran_3_3')" onmouseout="unhlgt('#src_3_3,#tran_3_3')">the <b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Your+cheque+is+in+the+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_3_0" onmouseover="hlgt('#src_3_0,#tran_3_0')" onmouseout="unhlgt('#src_3_0,#tran_3_0')">你</span><span>的</span><span id="tran_3_1" onmouseover="hlgt('#src_3_1,#tran_3_1')" onmouseout="unhlgt('#src_3_1,#tran_3_1')">支票</span><span id="tran_3_2" onmouseover="hlgt('#src_3_2,#tran_3_2')" onmouseout="unhlgt('#src_3_2,#tran_3_2')">在</span><span id="tran_3_3" onmouseover="hlgt('#src_3_3,#tran_3_3')" onmouseout="unhlgt('#src_3_3,#tran_3_3')">邮递</span><span>途中。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span>Is </span><span id="src_4_0" onmouseover="hlgt('#src_4_0,#tran_4_1')" onmouseout="unhlgt('#src_4_0,#tran_4_1')">there a</span><span> </span><span id="src_4_1" onmouseover="hlgt('#src_4_1,#tran_4_4')" onmouseout="unhlgt('#src_4_1,#tran_4_4')">letter from</span><span> </span><span id="src_4_2" onmouseover="hlgt('#src_4_2,#tran_4_2')" onmouseout="unhlgt('#src_4_2,#tran_4_2')">them</span><span> in </span><span id="src_4_3" onmouseover="hlgt('#src_4_3,#tran_4_3')" onmouseout="unhlgt('#src_4_3,#tran_4_3')">the</span><span> </span><span id="src_4_4" onmouseover="hlgt('#src_4_4,#tran_4_0')" onmouseout="unhlgt('#src_4_4,#tran_4_0')"><b>mail</b></span><span> ?</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Is+there+a+letter+from+them+in+the+mail+%3F&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_4_0" onmouseover="hlgt('#src_4_4,#tran_4_0')" onmouseout="unhlgt('#src_4_4,#tran_4_0')">邮件里</span><span id="tran_4_1" onmouseover="hlgt('#src_4_0,#tran_4_1')" onmouseout="unhlgt('#src_4_0,#tran_4_1')">有</span><span id="tran_4_2" onmouseover="hlgt('#src_4_2,#tran_4_2')" onmouseout="unhlgt('#src_4_2,#tran_4_2')">他们</span><span>来</span><span id="tran_4_3" onmouseover="hlgt('#src_4_3,#tran_4_3')" onmouseout="unhlgt('#src_4_3,#tran_4_3')">的</span><span id="tran_4_4" onmouseover="hlgt('#src_4_1,#tran_4_4')" onmouseout="unhlgt('#src_4_1,#tran_4_4')">信</span><span>吗？</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span>'Has the </span><span id="src_5_0" onmouseover="hlgt('#src_5_0,#tran_5_0')" onmouseout="unhlgt('#src_5_0,#tran_5_0')"><b>mail</b></span><span> </span><span id="src_5_1" onmouseover="hlgt('#src_5_1,#tran_5_1')" onmouseout="unhlgt('#src_5_1,#tran_5_1')">come</span><span> yet?' '</span><span id="src_5_2" onmouseover="hlgt('#src_5_2,#tran_5_2')" onmouseout="unhlgt('#src_5_2,#tran_5_2')">I</span><span id="src_5_3" onmouseover="hlgt('#src_5_3,#tran_5_3')" onmouseout="unhlgt('#src_5_3,#tran_5_3')">'ll look and see</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="%27Has+the+mail+come+yet%3F%27+%27I%27ll+look+and+see.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span>“</span><span id="tran_5_0" onmouseover="hlgt('#src_5_0,#tran_5_0')" onmouseout="unhlgt('#src_5_0,#tran_5_0')">邮件</span><span id="tran_5_1" onmouseover="hlgt('#src_5_1,#tran_5_1')" onmouseout="unhlgt('#src_5_1,#tran_5_1')">来</span><span>了吗？”“</span><span id="tran_5_2" onmouseover="hlgt('#src_5_2,#tran_5_2')" onmouseout="unhlgt('#src_5_2,#tran_5_2')">我</span><span id="tran_5_3" onmouseover="hlgt('#src_5_3,#tran_5_3')" onmouseout="unhlgt('#src_5_3,#tran_5_3')">看看</span><span>。”</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_6_0" onmouseover="hlgt('#src_6_0,#tran_6_0')" onmouseout="unhlgt('#src_6_0,#tran_6_0')">A packet of</span><span> </span><span id="src_6_1" onmouseover="hlgt('#src_6_1,#tran_6_1')" onmouseout="unhlgt('#src_6_1,#tran_6_1')">photographs</span><span> </span><span id="src_6_2" onmouseover="hlgt('#src_6_2,#tran_6_2')" onmouseout="unhlgt('#src_6_2,#tran_6_2')">arrived</span><span> </span><span id="src_6_3" onmouseover="hlgt('#src_6_3,#tran_6_3')" onmouseout="unhlgt('#src_6_3,#tran_6_3')">with the</span><span> <b>mail</b>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="A+packet+of+photographs+arrived+with+the+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_6_0" onmouseover="hlgt('#src_6_0,#tran_6_0')" onmouseout="unhlgt('#src_6_0,#tran_6_0')">一包</span><span id="tran_6_1" onmouseover="hlgt('#src_6_1,#tran_6_1')" onmouseout="unhlgt('#src_6_1,#tran_6_1')">照片</span><span id="tran_6_2" onmouseover="hlgt('#src_6_2,#tran_6_2')" onmouseout="unhlgt('#src_6_2,#tran_6_2')">邮寄来</span><span id="tran_6_3" onmouseover="hlgt('#src_6_3,#tran_6_3')" onmouseout="unhlgt('#src_6_3,#tran_6_3')">了</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_7_0" onmouseover="hlgt('#src_7_0,#tran_7_0')" onmouseout="unhlgt('#src_7_0,#tran_7_0')">We</span><span> </span><span id="src_7_1" onmouseover="hlgt('#src_7_1,#tran_7_1')" onmouseout="unhlgt('#src_7_1,#tran_7_1')">still</span><span> </span><span id="src_7_2" onmouseover="hlgt('#src_7_2,#tran_7_2')" onmouseout="unhlgt('#src_7_2,#tran_7_2')">get</span><span> </span><span id="src_7_3" onmouseover="hlgt('#src_7_3,#tran_7_6')" onmouseout="unhlgt('#src_7_3,#tran_7_6')">junk</span><span> </span><span id="src_7_4" onmouseover="hlgt('#src_7_4,#tran_7_7')" onmouseout="unhlgt('#src_7_4,#tran_7_7')"><b>mail</b></span><span> for </span><span id="src_7_5" onmouseover="hlgt('#src_7_5,#tran_7_5')" onmouseout="unhlgt('#src_7_5,#tran_7_5')">the</span><span> </span><span id="src_7_6" onmouseover="hlgt('#src_7_6,#tran_7_3')" onmouseout="unhlgt('#src_7_6,#tran_7_3')">previous</span><span> </span><span id="src_7_7" onmouseover="hlgt('#src_7_7,#tran_7_4')" onmouseout="unhlgt('#src_7_7,#tran_7_4')">occupants</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="We+still+get+junk+mail+for+the+previous+occupants.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_7_0" onmouseover="hlgt('#src_7_0,#tran_7_0')" onmouseout="unhlgt('#src_7_0,#tran_7_0')">我们</span><span id="tran_7_1" onmouseover="hlgt('#src_7_1,#tran_7_1')" onmouseout="unhlgt('#src_7_1,#tran_7_1')">仍</span><span id="tran_7_2" onmouseover="hlgt('#src_7_2,#tran_7_2')" onmouseout="unhlgt('#src_7_2,#tran_7_2')">会收到给</span><span id="tran_7_3" onmouseover="hlgt('#src_7_6,#tran_7_3')" onmouseout="unhlgt('#src_7_6,#tran_7_3')">先前</span><span id="tran_7_4" onmouseover="hlgt('#src_7_7,#tran_7_4')" onmouseout="unhlgt('#src_7_7,#tran_7_4')">住户</span><span id="tran_7_5" onmouseover="hlgt('#src_7_5,#tran_7_5')" onmouseout="unhlgt('#src_7_5,#tran_7_5')">的</span><span id="tran_7_6" onmouseover="hlgt('#src_7_3,#tran_7_6')" onmouseout="unhlgt('#src_7_3,#tran_7_6')">垃圾</span><span id="tran_7_7" onmouseover="hlgt('#src_7_4,#tran_7_7')" onmouseout="unhlgt('#src_7_4,#tran_7_7')">邮件</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_8_0" onmouseover="hlgt('#src_8_0,#tran_8_0')" onmouseout="unhlgt('#src_8_0,#tran_8_0')">He</span><span> </span><span id="src_8_1" onmouseover="hlgt('#src_8_1,#tran_8_1')" onmouseout="unhlgt('#src_8_1,#tran_8_1')">asked</span><span> </span><span id="src_8_2" onmouseover="hlgt('#src_8_2,#tran_8_2')" onmouseout="unhlgt('#src_8_2,#tran_8_2')">his</span><span> </span><span id="src_8_3" onmouseover="hlgt('#src_8_3,#tran_8_3')" onmouseout="unhlgt('#src_8_3,#tran_8_3')">mother</span><span> to send it </span><span id="src_8_4" onmouseover="hlgt('#src_8_4,#tran_8_4')" onmouseout="unhlgt('#src_8_4,#tran_8_4')">by</span><span> </span><span id="src_8_5" onmouseover="hlgt('#src_8_5,#tran_8_5')" onmouseout="unhlgt('#src_8_5,#tran_8_5')">registered</span><span> </span><span id="src_8_6" onmouseover="hlgt('#src_8_6,#tran_8_6')" onmouseout="unhlgt('#src_8_6,#tran_8_6')"><b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="He+asked+his+mother+to+send+it+by+registered+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_8_0" onmouseover="hlgt('#src_8_0,#tran_8_0')" onmouseout="unhlgt('#src_8_0,#tran_8_0')">他</span><span id="tran_8_1" onmouseover="hlgt('#src_8_1,#tran_8_1')" onmouseout="unhlgt('#src_8_1,#tran_8_1')">让</span><span id="tran_8_2" onmouseover="hlgt('#src_8_2,#tran_8_2')" onmouseout="unhlgt('#src_8_2,#tran_8_2')">他</span><span id="tran_8_3" onmouseover="hlgt('#src_8_3,#tran_8_3')" onmouseout="unhlgt('#src_8_3,#tran_8_3')">妈妈</span><span id="tran_8_4" onmouseover="hlgt('#src_8_4,#tran_8_4')" onmouseout="unhlgt('#src_8_4,#tran_8_4')">用</span><span id="tran_8_5" onmouseover="hlgt('#src_8_5,#tran_8_5')" onmouseout="unhlgt('#src_8_5,#tran_8_5')">挂号</span><span id="tran_8_6" onmouseover="hlgt('#src_8_6,#tran_8_6')" onmouseout="unhlgt('#src_8_6,#tran_8_6')">邮件寄</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_9_0" onmouseover="hlgt('#src_9_0,#tran_9_0')" onmouseout="unhlgt('#src_9_0,#tran_9_0')">This</span><span> </span><span id="src_9_1" onmouseover="hlgt('#src_9_1,#tran_9_1')" onmouseout="unhlgt('#src_9_1,#tran_9_1')">column</span><span> </span><span id="src_9_2" onmouseover="hlgt('#src_9_2,#tran_9_2')" onmouseout="unhlgt('#src_9_2,#tran_9_2')">displays</span><span> the </span><span id="src_9_3" onmouseover="hlgt('#src_9_3,#tran_9_4')" onmouseout="unhlgt('#src_9_3,#tran_9_4')">title</span><span> of the </span><span id="src_9_4" onmouseover="hlgt('#src_9_4,#tran_9_3')" onmouseout="unhlgt('#src_9_4,#tran_9_3')"><b>mail</b> message</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="This+column+displays+the+title+of+the+mail+message.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_9_0" onmouseover="hlgt('#src_9_0,#tran_9_0')" onmouseout="unhlgt('#src_9_0,#tran_9_0')">这</span><span id="tran_9_1" onmouseover="hlgt('#src_9_1,#tran_9_1')" onmouseout="unhlgt('#src_9_1,#tran_9_1')">一栏</span><span id="tran_9_2" onmouseover="hlgt('#src_9_2,#tran_9_2')" onmouseout="unhlgt('#src_9_2,#tran_9_2')">显示</span><span id="tran_9_3" onmouseover="hlgt('#src_9_4,#tran_9_3')" onmouseout="unhlgt('#src_9_4,#tran_9_3')">邮件</span><span id="tran_9_4" onmouseover="hlgt('#src_9_3,#tran_9_4')" onmouseout="unhlgt('#src_9_3,#tran_9_4')">标题</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_10_0" onmouseover="hlgt('#src_10_0,#tran_10_0')" onmouseout="unhlgt('#src_10_0,#tran_10_0')">He</span><span> </span><span id="src_10_1" onmouseover="hlgt('#src_10_1,#tran_10_2')" onmouseout="unhlgt('#src_10_1,#tran_10_2')">was</span><span> </span><span id="src_10_2" onmouseover="hlgt('#src_10_2,#tran_10_3')" onmouseout="unhlgt('#src_10_2,#tran_10_3')">a</span><span> </span><span id="src_10_3" onmouseover="hlgt('#src_10_3,#tran_10_4')" onmouseout="unhlgt('#src_10_3,#tran_10_4')">complete technophobe</span><span> who never used </span><span>e-<b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="He+was+a+complete+technophobe+who+never+used+e-mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_10_0" onmouseover="hlgt('#src_10_0,#tran_10_0')" onmouseout="unhlgt('#src_10_0,#tran_10_0')">他</span><span id="tran_10_2" onmouseover="hlgt('#src_10_1,#tran_10_2')" onmouseout="unhlgt('#src_10_1,#tran_10_2')">是</span><span id="tran_10_3" onmouseover="hlgt('#src_10_2,#tran_10_3')" onmouseout="unhlgt('#src_10_2,#tran_10_3')">一个</span><span id="tran_10_4" onmouseover="hlgt('#src_10_3,#tran_10_4')" onmouseout="unhlgt('#src_10_3,#tran_10_4')">特别</span><span>惧怕科技的人，从没用过电子邮件。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_11_0" onmouseover="hlgt('#src_11_0,#tran_11_0')" onmouseout="unhlgt('#src_11_0,#tran_11_0')">Kate</span><span> </span><span id="src_11_1" onmouseover="hlgt('#src_11_1,#tran_11_1')" onmouseout="unhlgt('#src_11_1,#tran_11_1')">clicked on</span><span> </span><span id="src_11_2" onmouseover="hlgt('#src_11_2,#tran_11_2')" onmouseout="unhlgt('#src_11_2,#tran_11_2')">the</span><span> </span><span id="src_11_3" onmouseover="hlgt('#src_11_3,#tran_11_6')" onmouseout="unhlgt('#src_11_3,#tran_11_6')"><b>mail</b></span><span> </span><span id="src_11_4" onmouseover="hlgt('#src_11_4,#tran_11_7')" onmouseout="unhlgt('#src_11_4,#tran_11_7')">icon</span><span> on </span><span id="src_11_5" onmouseover="hlgt('#src_11_5,#tran_11_3')" onmouseout="unhlgt('#src_11_5,#tran_11_3')">her</span><span> </span><span id="src_11_6" onmouseover="hlgt('#src_11_6,#tran_11_4')" onmouseout="unhlgt('#src_11_6,#tran_11_4')">computer</span><span> </span><span id="src_11_7" onmouseover="hlgt('#src_11_7,#tran_11_5')" onmouseout="unhlgt('#src_11_7,#tran_11_5')">screen</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Kate+clicked+on+the+mail+icon+on+her+computer+screen.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_11_0" onmouseover="hlgt('#src_11_0,#tran_11_0')" onmouseout="unhlgt('#src_11_0,#tran_11_0')">凯特</span><span id="tran_11_1" onmouseover="hlgt('#src_11_1,#tran_11_1')" onmouseout="unhlgt('#src_11_1,#tran_11_1')">点击</span><span id="tran_11_2" onmouseover="hlgt('#src_11_2,#tran_11_2')" onmouseout="unhlgt('#src_11_2,#tran_11_2')">了</span><span id="tran_11_3" onmouseover="hlgt('#src_11_5,#tran_11_3')" onmouseout="unhlgt('#src_11_5,#tran_11_3')">她</span><span id="tran_11_4" onmouseover="hlgt('#src_11_6,#tran_11_4')" onmouseout="unhlgt('#src_11_6,#tran_11_4')">电脑</span><span id="tran_11_5" onmouseover="hlgt('#src_11_7,#tran_11_5')" onmouseout="unhlgt('#src_11_7,#tran_11_5')">屏幕上</span><span>的</span><span id="tran_11_6" onmouseover="hlgt('#src_11_3,#tran_11_6')" onmouseout="unhlgt('#src_11_3,#tran_11_6')">邮件</span><span id="tran_11_7" onmouseover="hlgt('#src_11_4,#tran_11_7')" onmouseout="unhlgt('#src_11_4,#tran_11_7')">图标</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_12_0" onmouseover="hlgt('#src_12_0,#tran_12_0')" onmouseout="unhlgt('#src_12_0,#tran_12_0')">Many</span><span> items </span><span id="src_12_1" onmouseover="hlgt('#src_12_1,#tran_12_4')" onmouseout="unhlgt('#src_12_1,#tran_12_4')">of</span><span> </span><span id="src_12_2" onmouseover="hlgt('#src_12_2,#tran_12_5')" onmouseout="unhlgt('#src_12_2,#tran_12_5')"><b>mail</b></span><span> being </span><span id="src_12_3" onmouseover="hlgt('#src_12_3,#tran_12_2')" onmouseout="unhlgt('#src_12_3,#tran_12_2')">sent</span><span> to </span><span>her</span><span> </span><span id="src_12_5" onmouseover="hlgt('#src_12_5,#tran_12_3')" onmouseout="unhlgt('#src_12_5,#tran_12_3')">have</span><span> </span><span id="src_12_6" onmouseover="hlgt('#src_12_6,#tran_12_6')" onmouseout="unhlgt('#src_12_6,#tran_12_6')">gone astray</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Many+items+of+mail+being+sent+to+her+have+gone+astray.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_12_0" onmouseover="hlgt('#src_12_0,#tran_12_0')" onmouseout="unhlgt('#src_12_0,#tran_12_0')">很多</span><span id="tran_12_2" onmouseover="hlgt('#src_12_3,#tran_12_2')" onmouseout="unhlgt('#src_12_3,#tran_12_2')">寄</span><span>给</span><span id="tran_12_3" onmouseover="hlgt('#src_12_5,#tran_12_3')" onmouseout="unhlgt('#src_12_5,#tran_12_3')">她</span><span id="tran_12_4" onmouseover="hlgt('#src_12_1,#tran_12_4')" onmouseout="unhlgt('#src_12_1,#tran_12_4')">的</span><span id="tran_12_5" onmouseover="hlgt('#src_12_2,#tran_12_5')" onmouseout="unhlgt('#src_12_2,#tran_12_5')">邮件</span><span id="tran_12_6" onmouseover="hlgt('#src_12_6,#tran_12_6')" onmouseout="unhlgt('#src_12_6,#tran_12_6')">都</span><span>丢失了。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span>The cost </span><span id="src_13_0" onmouseover="hlgt('#src_13_0,#tran_13_1')" onmouseout="unhlgt('#src_13_0,#tran_13_1')">of</span><span> </span><span id="src_13_1" onmouseover="hlgt('#src_13_1,#tran_13_2')" onmouseout="unhlgt('#src_13_1,#tran_13_2')">third-class</span><span> </span><span id="src_13_2" onmouseover="hlgt('#src_13_2,#tran_13_0')" onmouseout="unhlgt('#src_13_2,#tran_13_0')"><b>mail</b></span><span> has </span><span id="src_13_3" onmouseover="hlgt('#src_13_3,#tran_13_3')" onmouseout="unhlgt('#src_13_3,#tran_13_3')">gone</span><span> up by 50 per cent.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="The+cost+of+third-class+mail+has+gone+up+by+50+per+cent.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span>第三类</span><span id="tran_13_0" onmouseover="hlgt('#src_13_2,#tran_13_0')" onmouseout="unhlgt('#src_13_2,#tran_13_0')">邮件</span><span id="tran_13_1" onmouseover="hlgt('#src_13_0,#tran_13_1')" onmouseout="unhlgt('#src_13_0,#tran_13_1')">的</span><span id="tran_13_2" onmouseover="hlgt('#src_13_1,#tran_13_2')" onmouseout="unhlgt('#src_13_1,#tran_13_2')">邮资</span><span id="tran_13_3" onmouseover="hlgt('#src_13_3,#tran_13_3')" onmouseout="unhlgt('#src_13_3,#tran_13_3')">上涨了</span><span>50%。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_14_0" onmouseover="hlgt('#src_14_0,#tran_14_4')" onmouseout="unhlgt('#src_14_0,#tran_14_4')">Deliveries</span><span> </span><span id="src_14_1" onmouseover="hlgt('#src_14_1,#tran_14_3')" onmouseout="unhlgt('#src_14_1,#tran_14_3')">of</span><span> </span><span id="src_14_2" onmouseover="hlgt('#src_14_2,#tran_14_2')" onmouseout="unhlgt('#src_14_2,#tran_14_2')"><b>mail</b></span><span> </span><span id="src_14_3" onmouseover="hlgt('#src_14_3,#tran_14_5')" onmouseout="unhlgt('#src_14_3,#tran_14_5')">could</span><span> </span><span id="src_14_4" onmouseover="hlgt('#src_14_4,#tran_14_6')" onmouseout="unhlgt('#src_14_4,#tran_14_6')">be</span><span> </span><span id="src_14_5" onmouseover="hlgt('#src_14_5,#tran_14_7')" onmouseout="unhlgt('#src_14_5,#tran_14_7')">delayed</span><span> </span><span id="src_14_6" onmouseover="hlgt('#src_14_6,#tran_14_0')" onmouseout="unhlgt('#src_14_6,#tran_14_0')">because</span><span> of </span><span id="src_14_7" onmouseover="hlgt('#src_14_7,#tran_14_1')" onmouseout="unhlgt('#src_14_7,#tran_14_1')">cost-cutting</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Deliveries+of+mail+could+be+delayed+because+of+cost-cutting.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_14_0" onmouseover="hlgt('#src_14_6,#tran_14_0')" onmouseout="unhlgt('#src_14_6,#tran_14_0')">由于</span><span id="tran_14_1" onmouseover="hlgt('#src_14_7,#tran_14_1')" onmouseout="unhlgt('#src_14_7,#tran_14_1')">削减</span><span>成本，</span><span id="tran_14_2" onmouseover="hlgt('#src_14_2,#tran_14_2')" onmouseout="unhlgt('#src_14_2,#tran_14_2')">邮件</span><span id="tran_14_3" onmouseover="hlgt('#src_14_1,#tran_14_3')" onmouseout="unhlgt('#src_14_1,#tran_14_3')">的</span><span id="tran_14_4" onmouseover="hlgt('#src_14_0,#tran_14_4')" onmouseout="unhlgt('#src_14_0,#tran_14_4')">递送</span><span id="tran_14_5" onmouseover="hlgt('#src_14_3,#tran_14_5')" onmouseout="unhlgt('#src_14_3,#tran_14_5')">可能</span><span id="tran_14_6" onmouseover="hlgt('#src_14_4,#tran_14_6')" onmouseout="unhlgt('#src_14_4,#tran_14_6')">会</span><span id="tran_14_7" onmouseover="hlgt('#src_14_5,#tran_14_7')" onmouseout="unhlgt('#src_14_5,#tran_14_7')">延迟</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span>It is </span><span id="src_15_0" onmouseover="hlgt('#src_15_0,#tran_15_0')" onmouseout="unhlgt('#src_15_0,#tran_15_0')">possible</span><span> to </span><span id="src_15_1" onmouseover="hlgt('#src_15_1,#tran_15_3')" onmouseout="unhlgt('#src_15_1,#tran_15_3')">attach</span><span> </span><span id="src_15_2" onmouseover="hlgt('#src_15_2,#tran_15_4')" onmouseout="unhlgt('#src_15_2,#tran_15_4')">executable</span><span> </span><span id="src_15_3" onmouseover="hlgt('#src_15_3,#tran_15_5')" onmouseout="unhlgt('#src_15_3,#tran_15_5')">program</span><span> </span><span id="src_15_4" onmouseover="hlgt('#src_15_4,#tran_15_6')" onmouseout="unhlgt('#src_15_4,#tran_15_6')">files</span><span> </span><span id="src_15_5" onmouseover="hlgt('#src_15_5,#tran_15_1')" onmouseout="unhlgt('#src_15_5,#tran_15_1')">to</span><span> </span><span id="src_15_6" onmouseover="hlgt('#src_15_6,#tran_15_2')" onmouseout="unhlgt('#src_15_6,#tran_15_2')">e-<b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="It+is+possible+to+attach+executable+program+files+to+e-mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_15_0" onmouseover="hlgt('#src_15_0,#tran_15_0')" onmouseout="unhlgt('#src_15_0,#tran_15_0')">可以</span><span id="tran_15_1" onmouseover="hlgt('#src_15_5,#tran_15_1')" onmouseout="unhlgt('#src_15_5,#tran_15_1')">在</span><span id="tran_15_2" onmouseover="hlgt('#src_15_6,#tran_15_2')" onmouseout="unhlgt('#src_15_6,#tran_15_2')">电子邮件</span><span id="tran_15_3" onmouseover="hlgt('#src_15_1,#tran_15_3')" onmouseout="unhlgt('#src_15_1,#tran_15_3')">上附上</span><span id="tran_15_4" onmouseover="hlgt('#src_15_2,#tran_15_4')" onmouseout="unhlgt('#src_15_2,#tran_15_4')">可执行</span><span id="tran_15_5" onmouseover="hlgt('#src_15_3,#tran_15_5')" onmouseout="unhlgt('#src_15_3,#tran_15_5')">程序</span><span id="tran_15_6" onmouseover="hlgt('#src_15_4,#tran_15_6')" onmouseout="unhlgt('#src_15_4,#tran_15_6')">文件</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_16_0" onmouseover="hlgt('#src_16_0,#tran_16_0')" onmouseout="unhlgt('#src_16_0,#tran_16_0')">The</span><span> </span><span id="src_16_1" onmouseover="hlgt('#src_16_1,#tran_16_1')" onmouseout="unhlgt('#src_16_1,#tran_16_1')">service</span><span> </span><span id="src_16_2" onmouseover="hlgt('#src_16_2,#tran_16_2')" onmouseout="unhlgt('#src_16_2,#tran_16_2')">includes</span><span> </span><span id="src_16_3" onmouseover="hlgt('#src_16_3,#tran_16_3')" onmouseout="unhlgt('#src_16_3,#tran_16_3')">caller</span><span> </span><span id="src_16_4" onmouseover="hlgt('#src_16_4,#tran_16_4')" onmouseout="unhlgt('#src_16_4,#tran_16_4')">ID</span><span>, </span><span id="src_16_5" onmouseover="hlgt('#src_16_5,#tran_16_5')" onmouseout="unhlgt('#src_16_5,#tran_16_5')">voice</span><span> </span><span id="src_16_6" onmouseover="hlgt('#src_16_6,#tran_16_6')" onmouseout="unhlgt('#src_16_6,#tran_16_6')"><b>mail</b></span><span>, </span><span id="src_16_7" onmouseover="hlgt('#src_16_7,#tran_16_7')" onmouseout="unhlgt('#src_16_7,#tran_16_7')">and</span><span> </span><span id="src_16_8" onmouseover="hlgt('#src_16_8,#tran_16_8')" onmouseout="unhlgt('#src_16_8,#tran_16_8')">call</span><span> </span><span id="src_16_9" onmouseover="hlgt('#src_16_9,#tran_16_9')" onmouseout="unhlgt('#src_16_9,#tran_16_9')">waiting</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="The+service+includes+caller+ID%2C+voice+mail%2C+and+call+waiting.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_16_0" onmouseover="hlgt('#src_16_0,#tran_16_0')" onmouseout="unhlgt('#src_16_0,#tran_16_0')">这项</span><span id="tran_16_1" onmouseover="hlgt('#src_16_1,#tran_16_1')" onmouseout="unhlgt('#src_16_1,#tran_16_1')">服务</span><span id="tran_16_2" onmouseover="hlgt('#src_16_2,#tran_16_2')" onmouseout="unhlgt('#src_16_2,#tran_16_2')">包括</span><span id="tran_16_3" onmouseover="hlgt('#src_16_3,#tran_16_3')" onmouseout="unhlgt('#src_16_3,#tran_16_3')">呼叫</span><span>方</span><span id="tran_16_4" onmouseover="hlgt('#src_16_4,#tran_16_4')" onmouseout="unhlgt('#src_16_4,#tran_16_4')">身份识别</span><span>、</span><span id="tran_16_5" onmouseover="hlgt('#src_16_5,#tran_16_5')" onmouseout="unhlgt('#src_16_5,#tran_16_5')">语音</span><span id="tran_16_6" onmouseover="hlgt('#src_16_6,#tran_16_6')" onmouseout="unhlgt('#src_16_6,#tran_16_6')">邮件</span><span id="tran_16_7" onmouseover="hlgt('#src_16_7,#tran_16_7')" onmouseout="unhlgt('#src_16_7,#tran_16_7')">和</span><span id="tran_16_8" onmouseover="hlgt('#src_16_8,#tran_16_8')" onmouseout="unhlgt('#src_16_8,#tran_16_8')">呼叫</span><span id="tran_16_9" onmouseover="hlgt('#src_16_9,#tran_16_9')" onmouseout="unhlgt('#src_16_9,#tran_16_9')">等待</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_17_0" onmouseover="hlgt('#src_17_0,#tran_17_2')" onmouseout="unhlgt('#src_17_0,#tran_17_2')">Peter</span><span> </span><span id="src_17_1" onmouseover="hlgt('#src_17_1,#tran_17_4')" onmouseout="unhlgt('#src_17_1,#tran_17_4')">starts</span><span> </span><span id="src_17_2" onmouseover="hlgt('#src_17_2,#tran_17_5')" onmouseout="unhlgt('#src_17_2,#tran_17_5')">looking through</span><span> the </span><span id="src_17_3" onmouseover="hlgt('#src_17_3,#tran_17_6')" onmouseout="unhlgt('#src_17_3,#tran_17_6')"><b>mail</b></span><span> </span><span id="src_17_4" onmouseover="hlgt('#src_17_4,#tran_17_3')" onmouseout="unhlgt('#src_17_4,#tran_17_3')">as soon as</span><span> </span><span id="src_17_5" onmouseover="hlgt('#src_17_5,#tran_17_0')" onmouseout="unhlgt('#src_17_5,#tran_17_0')">the door</span><span> </span><span id="src_17_6" onmouseover="hlgt('#src_17_6,#tran_17_1')" onmouseout="unhlgt('#src_17_6,#tran_17_1')">shuts</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Peter+starts+looking+through+the+mail+as+soon+as+the+door+shuts.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_17_0" onmouseover="hlgt('#src_17_5,#tran_17_0')" onmouseout="unhlgt('#src_17_5,#tran_17_0')">门</span><span id="tran_17_1" onmouseover="hlgt('#src_17_6,#tran_17_1')" onmouseout="unhlgt('#src_17_6,#tran_17_1')">一关上</span><span>，</span><span id="tran_17_2" onmouseover="hlgt('#src_17_0,#tran_17_2')" onmouseout="unhlgt('#src_17_0,#tran_17_2')">彼得</span><span id="tran_17_3" onmouseover="hlgt('#src_17_4,#tran_17_3')" onmouseout="unhlgt('#src_17_4,#tran_17_3')">就</span><span id="tran_17_4" onmouseover="hlgt('#src_17_1,#tran_17_4')" onmouseout="unhlgt('#src_17_1,#tran_17_4')">开始</span><span id="tran_17_5" onmouseover="hlgt('#src_17_2,#tran_17_5')" onmouseout="unhlgt('#src_17_2,#tran_17_5')">查看</span><span id="tran_17_6" onmouseover="hlgt('#src_17_3,#tran_17_6')" onmouseout="unhlgt('#src_17_3,#tran_17_6')">邮件</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span>There </span><span id="src_18_0" onmouseover="hlgt('#src_18_0,#tran_18_6')" onmouseout="unhlgt('#src_18_0,#tran_18_6')">was no</span><span> </span><span id="src_18_1" onmouseover="hlgt('#src_18_1,#tran_18_1')" onmouseout="unhlgt('#src_18_1,#tran_18_1')"><b>mail</b></span><span> </span><span id="src_18_2" onmouseover="hlgt('#src_18_2,#tran_18_0')" onmouseout="unhlgt('#src_18_2,#tran_18_0')">except</span><span> </span><span id="src_18_3" onmouseover="hlgt('#src_18_3,#tran_18_3')" onmouseout="unhlgt('#src_18_3,#tran_18_3')">the</span><span> </span><span id="src_18_4" onmouseover="hlgt('#src_18_4,#tran_18_4')" onmouseout="unhlgt('#src_18_4,#tran_18_4')">usual</span><span> </span><span id="src_18_5" onmouseover="hlgt('#src_18_5,#tran_18_5')" onmouseout="unhlgt('#src_18_5,#tran_18_5')">junk</span><span> addressed to the </span><span id="src_18_6" onmouseover="hlgt('#src_18_6,#tran_18_2')" onmouseout="unhlgt('#src_18_6,#tran_18_2')">occupant</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="There+was+no+mail+except+the+usual+junk+addressed+to+the+occupant.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_18_0" onmouseover="hlgt('#src_18_2,#tran_18_0')" onmouseout="unhlgt('#src_18_2,#tran_18_0')">除了</span><span id="tran_18_1" onmouseover="hlgt('#src_18_1,#tran_18_1')" onmouseout="unhlgt('#src_18_1,#tran_18_1')">寄</span><span>给</span><span id="tran_18_2" onmouseover="hlgt('#src_18_6,#tran_18_2')" onmouseout="unhlgt('#src_18_6,#tran_18_2')">住户</span><span id="tran_18_3" onmouseover="hlgt('#src_18_3,#tran_18_3')" onmouseout="unhlgt('#src_18_3,#tran_18_3')">的</span><span id="tran_18_4" onmouseover="hlgt('#src_18_4,#tran_18_4')" onmouseout="unhlgt('#src_18_4,#tran_18_4')">常见</span><span>的</span><span id="tran_18_5" onmouseover="hlgt('#src_18_5,#tran_18_5')" onmouseout="unhlgt('#src_18_5,#tran_18_5')">垃圾</span><span>邮件之外，</span><span id="tran_18_6" onmouseover="hlgt('#src_18_0,#tran_18_6')" onmouseout="unhlgt('#src_18_0,#tran_18_6')">没有</span><span>其他邮件。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_19_0" onmouseover="hlgt('#src_19_0,#tran_19_0')" onmouseout="unhlgt('#src_19_0,#tran_19_0')">The</span><span> </span><span id="src_19_1" onmouseover="hlgt('#src_19_1,#tran_19_3')" onmouseout="unhlgt('#src_19_1,#tran_19_3')">prank crammed</span><span> </span><span>his</span><span> </span><span id="src_19_3" onmouseover="hlgt('#src_19_3,#tran_19_4')" onmouseout="unhlgt('#src_19_3,#tran_19_4')">mailbox</span><span> </span><span id="src_19_4" onmouseover="hlgt('#src_19_4,#tran_19_5')" onmouseout="unhlgt('#src_19_4,#tran_19_5')">with computer-delivered</span><span> </span><span id="src_19_5" onmouseover="hlgt('#src_19_5,#tran_19_6')" onmouseout="unhlgt('#src_19_5,#tran_19_6')">electronic</span><span> </span><span>junk</span><span> </span><span id="src_19_7" onmouseover="hlgt('#src_19_7,#tran_19_7')" onmouseout="unhlgt('#src_19_7,#tran_19_7')"><b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="The+prank+crammed+his+mailbox+with+computer-delivered+electronic+junk+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_19_0" onmouseover="hlgt('#src_19_0,#tran_19_0')" onmouseout="unhlgt('#src_19_0,#tran_19_0')">该</span><span id="tran_19_3" onmouseover="hlgt('#src_19_1,#tran_19_3')" onmouseout="unhlgt('#src_19_1,#tran_19_3')">恶作剧</span><span>病毒把</span><span id="tran_19_4" onmouseover="hlgt('#src_19_3,#tran_19_4')" onmouseout="unhlgt('#src_19_3,#tran_19_4')">他</span><span>的</span><span id="tran_19_5" onmouseover="hlgt('#src_19_4,#tran_19_5')" onmouseout="unhlgt('#src_19_4,#tran_19_5')">邮箱</span><span id="tran_19_6" onmouseover="hlgt('#src_19_5,#tran_19_6')" onmouseout="unhlgt('#src_19_5,#tran_19_6')">塞满</span><span>计算机发送的</span><span id="tran_19_7" onmouseover="hlgt('#src_19_7,#tran_19_7')" onmouseout="unhlgt('#src_19_7,#tran_19_7')">电子</span><span>垃圾邮件。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_20_0" onmouseover="hlgt('#src_20_0,#tran_20_4')" onmouseout="unhlgt('#src_20_0,#tran_20_4')">Compensation for</span><span> </span><span id="src_20_1" onmouseover="hlgt('#src_20_1,#tran_20_0')" onmouseout="unhlgt('#src_20_1,#tran_20_0')">lost</span><span> </span><span id="src_20_2" onmouseover="hlgt('#src_20_2,#tran_20_1')" onmouseout="unhlgt('#src_20_2,#tran_20_1')">or</span><span> </span><span id="src_20_3" onmouseover="hlgt('#src_20_3,#tran_20_2')" onmouseout="unhlgt('#src_20_3,#tran_20_2')">damaged</span><span> </span><span id="src_20_4" onmouseover="hlgt('#src_20_4,#tran_20_3')" onmouseout="unhlgt('#src_20_4,#tran_20_3')"><b>mail</b></span><span> </span><span id="src_20_5" onmouseover="hlgt('#src_20_5,#tran_20_5')" onmouseout="unhlgt('#src_20_5,#tran_20_5')">will be</span><span> </span><span id="src_20_6" onmouseover="hlgt('#src_20_6,#tran_20_8')" onmouseout="unhlgt('#src_20_6,#tran_20_8')">handled</span><span> </span><span id="src_20_7" onmouseover="hlgt('#src_20_7,#tran_20_6')" onmouseout="unhlgt('#src_20_7,#tran_20_6')">by the</span><span> </span><span id="src_20_8" onmouseover="hlgt('#src_20_8,#tran_20_7')" onmouseout="unhlgt('#src_20_8,#tran_20_7')">postal</span><span> service.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Compensation+for+lost+or+damaged+mail+will+be+handled+by+the+postal+service.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_20_0" onmouseover="hlgt('#src_20_1,#tran_20_0')" onmouseout="unhlgt('#src_20_1,#tran_20_0')">丢失</span><span id="tran_20_1" onmouseover="hlgt('#src_20_2,#tran_20_1')" onmouseout="unhlgt('#src_20_2,#tran_20_1')">或</span><span id="tran_20_2" onmouseover="hlgt('#src_20_3,#tran_20_2')" onmouseout="unhlgt('#src_20_3,#tran_20_2')">损坏</span><span id="tran_20_3" onmouseover="hlgt('#src_20_4,#tran_20_3')" onmouseout="unhlgt('#src_20_4,#tran_20_3')">邮件</span><span>的</span><span id="tran_20_4" onmouseover="hlgt('#src_20_0,#tran_20_4')" onmouseout="unhlgt('#src_20_0,#tran_20_4')">赔偿</span><span>事宜</span><span id="tran_20_5" onmouseover="hlgt('#src_20_5,#tran_20_5')" onmouseout="unhlgt('#src_20_5,#tran_20_5')">将</span><span id="tran_20_6" onmouseover="hlgt('#src_20_7,#tran_20_6')" onmouseout="unhlgt('#src_20_7,#tran_20_6')">由</span><span id="tran_20_7" onmouseover="hlgt('#src_20_8,#tran_20_7')" onmouseout="unhlgt('#src_20_8,#tran_20_7')">邮政</span><span>部门</span><span id="tran_20_8" onmouseover="hlgt('#src_20_6,#tran_20_8')" onmouseout="unhlgt('#src_20_6,#tran_20_8')">处理</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_21_0" onmouseover="hlgt('#src_21_0,#tran_21_0')" onmouseout="unhlgt('#src_21_0,#tran_21_0')">Do you</span><span> </span><span id="src_21_1" onmouseover="hlgt('#src_21_1,#tran_21_1')" onmouseout="unhlgt('#src_21_1,#tran_21_1')">want to</span><span> </span><span id="src_21_2" onmouseover="hlgt('#src_21_2,#tran_21_2')" onmouseout="unhlgt('#src_21_2,#tran_21_2')">send</span><span> </span><span id="src_21_3" onmouseover="hlgt('#src_21_3,#tran_21_3')" onmouseout="unhlgt('#src_21_3,#tran_21_3')">an E-<b>mail</b></span><span>?</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Do+you+want+to+send+an+E-mail%3F&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_21_0" onmouseover="hlgt('#src_21_0,#tran_21_0')" onmouseout="unhlgt('#src_21_0,#tran_21_0')">你</span><span id="tran_21_1" onmouseover="hlgt('#src_21_1,#tran_21_1')" onmouseout="unhlgt('#src_21_1,#tran_21_1')">想</span><span id="tran_21_2" onmouseover="hlgt('#src_21_2,#tran_21_2')" onmouseout="unhlgt('#src_21_2,#tran_21_2')">发</span><span id="tran_21_3" onmouseover="hlgt('#src_21_3,#tran_21_3')" onmouseout="unhlgt('#src_21_3,#tran_21_3')">一封</span><span>电子邮件吗？</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_22_0" onmouseover="hlgt('#src_22_0,#tran_22_0')" onmouseout="unhlgt('#src_22_0,#tran_22_0')">All</span><span> </span><span id="src_22_1" onmouseover="hlgt('#src_22_1,#tran_22_1')" onmouseout="unhlgt('#src_22_1,#tran_22_1')">this</span><span> </span><span id="src_22_2" onmouseover="hlgt('#src_22_2,#tran_22_2')" onmouseout="unhlgt('#src_22_2,#tran_22_2')"><b>mail</b></span><span> </span><span id="src_22_3" onmouseover="hlgt('#src_22_3,#tran_22_3')" onmouseout="unhlgt('#src_22_3,#tran_22_3')">must be</span><span> </span><span id="src_22_4" onmouseover="hlgt('#src_22_4,#tran_22_4')" onmouseout="unhlgt('#src_22_4,#tran_22_4')">answered</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="All+this+mail+must+be+answered.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_22_0" onmouseover="hlgt('#src_22_0,#tran_22_0')" onmouseout="unhlgt('#src_22_0,#tran_22_0')">所有</span><span id="tran_22_1" onmouseover="hlgt('#src_22_1,#tran_22_1')" onmouseout="unhlgt('#src_22_1,#tran_22_1')">这些</span><span id="tran_22_2" onmouseover="hlgt('#src_22_2,#tran_22_2')" onmouseout="unhlgt('#src_22_2,#tran_22_2')">信件</span><span>都</span><span id="tran_22_3" onmouseover="hlgt('#src_22_3,#tran_22_3')" onmouseout="unhlgt('#src_22_3,#tran_22_3')">必须</span><span id="tran_22_4" onmouseover="hlgt('#src_22_4,#tran_22_4')" onmouseout="unhlgt('#src_22_4,#tran_22_4')">回复</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_23_0" onmouseover="hlgt('#src_23_0,#tran_23_0')" onmouseout="unhlgt('#src_23_0,#tran_23_0')">I</span><span> </span><span id="src_23_1" onmouseover="hlgt('#src_23_1,#tran_23_1')" onmouseout="unhlgt('#src_23_1,#tran_23_1')">sat</span><span> </span><span id="src_23_2" onmouseover="hlgt('#src_23_2,#tran_23_2')" onmouseout="unhlgt('#src_23_2,#tran_23_2')">down to</span><span> </span><span id="src_23_3" onmouseover="hlgt('#src_23_3,#tran_23_3')" onmouseout="unhlgt('#src_23_3,#tran_23_3')">open the</span><span> </span><span id="src_23_4" onmouseover="hlgt('#src_23_4,#tran_23_4')" onmouseout="unhlgt('#src_23_4,#tran_23_4')"><b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="I+sat+down+to+open+the+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_23_0" onmouseover="hlgt('#src_23_0,#tran_23_0')" onmouseout="unhlgt('#src_23_0,#tran_23_0')">我</span><span id="tran_23_1" onmouseover="hlgt('#src_23_1,#tran_23_1')" onmouseout="unhlgt('#src_23_1,#tran_23_1')">坐</span><span id="tran_23_2" onmouseover="hlgt('#src_23_2,#tran_23_2')" onmouseout="unhlgt('#src_23_2,#tran_23_2')">下来</span><span id="tran_23_3" onmouseover="hlgt('#src_23_3,#tran_23_3')" onmouseout="unhlgt('#src_23_3,#tran_23_3')">打开</span><span id="tran_23_4" onmouseover="hlgt('#src_23_4,#tran_23_4')" onmouseout="unhlgt('#src_23_4,#tran_23_4')">信件</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_24_0" onmouseover="hlgt('#src_24_0,#tran_24_4')" onmouseout="unhlgt('#src_24_0,#tran_24_4')">An e-<b>mail</b></span><span> </span><span id="src_24_1" onmouseover="hlgt('#src_24_1,#tran_24_0')" onmouseout="unhlgt('#src_24_1,#tran_24_0')">from</span><span> </span><span>Uncle</span><span> </span><span id="src_24_3" onmouseover="hlgt('#src_24_3,#tran_24_3')" onmouseout="unhlgt('#src_24_3,#tran_24_3')">Fred</span><span> </span><span id="src_24_4" onmouseover="hlgt('#src_24_4,#tran_24_2')" onmouseout="unhlgt('#src_24_4,#tran_24_2')">arrived</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="An+e-mail+from+Uncle+Fred+arrived.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_24_0" onmouseover="hlgt('#src_24_1,#tran_24_0')" onmouseout="unhlgt('#src_24_1,#tran_24_0')">来自</span><span id="tran_24_2" onmouseover="hlgt('#src_24_4,#tran_24_2')" onmouseout="unhlgt('#src_24_4,#tran_24_2')">弗雷德</span><span id="tran_24_3" onmouseover="hlgt('#src_24_3,#tran_24_3')" onmouseout="unhlgt('#src_24_3,#tran_24_3')">叔叔</span><span>的</span><span id="tran_24_4" onmouseover="hlgt('#src_24_0,#tran_24_4')" onmouseout="unhlgt('#src_24_0,#tran_24_4')">电子</span><span>邮件到了。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_25_0" onmouseover="hlgt('#src_25_0,#tran_25_0')" onmouseout="unhlgt('#src_25_0,#tran_25_0')">I</span><span id="src_25_1" onmouseover="hlgt('#src_25_1,#tran_25_1')" onmouseout="unhlgt('#src_25_1,#tran_25_1')">'m just going</span><span> </span><span id="src_25_2" onmouseover="hlgt('#src_25_2,#tran_25_2')" onmouseout="unhlgt('#src_25_2,#tran_25_2')">to go</span><span> </span><span id="src_25_3" onmouseover="hlgt('#src_25_3,#tran_25_3')" onmouseout="unhlgt('#src_25_3,#tran_25_3')"><b>mail</b></span><span> </span><span id="src_25_4" onmouseover="hlgt('#src_25_4,#tran_25_4')" onmouseout="unhlgt('#src_25_4,#tran_25_4')">a letter</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="I%27m+just+going+to+go+mail+a+letter.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_25_0" onmouseover="hlgt('#src_25_0,#tran_25_0')" onmouseout="unhlgt('#src_25_0,#tran_25_0')">我</span><span id="tran_25_1" onmouseover="hlgt('#src_25_1,#tran_25_1')" onmouseout="unhlgt('#src_25_1,#tran_25_1')">正要</span><span id="tran_25_2" onmouseover="hlgt('#src_25_2,#tran_25_2')" onmouseout="unhlgt('#src_25_2,#tran_25_2')">去</span><span id="tran_25_3" onmouseover="hlgt('#src_25_3,#tran_25_3')" onmouseout="unhlgt('#src_25_3,#tran_25_3')">寄</span><span id="tran_25_4" onmouseover="hlgt('#src_25_4,#tran_25_4')" onmouseout="unhlgt('#src_25_4,#tran_25_4')">一封信</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_26_0" onmouseover="hlgt('#src_26_0,#tran_26_0')" onmouseout="unhlgt('#src_26_0,#tran_26_0')">I</span><span> </span><span id="src_26_1" onmouseover="hlgt('#src_26_1,#tran_26_1')" onmouseout="unhlgt('#src_26_1,#tran_26_1')">supervise</span><span> </span><span id="src_26_2" onmouseover="hlgt('#src_26_2,#tran_26_4')" onmouseout="unhlgt('#src_26_2,#tran_26_4')">the</span><span> </span><span id="src_26_3" onmouseover="hlgt('#src_26_3,#tran_26_5')" onmouseout="unhlgt('#src_26_3,#tran_26_5')">packing</span><span> of </span><span id="src_26_4" onmouseover="hlgt('#src_26_4,#tran_26_2')" onmouseout="unhlgt('#src_26_4,#tran_26_2')">all</span><span> </span><span id="src_26_5" onmouseover="hlgt('#src_26_5,#tran_26_3')" onmouseout="unhlgt('#src_26_5,#tran_26_3')"><b>mail</b> orders</span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="I+supervise+the+packing+of+all+mail+orders.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_26_0" onmouseover="hlgt('#src_26_0,#tran_26_0')" onmouseout="unhlgt('#src_26_0,#tran_26_0')">我</span><span id="tran_26_1" onmouseover="hlgt('#src_26_1,#tran_26_1')" onmouseout="unhlgt('#src_26_1,#tran_26_1')">监督</span><span id="tran_26_2" onmouseover="hlgt('#src_26_4,#tran_26_2')" onmouseout="unhlgt('#src_26_4,#tran_26_2')">所有</span><span id="tran_26_3" onmouseover="hlgt('#src_26_5,#tran_26_3')" onmouseout="unhlgt('#src_26_5,#tran_26_3')">邮购</span><span>商品</span><span id="tran_26_4" onmouseover="hlgt('#src_26_2,#tran_26_4')" onmouseout="unhlgt('#src_26_2,#tran_26_4')">的</span><span id="tran_26_5" onmouseover="hlgt('#src_26_3,#tran_26_5')" onmouseout="unhlgt('#src_26_3,#tran_26_5')">包装</span><span>。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_27_0" onmouseover="hlgt('#src_27_0,#tran_27_0')" onmouseout="unhlgt('#src_27_0,#tran_27_0')">If you</span><span> </span><span id="src_27_1" onmouseover="hlgt('#src_27_1,#tran_27_1')" onmouseout="unhlgt('#src_27_1,#tran_27_1')">have</span><span> </span><span id="src_27_2" onmouseover="hlgt('#src_27_2,#tran_27_2')" onmouseout="unhlgt('#src_27_2,#tran_27_2')">any</span><span> </span><span id="src_27_3" onmouseover="hlgt('#src_27_3,#tran_27_3')" onmouseout="unhlgt('#src_27_3,#tran_27_3')">problems</span><span> </span><span id="src_27_4" onmouseover="hlgt('#src_27_4,#tran_27_4')" onmouseout="unhlgt('#src_27_4,#tran_27_4')">then</span><span> </span><span id="src_27_5" onmouseover="hlgt('#src_27_5,#tran_27_5')" onmouseout="unhlgt('#src_27_5,#tran_27_5')">send</span><span> </span><span id="src_27_6" onmouseover="hlgt('#src_27_6,#tran_27_6')" onmouseout="unhlgt('#src_27_6,#tran_27_6')">me</span><span> </span><span id="src_27_7" onmouseover="hlgt('#src_27_7,#tran_27_7')" onmouseout="unhlgt('#src_27_7,#tran_27_7')">a <b>mail</b></span><span>.</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="If+you+have+any+problems+then+send+me+a+mail.&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_27_0" onmouseover="hlgt('#src_27_0,#tran_27_0')" onmouseout="unhlgt('#src_27_0,#tran_27_0')">如</span><span id="tran_27_1" onmouseover="hlgt('#src_27_1,#tran_27_1')" onmouseout="unhlgt('#src_27_1,#tran_27_1')">有</span><span id="tran_27_2" onmouseover="hlgt('#src_27_2,#tran_27_2')" onmouseout="unhlgt('#src_27_2,#tran_27_2')">任何</span><span id="tran_27_3" onmouseover="hlgt('#src_27_3,#tran_27_3')" onmouseout="unhlgt('#src_27_3,#tran_27_3')">问题</span><span id="tran_27_4" onmouseover="hlgt('#src_27_4,#tran_27_4')" onmouseout="unhlgt('#src_27_4,#tran_27_4')">就</span><span id="tran_27_5" onmouseover="hlgt('#src_27_5,#tran_27_5')" onmouseout="unhlgt('#src_27_5,#tran_27_5')">给</span><span id="tran_27_6" onmouseover="hlgt('#src_27_6,#tran_27_6')" onmouseout="unhlgt('#src_27_6,#tran_27_6')">我</span><span id="tran_27_7" onmouseover="hlgt('#src_27_7,#tran_27_7')" onmouseout="unhlgt('#src_27_7,#tran_27_7')">发</span><span>邮件。</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《柯林斯英汉双解大词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_28_0" onmouseover="hlgt('#src_28_0,#tran_28_1')" onmouseout="unhlgt('#src_28_0,#tran_28_1')">Could</span><span> </span><span id="src_28_1" onmouseover="hlgt('#src_28_1,#tran_28_0')" onmouseout="unhlgt('#src_28_1,#tran_28_0')">you</span><span> forward </span><span id="src_28_2" onmouseover="hlgt('#src_28_2,#tran_28_2')" onmouseout="unhlgt('#src_28_2,#tran_28_2')">any</span><span> </span><span id="src_28_3" onmouseover="hlgt('#src_28_3,#tran_28_3')" onmouseout="unhlgt('#src_28_3,#tran_28_3')"><b>mail</b></span><span> </span><span id="src_28_4" onmouseover="hlgt('#src_28_4,#tran_28_4')" onmouseout="unhlgt('#src_28_4,#tran_28_4')">to</span><span> </span><span id="src_28_5" onmouseover="hlgt('#src_28_5,#tran_28_6')" onmouseout="unhlgt('#src_28_5,#tran_28_6')">us</span><span> in </span><span id="src_28_6" onmouseover="hlgt('#src_28_6,#tran_28_5')" onmouseout="unhlgt('#src_28_6,#tran_28_5')">New York</span><span>?</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Could+you+forward+any+mail+to+us+in+New+York%3F&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_28_0" onmouseover="hlgt('#src_28_1,#tran_28_0')" onmouseout="unhlgt('#src_28_1,#tran_28_0')">你</span><span id="tran_28_1" onmouseover="hlgt('#src_28_0,#tran_28_1')" onmouseout="unhlgt('#src_28_0,#tran_28_1')">能不能</span><span>把</span><span id="tran_28_2" onmouseover="hlgt('#src_28_2,#tran_28_2')" onmouseout="unhlgt('#src_28_2,#tran_28_2')">所有</span><span id="tran_28_3" onmouseover="hlgt('#src_28_3,#tran_28_3')" onmouseout="unhlgt('#src_28_3,#tran_28_3')">信件转寄</span><span id="tran_28_4" onmouseover="hlgt('#src_28_4,#tran_28_4')" onmouseout="unhlgt('#src_28_4,#tran_28_4')">到</span><span id="tran_28_5" onmouseover="hlgt('#src_28_6,#tran_28_5')" onmouseout="unhlgt('#src_28_6,#tran_28_5')">纽约</span><span>给</span><span id="tran_28_6" onmouseover="hlgt('#src_28_5,#tran_28_6')" onmouseout="unhlgt('#src_28_5,#tran_28_6')">我们</span><span>？</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                           
+                                    
+                                                                                                                                                                          <li>
+                       <p><span id="src_28_0" onmouseover="hlgt('#src_28_0,#tran_28_1')" onmouseout="unhlgt('#src_28_0,#tran_28_1')">Could</span><span> </span><span id="src_28_1" onmouseover="hlgt('#src_28_1,#tran_28_0')" onmouseout="unhlgt('#src_28_1,#tran_28_0')">you</span><span> forward </span><span id="src_28_2" onmouseover="hlgt('#src_28_2,#tran_28_2')" onmouseout="unhlgt('#src_28_2,#tran_28_2')">any</span><span> </span><span id="src_28_3" onmouseover="hlgt('#src_28_3,#tran_28_3')" onmouseout="unhlgt('#src_28_3,#tran_28_3')"><b>mail</b></span><span> </span><span id="src_28_4" onmouseover="hlgt('#src_28_4,#tran_28_4')" onmouseout="unhlgt('#src_28_4,#tran_28_4')">to</span><span> </span><span id="src_28_5" onmouseover="hlgt('#src_28_5,#tran_28_6')" onmouseout="unhlgt('#src_28_5,#tran_28_6')">us</span><span> in </span><span id="src_28_6" onmouseover="hlgt('#src_28_6,#tran_28_5')" onmouseout="unhlgt('#src_28_6,#tran_28_5')">New York</span><span>?</span>
+                                                                 <a class="sp dictvoice voice-js log-js" title="点击发音" href="#" data-rel="Could+you+forward+any+mail+to+us+in+New+York%3F&amp;le=eng" data-4log="dict.sentence.blng"></a>
+                                                        </p>
+
+                    <p><span id="tran_28_0" onmouseover="hlgt('#src_28_1,#tran_28_0')" onmouseout="unhlgt('#src_28_1,#tran_28_0')">你</span><span id="tran_28_1" onmouseover="hlgt('#src_28_0,#tran_28_1')" onmouseout="unhlgt('#src_28_0,#tran_28_1')">能不能</span><span>把</span><span id="tran_28_2" onmouseover="hlgt('#src_28_2,#tran_28_2')" onmouseout="unhlgt('#src_28_2,#tran_28_2')">所有</span><span id="tran_28_3" onmouseover="hlgt('#src_28_3,#tran_28_3')" onmouseout="unhlgt('#src_28_3,#tran_28_3')">信件转寄</span><span id="tran_28_4" onmouseover="hlgt('#src_28_4,#tran_28_4')" onmouseout="unhlgt('#src_28_4,#tran_28_4')">到</span><span id="tran_28_5" onmouseover="hlgt('#src_28_6,#tran_28_5')" onmouseout="unhlgt('#src_28_6,#tran_28_5')">纽约</span><span>给</span><span id="tran_28_6" onmouseover="hlgt('#src_28_5,#tran_28_6')" onmouseout="unhlgt('#src_28_5,#tran_28_6')">我们</span><span>？</span>
+                                                        </p>
+                                                          <p class="example-via"><a>《牛津词典》</a></p>
+                                                                                    </li>
+                                                   </dl>
+     </div>
+</div>
+                    
+                        </div></div>
+                        
+    </div>
+
+
+</div>
+                
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+<script>
+    value=localStorage.history;
+    array=JSON.parse(value);
+    console.log();
+    
+    // console.log(document.getElementByClassName("search_history").innerHTML);
+    for(i=0;i<array.length;i++)
+    {
+        document.getElementsByClassName("search_history")[0].innerHTML=document.getElementsByClassName("search_history")[0].innerHTML+"<span class=\"history_span\">"+array[i]+"</span>"
+        console.log("add")
+    }
+</script>
+</div>
+</div>
+</div>
 </body>
 </html>

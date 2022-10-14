@@ -37,7 +37,7 @@
   //使用方法
     // $post_data = array('f'=>'auto','t'=>'auto','w'=>'hello');
     // echo request_by_curl($url,$post_data);
-
+header("Access-Control-Allow-Origin: *");
 define("CURL_TIMEOUT",   2000);
 define("URL",            "https://openapi.youdao.com/api");
 define("APP_KEY",        "004f7cff636359e8"); // 替换为您的应用ID

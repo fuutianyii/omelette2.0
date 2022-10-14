@@ -82,7 +82,6 @@ function enter(e)
             // console.log(inner)
             document.getElementsByClassName("search_history")[0].innerHTML=inner            
             document.getElementsByClassName("no_search_div")[0].className = 'search_div'
-            
             allspan=document.getElementsByClassName("history_span")
             var lengh=document.getElementsByClassName("history_span").length
             

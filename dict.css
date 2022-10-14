@@ -98,12 +98,18 @@ html,body{
 
 
 .container{
+    overflow:auto;
     display: flex;
     flex-direction: column;
     height: 100%;
     background-image:linear-gradient(90deg, #70e1f5 0%,#ffd194 100%);
     
 }
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
 .search-bar{ 
     margin: 10px auto;
     display: flex;
@@ -194,18 +200,18 @@ html,body{
 }
 
 
-ul {
+/* ul {
     background-color: yellow;
     overflow: hidden;
     transition-duration: 1s;
     transition-property: max-height;
     height: auto;
     max-height: 0;
-  }
-  
-  ul.active {
+}
+
+ul.active {
     max-height: 600px;
-  }
+  } */
 
 
 .no_search_content_box{
@@ -223,7 +229,7 @@ ul {
 .basic_div{
     height: auto;
     width: 90%;
-    margin: 0 auto;
+    margin: 0 auto 10px auto;
     max-width: 1000px;
     border-radius: 30px;
     padding: 30px 0;
@@ -239,9 +245,11 @@ ul {
     padding: 0px;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
     transition: 1s;
 }
+
+
 
 .content_div_hidden{
     /* background-color: white; */
@@ -325,3 +333,61 @@ hr{
     margin:  20px 0 0 0 ;
 }
 
+
+/* #results-contents{
+    height:1000px;
+    width:100%;
+    background:red
+}
+
+#examples_sentences{
+    height:900px;
+    background-color:grey;
+}
+ */
+.ol{
+    list-style-type: decimal;
+    color: #a8aaad;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+
+b {
+    color: #f03744;
+    font-weight: normal;
+}
+
+#bilingual > dl > li > p:nth-child(2){
+    color: #939599;
+    font-size: 14px;
+    margin-right: 12px;
+}
+
+#bilingual > dl > li > p.example-via > a
+{
+    color: #c8c9cc;
+    font-size: 12px;
+}
+
+#bilingual > dl > li > p:nth-child(1)
+{
+    font-size: 16px;
+    display:inline-block;
+    color: #2a2b2e;
+}
+#bilingual > dl > li > p
+{
+    line-height: 1.5;
+}
+
+
+#bilingual > dl > li
+{
+    margin-bottom: 16px;
+}
+
+
+.highLight{
+    color: #4d71ff;
+}
