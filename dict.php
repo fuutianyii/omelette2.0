@@ -71,8 +71,12 @@
                 </div>
                 
                 <!-- ######### -->
-                <div class="basic_div">
+                <div class="basic_div clip_basic_div">
                     <div class="margin_div">
+                    </div>
+                    <script src="spread.js"></script>
+                    <div class="spread_div" onclick="spread(event);">
+                        <p>展开</p>
                     </div>
                 </div>
 

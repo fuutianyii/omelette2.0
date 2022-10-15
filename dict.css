@@ -391,3 +391,23 @@ b {
 .highLight{
     color: #4d71ff;
 }
+
+.clip_basic_div
+{
+  max-height: 400px;
+}
+
+.spread_div{
+    background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+    position: sticky;
+    z-index: 100;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    bottom: -30px;
+    display: flex;
+}
+.spread_div p{
+    display: inline-block;
+    margin: auto;
+}
