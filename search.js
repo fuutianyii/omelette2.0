@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-11 19:51:58
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-13 21:12:27
+ * @LastEditTime: 2022-10-16 21:33:55
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -55,7 +55,7 @@ function shrinks(dom,time,width_px,height_px) {
 
 function enter(e)
 {  var evt = window.event || e; 
-    if (evt.keyCode == 13){
+    if ((evt.keyCode == 13)  |  (evt.type == "click")){
         var history=localStorage.history
         if (history==undefined)
         {
@@ -65,7 +65,6 @@ function enter(e)
             array=Array(value)
             localStorage.setItem("history",JSON.stringify(array));
             console.log(localStorage);
-
         }
         else{
             write_data(document.getElementsByClassName("search-txt")[0].value)
@@ -78,10 +77,15 @@ function enter(e)
                 array.pop()
             }
             localStorage.history=JSON.stringify(array)
-            inner="<span class=\"history_span\">"+document.getElementsByClassName("search-txt")[0].value+"</span>"+document.getElementsByClassName("search_history")[0].innerHTML
-            // console.log(inner)
-            document.getElementsByClassName("search_history")[0].innerHTML=inner            
-            document.getElementsByClassName("no_search_div")[0].className = 'search_div'
+            
+    
+            // console.log(document.getElementByClassName("search_history").innerHTML);
+            console.log(array)
+            document.getElementsByClassName("search_history")[0].innerHTML="<span class=\"history_span\">"+array[0]+"</span>"+document.getElementsByClassName("search_history")[0].innerHTML
+
+
+
+            
             allspan=document.getElementsByClassName("history_span")
             var lengh=document.getElementsByClassName("history_span").length
             
@@ -90,13 +94,16 @@ function enter(e)
                 allspan[i].style.padding="5px";
                 shrinks(allspan[i],30,10,10)
             }
-            document.getElementsByClassName("content_div_hidden")[0].className = "content_div";
+            if (document.getElementsByClassName("content_div_hidden")[0] != undefined)
+            {
+                document.getElementsByClassName("content_div_hidden")[0].className = "content_div";
+            }
+            
 
             
             
             // console.log(data)
-
+            document.querySelector("#right > div > div.search-bar > input").value="";
         }
     }
-
 }

@@ -171,11 +171,11 @@ html,body{
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    overflow: hidden;
-    margin: 30px auto 10px auto;
+    margin: 10px auto 10px auto;
     max-width: 1000px;
     width: 80%;
-    height: 76px;
+    height: 30px;
+    overflow: initial;
 }
 
 .history_span {
@@ -249,7 +249,9 @@ ul.active {
     transition: 1s;
 }
 
-
+.content_div::-webkit-scrollbar {
+    display: none;
+}
 
 .content_div_hidden{
     /* background-color: white; */

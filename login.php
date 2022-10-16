@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-10 21:13:14
+ * @LastEditTime: 2022-10-16 20:40:56
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -53,7 +53,7 @@ else{
 			$getone=$mysqlselect->fetch(); 
 			session_start();
 			$_SESSION['username']=$username;
-			echo '<script>localStorage.setItem("token", "'.md5($username.$password).'");console.log(localStorage.getItem("token"));</script>';
+			echo '<script>localStorage.setItem("token", "'.md5($username.$password).'");localStorage.setItem("history", "[]");console.log(localStorage.getItem("token"));</script>';
 			echo '<script>window.location.href ="./dict.php"</script>';
 		}
 	else
