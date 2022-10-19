@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-16 20:40:56
+ * @LastEditTime: 2022-10-19 17:28:18
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -54,7 +54,7 @@ else{
 			session_start();
 			$_SESSION['username']=$username;
 			echo '<script>localStorage.setItem("token", "'.md5($username.$password).'");localStorage.setItem("history", "[]");console.log(localStorage.getItem("token"));</script>';
-			echo '<script>window.location.href ="./dict.php"</script>';
+			echo '<script>window.location.href ="./dict.php?page=dict"</script>';
 		}
 	else
 		{
