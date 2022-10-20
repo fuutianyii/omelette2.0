@@ -66,7 +66,7 @@ function write_data(word){
                   mean_part=mean_part+'<li><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
                 }
                 else{
-                  mean_part=mean_part+'<li><i>'+str.slice(0,str.indexOf("."))+'</i><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
+                  mean_part=mean_part+'<p class="means">'+'<li><i>'+str.slice(0,str.indexOf("."))+"</i>"+str.slice(str.indexOf(".")+1)+'</p></li>';
                 }
             }
             // console.log(mean_part);
