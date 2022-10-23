@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-19 17:28:18
+ * @LastEditTime: 2022-10-23 19:41:56
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -15,7 +15,7 @@ echo $token;
 echo $username;
 @$password=$_POST["password"];
 if($token != ""){
-	$pdo=new PDO("mysql:host=".host,username,password);
+	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
 	$mysqlselect="select token from users where token=:token";
 	$mysqlselect=$pdo->prepare($mysqlselect);
 	$mysqlselect->execute(array(':token'=>$token));

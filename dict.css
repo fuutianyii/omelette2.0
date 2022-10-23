@@ -427,10 +427,16 @@ b {
     border-radius: 30px;
     height: auto;
     margin: 20px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    flex:1
+    flex:1;
+    overflow: auto;
 }
+
+.books_view::-webkit-scrollbar {
+    display: none;
+}
+
 
 .books_view b{
     font-size: 14px;
@@ -443,11 +449,12 @@ b {
 .books_view p{
     width: auto;
     font-size: 14px;
+    height: 30px;
     color: rgba(0,0,0,.85);
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 1;
+	overflow: hidden;
     
     
 }
