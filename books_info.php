@@ -3,20 +3,21 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-23 21:50:00
+ * @LastEditTime: 2022-10-24 20:46:53
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
  */
 include("config.php");
-@$token=$_POST["token"];
-$token='0eca72089fa6e344b136b01bcd260879';
+session_start();
+$token=$_SESSION['token'];
+$username= $_SESSION['username'];
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
-$mysqlselect="select username from users where token=:token";
-$mysqlselect=$pdo->prepare($mysqlselect);
-$mysqlselect->execute(array(':token'=>$token));
-$getone=$mysqlselect->fetch();
-$username= $getone[0];
+// $mysqlselect="select username from users where token=:token";
+// $mysqlselect=$pdo->prepare($mysqlselect);
+// $mysqlselect->execute(array(':token'=>$token));
+// $getone=$mysqlselect->fetch();
+// $username= $getone[0];
 $mysqlselect="select books_id,books_name from word_books where username=:username";
 $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->execute(array(':username'=>$username));
@@ -61,6 +62,6 @@ for($i=0; $i<$size; $i++)
     }
 }
 
-echo json_encode($data);
+// echo json_encode($data);
 
 ?>

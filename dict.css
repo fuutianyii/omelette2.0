@@ -426,6 +426,7 @@ b {
     background-color: white;
     border-radius: 30px;
     height: auto;
+    width: auto;
     margin: 20px;
     /* display: flex; */
     flex-direction: column;
@@ -449,7 +450,7 @@ b {
 .books_view p{
     width: auto;
     font-size: 14px;
-    height: 30px;
+    height: 25px;
     color: rgba(0,0,0,.85);
     display: -webkit-box;
 	-webkit-box-orient: vertical;
@@ -461,9 +462,9 @@ b {
 
 .books_view div{
     overflow: hidden;
-    text-overflow:ellipsis;
-    height: 80px;
-    margin:20px;
+    text-overflow: ellipsis;
+    height: auto;
+    margin: 20px;
 }
 
 .books_view hr{
@@ -603,6 +604,29 @@ b {
 
 }
 
+
+.more{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 30px;
+    border:5px dashed rgba(0,0,0,.45);
+}
+
+.more:hover{
+    border-radius: 30px;
+    border:5px dashed #9aadf9;
+}
+
+.more:hover h2{
+    color: #9aadf9;
+}
+
+.more:hover p{
+    color: #9aadf9;
+}
+
 .show{
     background-color: #2a9d8f
 }
@@ -614,3 +638,4 @@ b {
 .delete{
     background-color: #e56b6f;
 }
+

@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-23 19:41:56
+ * @LastEditTime: 2022-10-24 20:43:40
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -16,7 +16,7 @@ echo $username;
 @$password=$_POST["password"];
 if($token != ""){
 	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
-	$mysqlselect="select token from users where token=:token";
+	$mysqlselect="select username from users where token=:token";
 	$mysqlselect=$pdo->prepare($mysqlselect);
 	$mysqlselect->execute(array(':token'=>$token));
 	$getone=$mysqlselect->fetch();
@@ -24,12 +24,11 @@ if($token != ""){
 		{
 			session_start();
 			$_SESSION['username']=$getone[0];
-			echo $getone[0];
+			$_SESSION['token']=$token;
 			Header("Location: dict.php");
 		}
 	else
 		{
-			print_r("token:".$getone);
 			Header("Location: index.php");
 		}
 	}
@@ -53,6 +52,7 @@ else{
 			$getone=$mysqlselect->fetch(); 
 			session_start();
 			$_SESSION['username']=$username;
+			$_SESSION['token']=$token;
 			echo '<script>localStorage.setItem("token", "'.md5($username.$password).'");localStorage.setItem("history", "[]");console.log(localStorage.getItem("token"));</script>';
 			echo '<script>window.location.href ="./dict.php?page=dict"</script>';
 		}

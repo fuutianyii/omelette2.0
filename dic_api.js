@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-16 21:38:13
+ * @LastEditTime: 2022-10-24 20:23:19
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -127,6 +127,13 @@ function unhlgt(e){$(e).removeClass("highLight")}
 
 function play(id){
   var mp3Url = "https://dict.youdao.com/dictvoice?audio="+document.querySelector("#right > div > div.content_div > div:nth-child(1) > div > div > div:nth-child(1) > h1").innerText+"&type="+id;
+  var player = new Audio(mp3Url);
+  player.play(); //播放 mp3这个音频对象  
+}
+
+
+function view_play(id,selector){
+  var mp3Url = "https://dict.youdao.com/dictvoice?audio="+document.querySelector("#right > div > div.vocabulary > div.books_view > div:nth-of-type("+selector+") > h2").innerText+"&type="+id;
   var player = new Audio(mp3Url);
   player.play(); //播放 mp3这个音频对象  
 }
