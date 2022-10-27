@@ -3,16 +3,16 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-24 20:43:40
+ * @LastEditTime: 2022-10-25 17:37:28
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
  */
 include("config.php");
 @$token=$_POST["token"];
-echo $token;
+// echo $token;
 @$username=$_POST["username"];
-echo $username;
+// echo $username;
 @$password=$_POST["password"];
 if($token != ""){
 	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);

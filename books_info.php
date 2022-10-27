@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-24 20:46:53
+ * @LastEditTime: 2022-10-27 18:45:45
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -12,6 +12,7 @@ include("config.php");
 session_start();
 $token=$_SESSION['token'];
 $username= $_SESSION['username'];
+
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
 // $mysqlselect="select username from users where token=:token";
 // $mysqlselect=$pdo->prepare($mysqlselect);
@@ -23,11 +24,30 @@ $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->execute(array(':username'=>$username));
 $groups=$mysqlselect->fetchAll();
 $size = count($groups);    //取得数组单元个数
-// echo $size;
+
+
+
+
+
 for($i=0; $i<$size; $i++)
 {
     $books_id=$groups[$i][0];
-    $mysqlselect="select word_id from word_family where books_id=:books_id";
+    $mysqlselect="select progress from exam_progress where (username=:username) and (books_id=:books_id)";
+    $mysqlselect=$pdo->prepare($mysqlselect);
+    $mysqlselect->execute(array(':username'=>$username,':books_id'=>$books_id));
+    $progressarray=$mysqlselect->fetch();
+    @$progress=$progressarray["progress"];
+
+    $mysqlselect="select word_id from word_family where books_id=:books_id order by word_id desc limit 0,1";
+    $mysqlselect=$pdo->prepare($mysqlselect);
+    $mysqlselect->execute(array(':books_id'=>$books_id));
+    $words_count=$mysqlselect->fetch();
+    @$words_count=$words_count[0];
+    @$progress=$progressarray["progress"];
+
+    $data[$groups[$i][1]]=array($words_count);
+
+    $mysqlselect="select word_id from word_family where books_id=:books_id limit ".$progress.",50";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
     $getall=$mysqlselect->fetchAll();
@@ -54,14 +74,15 @@ for($i=0; $i<$size; $i++)
                 $posd++;
             }
         }
-        
-        $data[$groups[$i][1]]=$getall;
+        array_push($data[$groups[$i][1]],$getall);
+        // $data[$groups[$i][1]]=$getall;
     }
     else{
-        $data[$groups[$i][1]]=[];
+        array_push($data[$groups[$i][1]],[]);
     }
 }
-
+// $time = time();
+// echo '当前的时间戳为：'.$time.'<br>';
 // echo json_encode($data);
 
 ?>
