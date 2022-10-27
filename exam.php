@@ -59,8 +59,8 @@
                                     for ($book_n=0;$book_n+1<count($data[array_keys($data)[$book_n]]);$book_n++)# choose books
                                     {
                                         $word_num=0;
-                                        for ($word_num;$word_num<20;$word_num++)# view the first twenty words
-                                        // for ($word_num;$word_num<count($data[array_keys($data)[$book_n]]);$word_num++)# choose all the words
+                                        // for ($word_num;$word_num<20;$word_num++)# view the first twenty words
+                                        for ($word_num;$word_num<count($data[array_keys($data)[$book_n]][1]);$word_num++)# choose all the words
                                         {
                                             $word_n=0;
                                             // print_r($data[array_keys($data)[$book_n]][1][$word_num]);
