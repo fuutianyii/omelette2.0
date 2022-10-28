@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-27 18:45:45
+ * @LastEditTime: 2022-10-28 18:01:00
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -14,11 +14,6 @@ $token=$_SESSION['token'];
 $username= $_SESSION['username'];
 
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
-// $mysqlselect="select username from users where token=:token";
-// $mysqlselect=$pdo->prepare($mysqlselect);
-// $mysqlselect->execute(array(':token'=>$token));
-// $getone=$mysqlselect->fetch();
-// $username= $getone[0];
 $mysqlselect="select books_id,books_name from word_books where username=:username";
 $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->execute(array(':username'=>$username));
@@ -43,10 +38,9 @@ for($i=0; $i<$size; $i++)
     $mysqlselect->execute(array(':books_id'=>$books_id));
     $words_count=$mysqlselect->fetch();
     @$words_count=$words_count[0];
-    @$progress=$progressarray["progress"];
-
+    @$progress=(int)$progressarray["progress"];
     $data[$groups[$i][1]]=array($words_count);
-
+    
     $mysqlselect="select word_id from word_family where books_id=:books_id limit ".$progress.",50";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
@@ -75,14 +69,11 @@ for($i=0; $i<$size; $i++)
             }
         }
         array_push($data[$groups[$i][1]],$getall);
-        // $data[$groups[$i][1]]=$getall;
     }
     else{
         array_push($data[$groups[$i][1]],[]);
     }
 }
-// $time = time();
-// echo '当前的时间戳为：'.$time.'<br>';
-// echo json_encode($data);
+
 
 ?>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2022-10-23 15:55:24
+-- 生成日期： 2022-10-28 13:45:17
 -- 服务器版本： 10.4.21-MariaDB
--- PHP 版本： 7.4.29
+-- PHP 版本： 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- 数据库： `omelette`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `exam_progress`
+--
+
+CREATE TABLE `exam_progress` (
+  `books_id` int(10) NOT NULL,
+  `username` varchar(10) NOT NULL,
+  `progress` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `exam_progress`
+--
+
+INSERT INTO `exam_progress` (`books_id`, `username`, `progress`) VALUES
+(1, 'fuutianyii', 0);
 
 -- --------------------------------------------------------
 

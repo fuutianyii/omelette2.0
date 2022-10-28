@@ -14,7 +14,7 @@
             <a href="#"><img src="img/menu.png" alt=""></a>
             <a href="#"><img src="img/user.jpg" alt=""><span>用户名</span></a>
             <a href="dict.php?page=search"><img src="img/search.png" alt=""><span>查词</span></a>
-            <a href="dict.php?page=exam"><img src="img/test.png" alt=""><span>测试</span></a>
+            <a href="dict.php?page=books"><img src="img/test.png" alt=""><span>测试</span></a>
             <a href="#"><img src="img/control.png" alt=""><span>偏好</span></a>
         </div>
         <?php
@@ -32,8 +32,13 @@
         echo fread($file,filesize('search.page'));
         fclose($file);
         }
-        elseif ($page="exam") {
-            Header("Location: exam.php");
+        elseif ($page=="books") {
+            Header("Location: books.php");
+        }
+        else{
+            $file=fopen('search.page','rb');
+            echo fread($file,filesize('search.page'));
+            fclose($file);
         }
         ?>
     </div>

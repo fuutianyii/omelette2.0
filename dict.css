@@ -639,3 +639,75 @@ b {
     background-color: #e56b6f;
 }
 
+.exam{
+    margin: 30px auto 30px auto;
+}
+
+
+.inputBox 
+{
+
+    margin: 0 auto;
+    align-items: center;
+	position: relative;
+	width: 250px;
+}
+.chinese_means li{
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255,0.6);
+    margin-top: 30px;
+    padding: 30px;
+}
+
+.inputBox input 
+{
+    text-align: center;
+    box-sizing: border-box;
+	padding: 10px 10px;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	width: 100%;
+	background: rgba(255,255,255,0);
+	/* border: 1px solid rgb(48,65,86); */
+	color: rgb(48,65,86);
+	font-size: 30px;
+	transition: 0.5s;
+}
+.inputBox span 
+{
+	position: absolute;
+	left: 0;
+	padding: 18px 10px;
+	pointer-events: none;
+	font-size: 1em;
+	transition: 0.5s;
+	text-transform: uppercase;
+	color: rgb(48,65,86);
+}
+.inputBox input:valid ~ span, 
+.inputBox input:focus ~ span 
+{
+	color: rgb(255,255,255);
+	font-size: 0.65em;
+	transform: translateX(13px) translateY(-10px);
+	padding: 0 5px;
+	background: rgb(48,65,86);
+	border-left: 1px solid rgb(48,65,86);
+	border-right: 1px solid rgb(48,65,86);
+	letter-spacing: 0.2em;
+}
+.inputBox:nth-child(2) input:valid ~ span, 
+.inputBox:nth-child(2) input:focus ~ span 
+{
+	border-radius: 2px;
+	background: rgb(48,65,86);
+	color: #1d2b3a;
+}
+.inputBox input:valid, 
+.inputBox input:focus 
+{
+	border-bottom: 1px solid rgb(48,65,86);
+} 
+
+
