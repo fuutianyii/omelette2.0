@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-28 18:01:00
+ * @LastEditTime: 2022-10-29 15:00:19
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -45,6 +45,11 @@ for($i=0; $i<$size; $i++)
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
     $getall=$mysqlselect->fetchAll();
+    
+    print_r($words_count);
+
+    
+
     if (count($getall) != 0){
         $word_size = count($getall);    //取得数组单元个数
         for($ws=0; $ws<$word_size; $ws++)
@@ -66,7 +71,10 @@ for($i=0; $i<$size; $i++)
                 $getall[$ws][$posd]=$tidy_english;
                 $english=$mysqlselect->fetch();
                 $posd++;
+                
             }
+
+            
         }
         array_push($data[$groups[$i][1]],$getall);
     }

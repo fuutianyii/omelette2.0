@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ch">
 <head>
     <meta charset="UTF-8">
@@ -58,6 +57,7 @@
                             <div class="books_view">
 
                                     <?php
+                                    @$book_name=$_GET["book_name"];
                                     for ($book_n=0;$book_n+1<count($data[array_keys($data)[$book_n]]);$book_n++)# choose books
                                     {
                                         $word_num=0;
@@ -92,5 +92,9 @@
                 </div>
             </div>
         </div>
+        <?php
+        echo "<script>localStorage.setItem('exam_words','".json_encode($data["专转本2500"][1])."');</script>";
+        echo "<script>localStorage.setItem('progress',0);</script>";
+        ?>
 </body>
 </html>
