@@ -1,4 +1,13 @@
 <?php
+/*
+ * @Author: fuutianyii
+ * @Date: 2022-10-30 13:07:56
+ * @LastEditors: fuutianyii
+ * @LastEditTime: 2022-10-30 16:14:00
+ * @github: https://github.com/fuutianyii
+ * @mail: fuutianyii@gmail.com
+ * @QQ: 1587873181
+ */
 include("config.php");
 session_start();
 @$token=$_SESSION['token'];
@@ -41,7 +50,10 @@ if(($book_name!= "") and ($token != "")){
 		}
 	else
 		{
-			Header("Location: index.php");
+			Header("Location: index.html");
 		}
 	}
+else{
+    Header("Location: index.html");
+}
 ?>

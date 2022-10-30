@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-30 14:14:07
+ * @LastEditTime: 2022-10-30 16:15:46
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -12,6 +12,11 @@ include("config.php");
 session_start();
 $token=$_SESSION['token'];
 $username= $_SESSION['username'];
+
+if (($token =="") or ($username == ""))
+{
+    Header("Location: index.html");
+}
 
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
 $mysqlselect="select books_id,books_name from word_books where username=:username";
