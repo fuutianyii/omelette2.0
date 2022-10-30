@@ -3,7 +3,9 @@ include("config.php");
 session_start();
 @$token=$_SESSION['token'];
 @$book_name=$_POST["book_name"];
-
+echo 0;
+echo $book_name;
+echo $token;
 if(($book_name!= "") and ($token != "")){
 	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
 	$mysqlselect="select username from users where token=:token";
@@ -19,11 +21,7 @@ if(($book_name!= "") and ($token != "")){
             $getone=$mysqlselect->fetch();
 			$book_id=$getone[0];
 
-            // $mysqlselect="select progress from exam_progress where books_id=:book_id";
-            // $mysqlselect=$pdo->prepare($mysqlselect);
-            // $mysqlselect->execute(array(':book_id'=>$book_id));
-            // $getone=$mysqlselect->fetch();
-			// $progress=$getone[0];
+            echo 1;
 
             $mysqlselect="select progress,last_date from exam_progress where (username=:username) and (books_id=:books_id)";
             $mysqlselect=$pdo->prepare($mysqlselect);
@@ -36,8 +34,6 @@ if(($book_name!= "") and ($token != "")){
             else{
                 $progress=(@$progressarray["progress"])+50;
             }
-
-
             $mysqlselect="update exam_progress set  progress=:progress,last_date=:last_date where books_id=:book_id";
             $mysqlselect=$pdo->prepare($mysqlselect);
             $mysqlselect->execute(array(':progress'=>$progress,':last_date'=>date('Y-m-d'),':book_id'=>$book_id));

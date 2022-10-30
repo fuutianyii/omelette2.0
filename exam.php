@@ -14,15 +14,29 @@
         progress=parseInt(localStorage.progress)
         function enter(e)
         {  
-            var evt = window.event || e; 
-            var last_letter=evt.key
-            var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value+last_letter;
-            
+            // var evt = window.event || e; 
+            // var last_letter=evt.key
+            var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
+            // console.log(value)
             if(value == exam_words[progress][0][0]){
 
                 localStorage.setItem("progress",++progress);
-                location.reload();
                 console.log("succeed");
+                html_data=""
+                i1=localStorage.progress
+                if(exam_words[i1]===undefined)
+                {
+                    document.exam_finished.submit();
+                }
+                for(i2=0;i2<exam_words[i1].length;i2++)
+                {
+                    html_data+='<p class="means"></p><li><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'<p></p></li>'
+                    localStorage.progress=localStorage.progress++
+                }
+                document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+
+
             }
         }
 
@@ -47,11 +61,11 @@
                         <script>
                                 if (progress !=0)
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" onkeydown="enter(event);" autofocus="autofocus"><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\' "><span>click to enter the word</span>';
                                 }
                                 else
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" onkeydown="enter(event);"><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);"><span>click to enter the word</span>';
                                 }
                                     
                         </script>
