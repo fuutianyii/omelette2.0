@@ -30,7 +30,8 @@
                 }
                 for(i2=0;i2<exam_words[i1].length;i2++)
                 {
-                    html_data+='<p class="means"></p><li><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'<p></p></li>'
+                    html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
+                    console.log(html_data)
                     localStorage.progress=localStorage.progress++
                 }
                 document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
@@ -104,7 +105,7 @@
     }
     for(i2=0;i2<exam_words[i1].length;i2++)
     {
-        html_data+='<p class="means"></p><li><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'<p></p></li>'
+        html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;

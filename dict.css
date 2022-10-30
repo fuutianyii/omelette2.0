@@ -28,9 +28,10 @@ html,body{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
     width: 80px;
+    min-width: 80px;
     background-color: rgb(48,65,86);;
     transition: 0.4s;
 }
@@ -98,6 +99,7 @@ html,body{
 
 
 .container{
+    width: auto;
     overflow:auto;
     display: flex;
     flex-direction: column;
@@ -280,6 +282,7 @@ i{
     flex-shrink: 0;
 }
 
+
 .mean_word{
     font-weight: 600;
     font-size: 32px;
@@ -326,6 +329,8 @@ i{
     display: inline-block;
     margin-right: 33px;
 }
+
+
 
 hr{
     color: rgba(0,0,0,.45);
@@ -640,6 +645,7 @@ b {
 }
 
 .exam{
+    width: 100%;
     margin: 30px auto 30px auto;
 }
 
@@ -652,11 +658,30 @@ b {
 	position: relative;
 	width: 250px;
 }
+
+
+.chinese_means{
+    box-sizing: border-box;
+    padding: 0 10px;
+}
+
 .chinese_means li{
     border-radius: 30px;
     background-color: rgba(255, 255, 255,0.6);
     margin-top: 30px;
-    padding: 30px;
+    padding: 20px 10px;    
+
+
+}
+
+.chinese_means p{
+    display: -webkit-box;
+    width: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    word-break: break-all;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .inputBox input 
