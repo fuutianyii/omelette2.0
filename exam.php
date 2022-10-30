@@ -14,14 +14,9 @@
         progress=parseInt(localStorage.progress)
         function enter(e)
         {  
-            // var evt = window.event || e; 
-            // var last_letter=evt.key
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
-            // console.log(value)
             if(value == exam_words[progress][0][0]){
-
                 localStorage.setItem("progress",++progress);
-                console.log("succeed");
                 html_data=""
                 i1=localStorage.progress
                 if(exam_words[i1]===undefined)
@@ -31,7 +26,6 @@
                 for(i2=0;i2<exam_words[i1].length;i2++)
                 {
                     html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
-                    console.log(html_data)
                     localStorage.progress=localStorage.progress++
                 }
                 document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
