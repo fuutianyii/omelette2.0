@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php include("books_info.php")?>
 <html lang="ch">
 <head>
     <meta charset="UTF-8">
@@ -21,21 +22,39 @@
             <div id="right">
                 
                 <div class="container">
+                    <div class="left_top">
                         <div class="search-bar" style="background: rgb(0,49,79);border-radius: 40px;padding: 10px;">
                         <script src="dic_api.js"></script>
                         <script src="search.js"></script>
                             <input class="search-txt" type="text" placeholder="Search from books" onkeydown="enter(event);">
                             <img src="img/search.png" alt="" class="search-btn" onclick="enter(event);">
                         </div>
-
-
+                        <div class="button_div">
+                            <?php
+                                @$book_name=$_GET["book_name"];
+                                // print_r(array_keys($data));
+                                if (($book_name != "") and (in_array($book_name,array_keys($data))))
+                                {
+                                    
+                                    echo "<a href=\"exam.php?book_name=".$book_name."\"><button>测试</button></a>";
+                                }
+                                else
+                                {
+                                    echo "<a href=\"exam.php?book_name=".array_keys($data)[0]."\"><button>测试</button></a>";
+                                    
+                                }
+                                // echo $data[array_keys($data)[$book_n]][0]; 
+                            ?>
+                            <!-- <a href="exam.php?book_name="><button>测试</button></a> -->
+                            <button>复习</button>
+                        </div>
+                    </div>
 
                         <div class="vocabulary">
                             <div class="books_div">
                                 <div class="add_class">
                                         <h1>+</h1>
                                 </div>
-                                <?php include("books_info.php")?>
                                 <?php
                                 for ($book_n=0;$book_n<count($data);$book_n++)
                                 {
@@ -48,16 +67,12 @@
                                 </div>
                                 ");
                                 }
-
                                 ?>
-
-
                             </div>
 
                             <div class="books_view">
 
                                     <?php
-                                    @$book_name=$_GET["book_name"];
                                     for ($book_n=0;$book_n+1<count($data[array_keys($data)[$book_n]]);$book_n++)# choose books
                                     {
                                         $word_num=0;

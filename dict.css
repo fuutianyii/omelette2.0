@@ -711,3 +711,25 @@ b {
 } 
 
 
+.left_top{
+    display: flex;
+}
+
+.button_div button{
+    display: block;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: rgb(255, 255, 255);
+    background: rgb(0,49,79);
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    border-radius: 30px;
+    width: 100px;
+    height: 60px;
+    margin: 10px 20px;
+
+}

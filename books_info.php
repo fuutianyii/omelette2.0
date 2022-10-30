@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-02-27 16:09:34
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-29 15:00:19
+ * @LastEditTime: 2022-10-30 14:14:07
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -27,26 +27,29 @@ $size = count($groups);    //取得数组单元个数
 for($i=0; $i<$size; $i++)
 {
     $books_id=$groups[$i][0];
-    $mysqlselect="select progress from exam_progress where (username=:username) and (books_id=:books_id)";
+    $mysqlselect="select progress,last_date from exam_progress where (username=:username) and (books_id=:books_id)";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':username'=>$username,':books_id'=>$books_id));
     $progressarray=$mysqlselect->fetch();
-    @$progress=$progressarray["progress"];
-
+    if(date("Y-m-d")===@$progressarray["last_date"])
+    {
+        $progress=@$progressarray["progress"]-50;
+    }
+    else{
+        $progress=(@$progressarray["progress"])-0;
+    }
     $mysqlselect="select word_id from word_family where books_id=:books_id order by word_id desc limit 0,1";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
     $words_count=$mysqlselect->fetch();
     @$words_count=$words_count[0];
-    @$progress=(int)$progressarray["progress"];
+    
     $data[$groups[$i][1]]=array($words_count);
     
     $mysqlselect="select word_id from word_family where books_id=:books_id limit ".$progress.",50";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
     $getall=$mysqlselect->fetchAll();
-    
-    print_r($words_count);
 
     
 
