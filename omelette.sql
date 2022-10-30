@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2022-10-30 04:48:57
+-- 生成日期： 2022-10-30 09:04:50
 -- 服务器版本： 10.4.21-MariaDB
 -- PHP 版本： 8.1.6
 
@@ -30,15 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `exam_progress` (
   `books_id` int(10) NOT NULL,
   `username` varchar(10) NOT NULL,
-  `progress` int(10) NOT NULL
+  `progress` int(10) NOT NULL,
+  `last_date` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `exam_progress`
 --
 
-INSERT INTO `exam_progress` (`books_id`, `username`, `progress`) VALUES
-(1, 'fuutianyii', 0);
+INSERT INTO `exam_progress` (`books_id`, `username`, `progress`, `last_date`) VALUES
+(1, 'fuutianyii', 50, '2022-10-30');
 
 -- --------------------------------------------------------
 
