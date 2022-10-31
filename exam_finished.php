@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-30 13:07:56
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-31 21:59:16
+ * @LastEditTime: 2022-10-31 22:06:42
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -33,10 +33,10 @@ if(($book_name!= "") and ($token != "")){
             $progressarray=$mysqlselect->fetch();
             if(date("Y-m-d")===@$progressarray["last_date"])
             {
-                $progress=@$progressarray["progress"];
+                $progress=$progressarray["progress"];
             }
             else{
-                $progress=($progressarray[0])+50;
+                $progress=$progressarray[0]+50;
             }
             $mysqlselect="update exam_progress set  progress=:progress,last_date=:last_date where books_id=:book_id";
             $mysqlselect=$pdo->prepare($mysqlselect);
