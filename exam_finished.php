@@ -41,7 +41,7 @@ if(($book_name!= "") and ($token != "")){
             $mysqlselect="update exam_progress set  progress=:progress,last_date=:last_date where books_id=:book_id";
             $mysqlselect=$pdo->prepare($mysqlselect);
             $mysqlselect->execute(array(':progress'=>$progress,':last_date'=>date('Y-m-d'),':book_id'=>$book_id));
-            // Header("Location: books.php");
+            Header("Location: books.php");
 		}
 	else
 		{

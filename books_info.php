@@ -1,13 +1,5 @@
 <?php
-/*
- * @Author: fuutianyii
- * @Date: 2022-02-27 16:09:34
- * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-30 16:15:46
- * @github: https://github.com/fuutianyii
- * @mail: fuutianyii@gmail.com
- * @QQ: 1587873181
- */
+
 include("config.php");
 session_start();
 $token=$_SESSION['token'];
@@ -18,7 +10,7 @@ if (($token =="") or ($username == ""))
     Header("Location: index.html");
 }
 
-$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
+$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
 $mysqlselect="select books_id,books_name from word_books where username=:username";
 $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->execute(array(':username'=>$username));
@@ -90,6 +82,4 @@ for($i=0; $i<$size; $i++)
         array_push($data[$groups[$i][1]],[]);
     }
 }
-
-
 ?>

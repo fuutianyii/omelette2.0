@@ -41,7 +41,7 @@ header("Access-Control-Allow-Origin: *");
 define("CURL_TIMEOUT",   2000);
 define("URL",            "https://openapi.youdao.com/api");
 define("APP_KEY",        "004f7cff636359e8"); // 替换为您的应用ID
-define("SEC_KEY",        "YgjDJ3hHN7yW3qEVsqMaDoqyCbw1EarP"); // 替换为您的密钥
+define("SEC_KEY",        "r14PmJh5FpkxxUNqip3evQadY1j0BGDP"); // 替换为您的密钥
 
 function do_request($q)
 {
