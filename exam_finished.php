@@ -1,9 +1,9 @@
 <?php
 /*
  * @Author: fuutianyii
- * @Date: 2022-10-30 13:07:56
+ * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-31 22:06:42
+ * @LastEditTime: 2022-11-02 19:54:05
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -13,7 +13,7 @@ session_start();
 @$token=$_SESSION['token'];
 @$book_name=$_POST["book_name"];
 if(($book_name!= "") and ($token != "")){
-	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password);
+	$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
 	$mysqlselect="select username from users where token=:token";
 	$mysqlselect=$pdo->prepare($mysqlselect);
 	$mysqlselect->execute(array(':token'=>$token));

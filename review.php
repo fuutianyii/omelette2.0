@@ -7,17 +7,7 @@
     <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="dict.css" />
     <title>dict</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
-
-        function down(){
-             time=setTimeout(()=>{
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
-             },1000)
-        }
-        function up(){
-            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-        }
 
         exam_words=localStorage.exam_words
         exam_words=JSON.parse(exam_words)
@@ -59,13 +49,13 @@
             <div id="right">
                 <div class="container">
                     <div class="exam">
-                        <div class="inputBox" onmousedown="down()" onmouseup="up()">
+                        <div class="inputBox">
 
                         </div>
                         <script>
                                 if (progress !=0)
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text"  required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\' "><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\' "><span>click to enter the word</span>';
                                 }
                                 else
                                 {
@@ -99,6 +89,7 @@
   ?>
 </body>
 <script>
+
     html_data=""
     i1=localStorage.progress
     if(exam_words[i1]===undefined)

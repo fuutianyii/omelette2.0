@@ -1,5 +1,13 @@
 <?php
-
+/*
+ * @Author: fuutianyii
+ * @Date: 2022-11-01 17:56:03
+ * @LastEditors: fuutianyii
+ * @LastEditTime: 2022-11-02 18:56:43
+ * @github: https://github.com/fuutianyii
+ * @mail: fuutianyii@gmail.com
+ * @QQ: 1587873181
+ */
 include("config.php");
 session_start();
 $token=$_SESSION['token'];
@@ -17,10 +25,6 @@ $mysqlselect->execute(array(':username'=>$username));
 $groups=$mysqlselect->fetchAll();
 $size = count($groups);    //取得数组单元个数
 
-
-
-
-
 for($i=0; $i<$size; $i++)
 {
     $books_id=$groups[$i][0];
@@ -28,7 +32,7 @@ for($i=0; $i<$size; $i++)
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':username'=>$username,':books_id'=>$books_id));
     $progressarray=$mysqlselect->fetch();
-    if(date("Y-m-d")===@$progressarray["last_date"])
+    if(@date("Y-m-d")===@$progressarray["last_date"])
     {
         $progress=@$progressarray["progress"]-50;
     }
