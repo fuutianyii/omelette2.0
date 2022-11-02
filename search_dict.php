@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 17:58:32
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-12 20:33:28
+ * @LastEditTime: 2022-11-02 20:57:32
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -54,7 +54,7 @@ function do_request($q)
     $args['from'] = 'en';
     $args['to'] = 'zh-CHS';
     $args['signType'] = 'v3';
-    $curtime = strtotime("now");
+    @$curtime = strtotime("now");
     $args['curtime'] = $curtime;
     $signStr = APP_KEY . truncate($q) . $salt . $curtime . SEC_KEY;
     $args['sign'] = hash("sha256", $signStr);
