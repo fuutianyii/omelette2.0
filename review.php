@@ -7,29 +7,34 @@
     <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="dict.css" />
     <title>dict</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
 
-        exam_words=localStorage.exam_words
-        exam_words=JSON.parse(exam_words)
+        review_words=localStorage.review_words
+        review_words=JSON.parse(review_words)
         progress=parseInt(localStorage.progress)
         function enter(e)
         {  
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
-            if(value == exam_words[progress][0][0]){
+            if(value == review_words[progress][0][0]){
                 localStorage.setItem("progress",++progress);
                 html_data=""
                 i1=localStorage.progress
-                if(exam_words[i1]===undefined)
+                if(review_words[i1]===undefined)
                 {
-                    document.exam_finished.submit();
+                    
+                    document.review_finished.submit();
                 }
-                for(i2=0;i2<exam_words[i1].length;i2++)
-                {
-                    html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
-                    localStorage.progress=localStorage.progress++
+                else{
+                    for(i2=0;i2<review_words[i1].length;i2++)
+                    {
+                        html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
+                        localStorage.progress=localStorage.progress++
+                    }
+                    document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                 }
-                document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+                
 
             }
         }
@@ -76,7 +81,7 @@
         $book_name=$_GET["book_name"];
         if ($book_name !="")
         {
-            echo '<form action="exam_finished.php" method="POST" name="exam_finished">';
+            echo '<form action="review_finished.php" method="POST" name="review_finished">';
             echo '<input type="hidden" name="book_name" value="'.$book_name.'" id="token">';
             echo '</form>';
         }
@@ -89,19 +94,70 @@
   ?>
 </body>
 <script>
-
     html_data=""
     i1=localStorage.progress
-    if(exam_words[i1]===undefined)
+    if(review_words[i1]===undefined)
     {
-        document.exam_finished.submit();
+        // console.log(i1);
+        document.review_finished.submit();
     }
-    for(i2=0;i2<exam_words[i1].length;i2++)
+    for(i2=0;i2<review_words[i1].length;i2++)
     {
-        html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
+        html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+
+
+
+
+    var mouseDown=0;
+        function down(){
+            mouseDown=1
+            time=setTimeout(()=>{
+            if (mouseDown ==1 )
+            {
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+            }
+                    
+             },1000)
+        }
+        function up(){
+            mouseDown=0;
+            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+        }
+
+
+
+    $(".inputBox").on({
+        touchstart: function(e){
+            mouseDown=1
+            timeOutEvent = setTimeout(function(){
+                if (mouseDown ==1 )
+                {
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+                }
+            },1000);
+        },
+    touchend: function(e){
+        mouseDown=0
+        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+    },
+    mousedown:function down(){
+        mouseDown=1
+        time=setTimeout(()=>{
+        if (mouseDown ==1 )
+        {
+            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+        }
+                
+            },2000)
+    },
+    mouseup:function up(){
+        mouseDown=0;
+        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+    }
+});
 
 
 </script>

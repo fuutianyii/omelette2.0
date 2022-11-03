@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-11-03 21:34:09
+ * @LastEditTime: 2022-11-03 21:33:32
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -28,21 +28,17 @@ if(($book_name!= "") and ($token != "")){
             $getone=$mysqlselect->fetch();
 			$book_id=$getone[0];
 
-            $mysqlselect="select progress,last_date from exam_progress where (username=:username) and (books_id=:books_id)";
+            $mysqlselect="select last_review from exam_progress where (username=:username) and (books_id=:books_id)";
             $mysqlselect=$pdo->prepare($mysqlselect);
             $mysqlselect->execute(array(':username'=>$username,':books_id'=>$book_id));
             $progressarray=$mysqlselect->fetch();
-            if(date("Y-m-d")===@$progressarray["last_date"])
+            if(date("Y-m-d")!==@$progressarray["last_review"])
             {
-                $progress=$progressarray["progress"];
+                $mysqlselect="update exam_progress set  last_review=:last_review where (username=:username) and (books_id=:books_id)";
+                $mysqlselect=$pdo->prepare($mysqlselect);
+                $mysqlselect->execute(array(':last_review'=>date('Y-m-d'),':username'=>$username,':books_id'=>$book_id));
+                Header("Location: books.php");
             }
-            else{
-                $progress=$progressarray[0]+50;
-            }
-            $mysqlselect="update exam_progress set  progress=:progress,last_date=:last_date where books_id=:book_id";
-            $mysqlselect=$pdo->prepare($mysqlselect);
-            $mysqlselect->execute(array(':progress'=>$progress,':last_date'=>date('Y-m-d'),':book_id'=>$book_id));
-            // Header("Location: books.php");
 		}
 	else
 		{
