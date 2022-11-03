@@ -10,14 +10,6 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
 
-        function down(){
-             time=setTimeout(()=>{
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
-             },1000)
-        }
-        function up(){
-            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-        }
 
         exam_words=localStorage.exam_words
         exam_words=JSON.parse(exam_words)
@@ -59,7 +51,7 @@
             <div id="right">
                 <div class="container">
                     <div class="exam">
-                        <div class="inputBox" onmousedown="down()" onmouseup="up()">
+                        <div class="inputBox">
 
                         </div>
                         <script>
@@ -111,6 +103,57 @@
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+
+
+
+
+    var mouseDown=0;
+        function down(){
+            mouseDown=1
+            time=setTimeout(()=>{
+            if (mouseDown ==1 )
+            {
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+            }
+                    
+             },1000)
+        }
+        function up(){
+            mouseDown=0;
+            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+        }
+
+
+
+    $(".inputBox").on({
+        touchstart: function(e){
+            mouseDown=1
+            timeOutEvent = setTimeout(function(){
+                if (mouseDown ==1 )
+                {
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+                }
+            },1000);
+        },
+    touchend: function(e){
+        mouseDown=0
+        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+    },
+    mousedown:function down(){
+        mouseDown=1
+        time=setTimeout(()=>{
+        if (mouseDown ==1 )
+        {
+            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+        }
+                
+            },2000)
+    },
+    mouseup:function up(){
+        mouseDown=0;
+        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
+    }
+});
 
 
 </script>
