@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="dict.css" />
-    <title>dict</title>
+    <title>exam</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
 
@@ -133,7 +133,7 @@
                 {
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
                 }
-            },1000);
+            },600);
         },
     touchend: function(e){
         mouseDown=0
@@ -147,7 +147,7 @@
             document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
         }
                 
-            },2000)
+            },600)
     },
     mouseup:function up(){
         mouseDown=0;
