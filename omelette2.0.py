@@ -1,3 +1,14 @@
+#!python3.8
+#-*- coding: utf-8 -*-
+'''
+Author: fuutianyii
+Date: 2022-11-05 15:58:22
+LastEditors: fuutianyii
+LastEditTime: 2022-11-05 16:07:42
+github: https://github.com/fuutianyii
+mail: fuutianyii@gmail.com
+QQ: 1587873181
+'''
  
 import sys,os
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +31,6 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.browser)
  
 if __name__=='__main__':
-    print('程序已运行')
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
