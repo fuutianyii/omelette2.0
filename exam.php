@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ch">
 <head>
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="dict.css" />
     <title>exam</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="jquery.js"></script>
     <script>
 
 
@@ -116,7 +117,7 @@
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
             }
                     
-             },1000)
+             },600)
         }
         function up(){
             mouseDown=0;
