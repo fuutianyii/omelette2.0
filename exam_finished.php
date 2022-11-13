@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-11-05 16:52:34
+ * @LastEditTime: 2022-11-13 13:16:13
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -32,7 +32,7 @@ if(($book_name!= "") and ($token != "")){
             $mysqlselect=$pdo->prepare($mysqlselect);
             $mysqlselect->execute(array(':username'=>$username,':books_id'=>$book_id));
             $progressarray=$mysqlselect->fetch();
-            if(date("Y-m-d")===@$progressarray["last_date"])
+            if(date("Y-m-d")===$progressarray["last_date"])
             {
                 $progress=$progressarray["progress"];
             }
