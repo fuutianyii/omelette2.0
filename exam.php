@@ -33,7 +33,6 @@
                 }
                 document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-
             }
         }
     </script>
