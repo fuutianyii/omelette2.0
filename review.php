@@ -22,7 +22,7 @@
                 i1=localStorage.progress
                 if(review_words[i1]===undefined)
                 {
-                    
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
                     document.review_finished.submit();
                 }
                 else{
@@ -96,14 +96,13 @@
 <script>
     html_data=""
     i1=localStorage.progress
-    if(review_words[i1]===undefined)
+    if(exam_words[i1]===undefined)
     {
-        // console.log(i1);
-        document.review_finished.submit();
+        document.exam_finished.submit();
     }
-    for(i2=0;i2<review_words[i1].length;i2++)
+    for(i2=0;i2<exam_words[i1].length;i2++)
     {
-        html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
+        html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
@@ -117,7 +116,7 @@
             time=setTimeout(()=>{
             if (mouseDown ==1 )
             {
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
             }
                     
              },600)
@@ -126,39 +125,11 @@
             mouseDown=0;
             document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
         }
-
-
-
     $(".inputBox").on({
-        touchstart: function(e){
-            mouseDown=1
-            timeOutEvent = setTimeout(function(){
-                if (mouseDown ==1 )
-                {
-                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
-                }
-            },600);
-        },
-    touchend: function(e){
-        mouseDown=0
-        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-    },
-    mousedown:function down(){
-        mouseDown=1
-        time=setTimeout(()=>{
-        if (mouseDown ==1 )
-        {
-            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
-        }
-                
-            },600)
-    },
-    mouseup:function up(){
-        mouseDown=0;
-        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-    }
-});
-
-
+        touchstart:down,
+        touchend:up,
+        mousedown:down,
+        mouseup:up
+    });
 </script>
 </html>

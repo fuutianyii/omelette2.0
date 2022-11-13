@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-24 20:23:19
+ * @LastEditTime: 2022-11-12 13:40:38
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -19,7 +19,7 @@ function len(o) {
 function write_data(word){
   document.getElementsByClassName("mean_word")[0].innerText=word;
   const Http = new XMLHttpRequest();
-  const url='http://'+window.location.host+'/search_dict.php?word='+word;
+  const url='https://'+window.location.host+'/search_dict.php?word='+word;
   Http.open("GET", url);
   Http.send(null);
   Http.onreadystatechange=function()
@@ -85,7 +85,7 @@ function write_data(word){
 
 
   const Http_sentence = new XMLHttpRequest();
-  const url_sentence='http://'+window.location.host+'/api_sentence.php?word='+word;
+  const url_sentence='https://'+window.location.host+'/api_sentence.php?word='+word;
   Http_sentence.open("GET", url_sentence);
   Http_sentence.send(null);
   Http_sentence.onreadystatechange=function()

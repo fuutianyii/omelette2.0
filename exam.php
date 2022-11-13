@@ -24,6 +24,7 @@
                 i1=localStorage.progress
                 if(exam_words[i1]===undefined)
                 {
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
                     document.exam_finished.submit();
                 }
                 for(i2=0;i2<exam_words[i1].length;i2++)
@@ -123,39 +124,11 @@
             mouseDown=0;
             document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
         }
-
-
-
     $(".inputBox").on({
-        touchstart: function(e){
-            mouseDown=1
-            timeOutEvent = setTimeout(function(){
-                if (mouseDown ==1 )
-                {
-                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
-                }
-            },600);
-        },
-    touchend: function(e){
-        mouseDown=0
-        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-    },
-    mousedown:function down(){
-        mouseDown=1
-        time=setTimeout(()=>{
-        if (mouseDown ==1 )
-        {
-            document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
-        }
-                
-            },600)
-    },
-    mouseup:function up(){
-        mouseDown=0;
-        document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
-    }
-});
-
-
+        touchstart:down,
+        touchend:up,
+        mousedown:down,
+        mouseup:up
+    });
 </script>
 </html>
