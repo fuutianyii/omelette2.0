@@ -9,7 +9,6 @@
     <title>review</title>
     <script src="jquery.js"></script>
     <script>
-
         review_words=localStorage.review_words
         review_words=JSON.parse(review_words)
         progress=parseInt(localStorage.progress)
@@ -35,12 +34,8 @@
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                 }
-                
-
             }
         }
-
-        
     </script>
 </head>
 <body>
@@ -56,7 +51,6 @@
                 <div class="container">
                     <div class="exam">
                         <div class="inputBox">
-
                         </div>
                         <script>
                                 if (progress !=0)
@@ -88,10 +82,7 @@
         }
         else{
             Header("Location: books.php");
-        }
-        
-        
-        
+        }  
   ?>
 </body>
 <script>
@@ -107,10 +98,6 @@
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
-
-
-
-
     var mouseDown=0;
         function down(){
             mouseDown=1

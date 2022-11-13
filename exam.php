@@ -36,8 +36,6 @@
 
             }
         }
-
-        
     </script>
 </head>
 <body>
@@ -53,7 +51,6 @@
                 <div class="container">
                     <div class="exam">
                         <div class="inputBox">
-
                         </div>
                         <script>
                                 if (progress !=0)
@@ -86,10 +83,7 @@
         else{
             Header("Location: books.php");
         }
-        
-        
-        
-  ?>
+?>
 </body>
 <script>
     html_data=""
@@ -104,10 +98,6 @@
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
-
-
-
-
     var mouseDown=0;
         function down(){
             mouseDown=1
