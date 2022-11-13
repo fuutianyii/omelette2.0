@@ -91,9 +91,9 @@
 <script>
     html_data=""
     i1=localStorage.progress
-    if(review_words[i1]===undefined)
+    if((review_words[i1]===undefined) or(i2==review_words[i1].length))
     {
-        document.exam_finished.submit();
+        document.review_finished.submit();
     }
     for(i2=0;i2<review_words[i1].length;i2++)
     {
