@@ -23,6 +23,7 @@
                 {
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
+                    document.querySelector("#progress").innerHTML=i1+"/"+review_words.length
                     document.review_finished.submit();
                 }
                 else{
@@ -30,6 +31,7 @@
                     {
                         html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
                         localStorage.progress=localStorage.progress++
+                        document.querySelector("#progress").innerHTML=i1+"/"+review_words.length
                     }
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
@@ -50,6 +52,7 @@
             <div id="right">
                 <div class="container">
                     <div class="exam">
+                        <p id='progress'>-/-</p>
                         <div class="inputBox">
                         </div>
                         <script>
@@ -98,6 +101,7 @@
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+    document.querySelector("#progress").innerHTML=i1+"/"+review_words.length
     var mouseDown=0;
         function down(){
             mouseDown=1
