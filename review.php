@@ -22,8 +22,9 @@
                 i1=localStorage.progress
                 if(review_words[i1]===undefined)
                 {
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
-                    document.review_finished.submit();
+                    document.exam_finished.submit();
                 }
                 else{
                     for(i2=0;i2<review_words[i1].length;i2++)

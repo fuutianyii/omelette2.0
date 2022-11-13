@@ -24,6 +24,7 @@
                 i1=localStorage.progress
                 if(exam_words[i1]===undefined)
                 {
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
                     document.exam_finished.submit();
                 }
