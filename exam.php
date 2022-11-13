@@ -10,8 +10,6 @@
     <title>exam</title>
     <script src="jquery.js"></script>
     <script>
-
-
         exam_words=localStorage.exam_words
         exam_words=JSON.parse(exam_words)
         progress=parseInt(localStorage.progress)

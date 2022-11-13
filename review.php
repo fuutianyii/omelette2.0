@@ -24,7 +24,7 @@
                 {
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").disabled=true
-                    document.exam_finished.submit();
+                    document.review_finished.submit();
                 }
                 else{
                     for(i2=0;i2<review_words[i1].length;i2++)
@@ -97,13 +97,13 @@
 <script>
     html_data=""
     i1=localStorage.progress
-    if(exam_words[i1]===undefined)
+    if(review_words[i1]===undefined)
     {
         document.exam_finished.submit();
     }
-    for(i2=0;i2<exam_words[i1].length;i2++)
+    for(i2=0;i2<review_words[i1].length;i2++)
     {
-        html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
+        html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
         localStorage.progress=localStorage.progress++
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
@@ -117,7 +117,7 @@
             time=setTimeout(()=>{
             if (mouseDown ==1 )
             {
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
             }
                     
              },600)
