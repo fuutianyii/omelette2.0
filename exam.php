@@ -61,7 +61,6 @@
                                 {
                                     document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);"><span>click to enter the word</span>';
                                 }
-                                    
                         </script>
                         <div class="chinese_means">
                             <dl class="mean_part">
