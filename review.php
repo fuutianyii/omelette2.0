@@ -91,7 +91,7 @@
 <script>
     html_data=""
     i1=localStorage.progress
-    if((review_words[i1]===undefined) or(i2==review_words[i1].length))
+    if((review_words[i1]===undefined))
     {
         document.review_finished.submit();
     }

@@ -89,7 +89,7 @@
 <script>
     html_data=""
     i1=localStorage.progress
-    if((exam_words[i1]===undefined) or(i2==exam_words[i1].length))
+    if((exam_words[i1]===undefined))
     {
         document.exam_finished.submit();
     }
