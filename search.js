@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-11 19:51:58
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-16 21:33:55
+ * @LastEditTime: 2022-12-01 14:34:50
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -98,10 +98,6 @@ function enter(e)
             {
                 document.getElementsByClassName("content_div_hidden")[0].className = "content_div";
             }
-            
-
-            
-            
             // console.log(data)
             document.querySelector("#right > div > div.search-bar > input").value="";
         }

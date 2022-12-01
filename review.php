@@ -58,15 +58,19 @@
                         <script>
                                 if (progress !=0)
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\' "><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text"  required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\'" onkeydown="if(event.keyCode==13){search(this);}"><span>click to enter the word</span>';
                                 }
                                 else
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);"><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" onkeydown="if(event.keyCode==13){search(this);}"><span>click to enter the word</span>';
                                 }
-                                    
                         </script>
                         <div class="chinese_means">
+                        <div class="search_info_div tip top">
+                            <div>
+                                <p class="means"><i>adj</i>这是只智能搜索框</p>
+                            </div>
+                        </div>
                             <dl class="mean_part">
                                 <h1>加载中！</h1>
                             </dl>
@@ -88,6 +92,7 @@
         }  
   ?>
 </body>
+<script src="intellective_search.js"></script>
 <script>
     html_data=""
     i1=localStorage.progress

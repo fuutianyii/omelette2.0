@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ch">
 <head>
@@ -14,7 +13,7 @@
         exam_words=JSON.parse(exam_words)
         progress=parseInt(localStorage.progress)
         function enter(e)
-        {  
+        {
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == exam_words[progress][0][0]){
                 localStorage.setItem("progress",++progress);
@@ -36,6 +35,9 @@
                 document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
             }
+            else{
+                document.querySelector("#right > div > div > div.chinese_means > div.search_info_div").style.display="none";
+            }
         }
     </script>
 </head>
@@ -54,20 +56,29 @@
                         <p id='progress'>-/-</p>
                         <div class="inputBox">
                         </div>
+
                         <script>
                                 if (progress !=0)
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text"  required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\' "><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text"  required="required" oninput="enter(event);" autofocus="autofocus" οnfοcus=" this.style.imeMode=\'inactive\'" onkeydown="if(event.keyCode==13){search(this);}"><span>click to enter the word</span>';
                                 }
                                 else
                                 {
-                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);"><span>click to enter the word</span>';
+                                    document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" onkeydown="if(event.keyCode==13){search(this);}"><span>click to enter the word</span>';
                                 }
                         </script>
+                        
                         <div class="chinese_means">
+                        <div class="search_info_div tip top">
+                            <div>
+                                <p class="means"><i>adj</i>这是只智能搜索框</p>
+                            </div>
+                        </div>
                             <dl class="mean_part">
                                 <h1>加载中！</h1>
                             </dl>
+                            
+                            <div style="clear:both"></div>
                         </div>
                     </div>
                 </div>
@@ -86,6 +97,7 @@
         }
 ?>
 </body>
+<script src="intellective_search.js"></script>
 <script>
     html_data=""
     i1=localStorage.progress

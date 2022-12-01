@@ -661,11 +661,16 @@ b {
 
 
 .chinese_means{
+    /* clear: both; */
+    display: block;
+    overflow:hidden;
     box-sizing: border-box;
     padding: 0 10px;
+    min-height: 200px;
 }
 
 .chinese_means li{
+    clear:both;
     border-radius: 30px;
     background-color: rgba(255, 255, 255,0.6);
     margin-top: 30px;
@@ -674,7 +679,9 @@ b {
 
 }
 
-.chinese_means p{
+
+.means{
+    clear:both;
     display: -webkit-box;
     width: auto;
     text-overflow: ellipsis;
@@ -764,4 +771,51 @@ b {
     float: right;
     display: block;
     margin-right: 40px;
+}
+
+.search_info_div{
+    float: right;
+    position: relative;
+    width: 400px;
+    height: 0px;
+    margin-right: 50%;
+    margin-top: 20px;
+    left:200px;
+    padding: 0px;
+    display: none;
+}
+.search_info_div div
+{
+    width: 400px;
+    height: 100px;
+    margin-right: 50%;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.search_info_div i{
+    color: white;
+}
+
+.tip {
+    color: white;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
+.tip:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 8px solid;
+}
+.top:after {
+    border-top-color: rgba(0,0,0,0);
+    border-left-color: rgba(0,0,0,0);
+    border-right-color: rgba(0,0,0,0);
+    border-bottom-color: rgb(0,0,0,0.6);
+    left: 50%;
+    bottom: 100%;
+    margin-left: -15px;
 }

@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 17:58:32
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-11-02 20:57:32
+ * @LastEditTime: 2022-12-01 18:32:08
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -211,9 +211,76 @@ function ensure_length(&$string, $length){
 
 // 输入
 $word=$_GET["word"];
-$ret = do_request($word);
-$ret = json_decode($ret, true);
-print_r(json_encode($ret));
 
 
+include("config.php");
+$pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
+if (!preg_match('/^[\x{4e00}-\x{9fa5}]+$/u',$word))
+{
+    $mysqlselect="select english,chinese,posd,US,UK,exam_type from words where english=:word";
+    $mysqlselect=$pdo->prepare($mysqlselect);
+    $mysqlselect->execute(array(':word'=>$word));
+    $getone=$mysqlselect->fetchAll();
+    if ($getone==NULL)
+    {
+        $ret = do_request($word);
+        $ret = json_decode($ret, true);
+        print_r(json_encode($ret));
+        $mysqlselect="select word_id from words order by word_id desc limit 0,1";
+        $mysqlselect=$pdo->prepare($mysqlselect);
+        $mysqlselect->execute(array());
+        $getone=$mysqlselect->fetch();
+        $word_id=$getone[0]+1;
+        if (In_array("basic",array_keys($ret)))
+        {
+            for($n=0;$n<count($ret["basic"]["explains"]);$n++)
+            {
+                if ((strpos($ret["basic"]["explains"][$n],".")==NULL) & (strpos($ret["basic"]["explains"][$n],".")<5))
+                {
+                    $posd="名";
+                    $chinese=$ret["basic"]["explains"][$n];
+                }
+                else
+                {
+                    $posd=substr($ret["basic"]["explains"][$n],0,strpos($ret["basic"]["explains"][$n],"."));
+                    $chinese=substr($ret["basic"]["explains"][$n],strpos($ret["basic"]["explains"][$n],".")+1);
+                }
+                $us=$ret["basic"]["us-phonetic"];
+                $uk=$ret["basic"]["uk-phonetic"];
+                $exam_type=json_encode($ret["basic"]["exam_type"]);
+                $mysqlinsert="INSERT INTO `words`  VALUES(:word_id, :english, :chinese, :posd, :US, :Uk, :exam_type)";
+                $mysqlinsert=$pdo->prepare($mysqlinsert);
+                $mysqlinsert->execute(array(":word_id"=>$word_id, ":english"=>$word, ":chinese"=>$chinese, ":posd"=>$posd, ":US"=>$us, ":Uk"=>$uk, ":exam_type"=>$exam_type));
+                $getone=$mysqlinsert->fetch();
+
+            }
+        }       
+    }
+    else{
+        $ret["basic"]["explains"]=[];
+        if ($getone[0]["exam_type"] != "")
+        {
+            // print($getone[0]["exam_type"]);
+            $ret["basic"]["exam_type"]=json_decode($getone[0]["exam_type"]);
+        }
+        else{
+            $ret["basic"]["exam_type"]=["暂无"];
+        }
+        $ret["basic"]["us-phonetic"]=$getone[0]["US"];
+        $ret["basic"]["uk-phonetic"]=$getone[0]["UK"];
+        $ret["isWord"]=true;
+        for($n=0;$n<count($getone);$n++)
+        {
+            array_push($ret["basic"]["explains"],$getone[$n]["posd"].".".$getone[$n]["chinese"]);
+        }
+        // print_r($ret);
+        print_r(json_encode($ret));
+    }
+
+}
+else{
+    $ret = do_request($word);
+    $ret = json_decode($ret, true);
+    print_r(json_encode($ret));
+}
 ?>
