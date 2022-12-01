@@ -14,6 +14,10 @@
         progress=parseInt(localStorage.progress)
         function enter(e)
         {
+            if (window.search_on == true){
+                    document.querySelector("#right > div > div > div.chinese_means > div.search_info_div").style.display="none";
+                    window.search_on ==false;     
+            }
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == exam_words[progress][0][0]){
                 localStorage.setItem("progress",++progress);
@@ -26,18 +30,18 @@
                     document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
                     document.exam_finished.submit();
                 }
-                for(i2=0;i2<exam_words[i1].length;i2++)
-                {
-                    html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
-                    localStorage.progress=localStorage.progress++
-                    document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
+                else{
+                    for(i2=0;i2<exam_words[i1].length;i2++)
+                    {
+                        html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
+                        localStorage.progress=localStorage.progress++
+                        document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
+                    }
+                    document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
+                    document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                 }
-                document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
-                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
             }
-            else{
-                document.querySelector("#right > div > div > div.chinese_means > div.search_info_div").style.display="none";
-            }
+
         }
     </script>
 </head>

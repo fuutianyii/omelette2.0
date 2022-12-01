@@ -14,6 +14,10 @@
         progress=parseInt(localStorage.progress)
         function enter(e)
         {  
+            if (window.search_on == true){
+                    document.querySelector("#right > div > div > div.chinese_means > div.search_info_div").style.display="none";
+                    window.search_on ==false;     
+            }
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == review_words[progress][0][0]){
                 localStorage.setItem("progress",++progress);

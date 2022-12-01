@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-12-01 19:38:54
+ * @LastEditTime: 2022-12-01 21:20:18
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -91,10 +91,6 @@ Http_sentence.onreadystatechange=function()
     var response_data=undefined;
     if(Http_sentence.readyState==4)
         response_data=Http_sentence.responseText;
-        if (response_data != undefined)
-        {
-        console.log(response_data);
-        }
 };
 // return data["basic"];
 }
@@ -103,6 +99,7 @@ function search(event){
     word=event.value
     if (word != "")
     {
+        window.search_on=true;
         document.querySelector("#right > div > div > div.chinese_means > div.search_info_div").style.display="block";
         document.querySelector("#right > div > div > div.chinese_means > div.search_info_div.tip.top > div").innerHTML="加载中。。。。";
         display_intellective_search(word)
