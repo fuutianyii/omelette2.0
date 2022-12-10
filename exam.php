@@ -12,6 +12,12 @@
         exam_words=localStorage.exam_words
         exam_words=JSON.parse(exam_words)
         progress=parseInt(localStorage.progress)
+        oblivious=Array()
+        function add_to_oblivious(word)
+        {
+            oblivious.push(word);
+            localStorage.setItem("oblivious_words",oblivious);
+        }
         function enter(e)
         {
             if (window.search_on == true){
@@ -40,6 +46,10 @@
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                 }
+            }
+            else if(value == "??"){
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+                add_to_oblivious(exam_words[progress][0][0])
             }
 
         }
@@ -123,6 +133,7 @@
             if (mouseDown ==1 )
             {
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
+                add_to_oblivious(exam_words[progress][0][0])
             }
                     
              },600)
