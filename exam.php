@@ -13,10 +13,14 @@
         exam_words=JSON.parse(exam_words)
         progress=parseInt(localStorage.progress)
         oblivious=Array()
+        forgot=FALSE
         function add_to_oblivious(word)
         {
-            oblivious.push(word);
-            localStorage.setItem("oblivious_words",oblivious);
+            if(forgot == FALSE)
+            {
+                oblivious.push(word);
+                localStorage.setItem("oblivious_words",oblivious);
+            }
         }
         function enter(e)
         {
@@ -134,6 +138,7 @@
             {
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
                 add_to_oblivious(exam_words[progress][0][0])
+                forgot=TRUE
             }
                     
              },600)

@@ -12,6 +12,16 @@
         review_words=localStorage.review_words
         review_words=JSON.parse(review_words)
         progress=parseInt(localStorage.progress)
+        oblivious=Array()
+        forgot=FALSE
+        function add_to_oblivious(word)
+        {
+            if(forgot == FALSE)
+            {
+                oblivious.push(word);
+                localStorage.setItem("oblivious_words",oblivious);
+            }
+        }
         function enter(e)
         {  
             if (window.search_on == true){
@@ -40,6 +50,10 @@
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
                 }
+            }
+            else if(value == "??"){
+                document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+                add_to_oblivious(review_words[progress][0][0])
             }
         }
     </script>
@@ -118,6 +132,8 @@
             if (mouseDown ==1 )
             {
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=review_words[progress][0][0];
+                add_to_oblivious(review_words[progress][0][0])
+                forgot=TRUE
             }
                     
              },600)
