@@ -41,9 +41,12 @@ function write_data(word){
 
             if (Object.keys(data["basic"]).indexOf("exam_type") != -1)
             {
-                var mean_tag=data["basic"]["exam_type"][0];
-                for (i=1;i<data["basic"]["exam_type"].length;i++){
-                  mean_tag+="/"+data["basic"]["exam_type"][i];
+                if (len(data["basic"]["exam_type"]) !=0)
+                {
+                  var mean_tag=data["basic"]["exam_type"][0];
+                  for (i=1;i<data["basic"]["exam_type"].length;i++){
+                    mean_tag+="/"+data["basic"]["exam_type"][i];
+                  }
                 }
             }
             else{
