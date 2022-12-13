@@ -30,6 +30,7 @@
             }
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == exam_words[progress][0][0]){
+                forgot=false
                 localStorage.setItem("progress",++progress);
                 html_data=""
                 i1=localStorage.progress
@@ -54,6 +55,7 @@
             else if(value == "??"){
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
                 add_to_oblivious(exam_words[progress][0][0])
+                forgot=true
             }
 
         }
