@@ -104,8 +104,8 @@
         </div>
         <?php
         
-        echo "<script>localStorage.setItem('exam_words','".json_encode($data["专转本2500"][1])."');</script>";
-        echo "<script>localStorage.setItem('review_words','".json_encode($data["专转本2500"][2])."');</script>";
+        echo "<script>localStorage.setItem('exam_words','".str_replace("'","&#39;",json_encode($data["专转本2500"][1]))."');</script>";
+        echo "<script>localStorage.setItem('review_words','".str_replace("'","&#39;",json_encode($data["专转本2500"][2]))."');</script>";
         echo "<script>localStorage.setItem('progress',0);</script>";
         ?>
 </body>
