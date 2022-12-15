@@ -98,6 +98,9 @@ html,body{
     transition: 1s;
 }
 
+.error{
+    font:rgba(255,255,255,1)
+}
 
 .container{
     width: 100%;
@@ -190,7 +193,7 @@ html,body{
 .history_span {
     display: block;
     box-sizing:border-box;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
     margin:3px ;
     padding: 5px;
     border-radius: 30px;
@@ -202,7 +205,7 @@ html,body{
 
 
 .history_span:hover{
-    color: black;
+    color: #4d71ff;
     overflow: hidden;
 
     
