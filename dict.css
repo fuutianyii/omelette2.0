@@ -6,6 +6,7 @@
 html,body{
     width: 100%;
     height: 100%;
+    /* overflow: hidden; */
 }
 
 #main {
@@ -99,14 +100,19 @@ html,body{
 
 
 .container{
-    width: auto;
+    width: 100%;
+    height: 100%;
+    min-width: 100%;
+    max-width: 100%;
     overflow:auto;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background-image:linear-gradient(90deg, #70e1f5 0%,#ffd194 100%);
-    
+    background-image:url("img/bg_m.jpg");
+    background-position: top;
+    background-size: cover;
 }
+
+
 
 .container::-webkit-scrollbar {
     display: none;
@@ -275,7 +281,7 @@ i{
     font-weight: 700;
     font-style: italic;
     font-size: 16px;
-    color: rgba(0,0,0,.45);
+    color: rgba(255,255,255,.45);
     display: inline-block;
     min-width: 30px;
     flex-grow: 0;
@@ -428,7 +434,8 @@ b {
 }
 
 .books_view{
-    background-color: white;
+    background-color:rgba(0,0,0,.8);
+    color: white;
     border-radius: 30px;
     height: auto;
     width: auto;
@@ -446,7 +453,7 @@ b {
 
 .books_view b{
     font-size: 14px;
-    color: rgba(0,0,0,.65);
+    color: rgba(255,255,255,.65);
     line-height: 22px;
     display: inline-block;
     margin-right: 20px;
@@ -456,7 +463,7 @@ b {
     width: auto;
     font-size: 14px;
     height: 25px;
-    color: rgba(0,0,0,.85);
+    color: rgba(255,255,255,.85);
     display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 1;
@@ -474,6 +481,7 @@ b {
 
 .books_view hr{
     margin: 0px 20px;
+    
     /* border-top: #a8aaad solid 0.5px;
     border-bottom: #a8aaad solid 0.5px; */
 }
@@ -484,7 +492,7 @@ b {
     flex-wrap: wrap;
     justify-content: center;
     align-content: flex-start;
-    background-color: white;
+    background-color: rgba(0,0,0,.8);
     border-radius: 40px;
     margin: 20px;
     width: 280px;
@@ -498,7 +506,7 @@ b {
     display: flex;
     align-items: center;
     justify-content: center;
-    border:5px dashed rgba(0,0,0,.45);
+    border:5px dashed rgb(255,255,255);
     margin: 10px;
     border-radius: 30px;
 }
@@ -508,7 +516,7 @@ b {
     border-color: #9aadf9;
 }
 .add_class h1{
-    color:rgba(0,0,0,.45);
+    color:rgb(255,255,255);
 }
 
 .add_class:hover h1{
@@ -616,7 +624,7 @@ b {
     justify-content: center;
     flex-direction: column;
     border-radius: 30px;
-    border:5px dashed rgba(0,0,0,.45);
+    border:5px dashed rgb(255,255,255);
 }
 
 .more:hover{
