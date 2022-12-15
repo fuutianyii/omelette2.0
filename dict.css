@@ -108,6 +108,7 @@ html,body{
     display: flex;
     flex-direction: column;
     background-image:url("img/bg_m.jpg");
+    /* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */
     background-position: top;
     background-size: cover;
 }
@@ -189,11 +190,11 @@ html,body{
 .history_span {
     display: block;
     box-sizing:border-box;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(0,0,0,0.5);
     margin:3px ;
     padding: 5px;
     border-radius: 30px;
-    color: grey;
+    color: rgba(255,255,255,0.9);
     overflow: hidden;
 
 }
@@ -242,7 +243,7 @@ ul.active {
     border-radius: 30px;
     padding: 30px 0;
     transition: 5s;
-    background-color: white;
+    background-color: rgba(0,0,0,.8);
     overflow: hidden;
 }
 
@@ -273,6 +274,7 @@ ul.active {
 
 .mean_part
 {
+    color:rgb(255,255,255);
     width: auto;
     height: auto;
     list-style: none;
@@ -281,18 +283,22 @@ i{
     font-weight: 700;
     font-style: italic;
     font-size: 16px;
-    color: rgba(255,255,255,.45);
+    color: #f03744;
+    /* 蓝色 */
     display: inline-block;
     min-width: 30px;
     flex-grow: 0;
     flex-shrink: 0;
 }
 
+.means i{
+    color:rgba(255,255,255,0.5);
+}
 
 .mean_word{
     font-weight: 600;
     font-size: 32px;
-    color: rgba(0,0,0,.85);
+    color: rgba(255,255,255,.85);
     margin-bottom: 10px;
     line-height: 1.4;
     word-break: break-all;
@@ -300,7 +306,7 @@ i{
 
 .mean_tag{
     font-size: 14px;
-    color: rgba(0,0,0,.45);
+    color: rgba(255,255,255,.45);
     line-height: 1.4;
     margin-bottom: 20px;
 }
@@ -309,7 +315,7 @@ i{
 {
     font-weight: 600;
     font-size: 20px;
-    color: #000;
+    color:rgb(255, 255, 255);
     line-height: 3;
     margin-top: 10px;
 }
@@ -330,7 +336,7 @@ i{
 
 .mean_symbols li{
     font-size: 16px;
-    color: rgba(0,0,0,.65);
+    color: rgba(255,255,255,.65);
     line-height: 22px;
     display: inline-block;
     margin-right: 33px;
@@ -339,7 +345,7 @@ i{
 
 
 hr{
-    color: rgba(0,0,0,.45);
+    color: rgba(255,255,255,.45);
     margin:  20px 0 0 0 ;
 }
 
@@ -384,7 +390,7 @@ b {
 {
     font-size: 16px;
     display:inline-block;
-    color: #2a2b2e;
+    color: rgb(255,255,255);
 }
 #bilingual > dl > li > p
 {
@@ -408,16 +414,17 @@ b {
 }
 
 .spread_div{
-    background-image: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,1));
+    background-image:linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,.8));
     position: sticky;
     z-index: 100;
     width: 100%;
     height: 50px;
     left: 0;
-    bottom: -30px;
+    bottom: -35px;
     display: flex;
 }
 .spread_div p{
+    color: rgba(255,255,255);
     display: inline-block;
     margin: auto;
 }
@@ -680,7 +687,7 @@ b {
 .chinese_means li{
     clear:both;
     border-radius: 30px;
-    background-color: rgba(255, 255, 255,0.6);
+    background-color: rgba(0, 0, 0,0.6);
     margin-top: 30px;
     padding: 20px 10px;    
 
@@ -797,7 +804,7 @@ b {
     width: 400px;
     height: 100px;
     margin-right: 50%;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.9);
     border-radius: 20px;
     padding: 10px;
 }
