@@ -4,7 +4,7 @@
 Author: fuutianyii
 Date: 2022-11-05 15:58:22
 LastEditors: fuutianyii
-LastEditTime: 2022-11-05 16:29:07
+LastEditTime: 2022-12-28 18:36:00
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -25,11 +25,11 @@ class MainWindow(QMainWindow):
         self.resize(1200, 800)
         self.show()
         file_path = os.path.abspath(__file__)
-        url = 'http://127.0.0.1'
+        url = 'https://fuutianyii.c1.sidoc.cn/'
         self.browser = QWebEngineView()
         self.browser.load(QUrl(url))
         self.setCentralWidget(self.browser)
- 
+
 if __name__=='__main__':
     app = QApplication(sys.argv)
     window = MainWindow()
