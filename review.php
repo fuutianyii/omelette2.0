@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loading.css">
-    <link type="text/css" rel="styleSheet"  href="dict.css" />
+    <link type="text/css" rel="styleSheet"  href="css/dict.css" />
     <title>review</title>
-    <script src="jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script>
         review_words=localStorage.review_words
         review_words=JSON.parse(review_words)
@@ -112,7 +112,7 @@
         }  
   ?>
 </body>
-<script src="intellective_search.js"></script>
+<script src="js/intellective_search.js"></script>
 <script>
     html_data=""
     i1=localStorage.progress
@@ -151,4 +151,5 @@
         mouseup:up
     });
 </script>
+<script src="js/background.js"></script>
 </html>

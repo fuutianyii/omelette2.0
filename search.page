@@ -4,8 +4,8 @@
     <div class="container">
     <div class="no_search_div"></div>
         <div class="search-bar" style="background: rgb(0,49,79);border-radius: 40px;padding: 10px;">
-        <script src="dic_api.js"></script>
-        <script src="search.js"></script>
+        <script src="js/dic_api.js"></script>
+        <script src="js/search.js"></script>
             <input class="search-txt" type="text" placeholder="Enter a word for searching" onkeydown="enter(event);">
             <img src="img/search.png" alt="" class="search-btn" onclick="enter(event);">
         </div>
@@ -50,16 +50,13 @@
             </div>
             </div>
         
-
-
-        
+=
         </div>
-        
         <!-- ######### -->
         <div class="basic_div clip_basic_div">
             <div class="margin_div">
             </div>
-            <script src="spread.js"></script>
+            <script src="js/spread.js"></script>
             <div class="spread_div" onclick="spread(event);">
                 <p>展开</p>
             </div>

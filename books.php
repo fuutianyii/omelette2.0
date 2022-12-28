@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loading.css">
-    <link type="text/css" rel="styleSheet"  href="dict.css" />
+    <link type="text/css" rel="styleSheet"  href="css/dict.css" />
     <title>books</title>
 </head>
 <body>
@@ -41,7 +41,7 @@
             <a href="dict.php?page=search"><img src="img/search.png" alt=""><span>查词</span></a>
             <!-- <a href="dict.php?page=books"></a> -->
             <a href='javascript:var myDate=new Date();var myDate=myDate.toLocaleDateString();var myDate=localStorage.data_validity_period;document.getElementById("data_validity_period").value=myDate;document.date.submit();'><img src="img/test.png" alt=""><span>测试</span></a>
-            <a href="#"><img src="img/control.png" alt=""><span>偏好</span></a>
+            <a href="preference.php"><img src="img/control.png" alt=""><span>偏好</span></a>
         </div>
             <div id="right">
                 <div class="container">
@@ -144,4 +144,5 @@
             document.getElementsByClassName("books_view")[0].innerHTML=books_view_data+document.getElementsByClassName("books_view")[0].innerHTML
         </script>
 </body>
+<script src="js/background.js"></script>
 </html>

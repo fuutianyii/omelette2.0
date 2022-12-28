@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-10 19:24:18
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-10-23 19:47:17
+ * @LastEditTime: 2022-12-28 16:28:22
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -30,7 +30,7 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <title>注册和登录表单</title>
   </head>
   <body>
@@ -81,7 +81,7 @@
               注册
             </button>
           </div>
-          <img src="img/log.svg" class="image" alt="" />
+          <!-- <img src="img/log.svg" class="image" alt="" /> -->
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -91,12 +91,12 @@
               登 录
             </button>
           </div>
-          <img src="img/register.svg" class="image" alt="" />
+          <!-- <img src="img/register.svg" class="image" alt="" /> -->
         </div>
       </div>
     </div>
     
-    <script src="app.js"></script>
+    <script src="js/app.js"></script>
     <?php
     @$page=$_GET["page"];
     @$error=$_GET["error"];
@@ -126,6 +126,20 @@
     }
     ?>
   </body>
+<script>
 
+  function changeBg() {
+	var currentTime = new Date().getHours();
+	if (7 <= currentTime&&currentTime < 21) {
+		document.body.style.backgroundImage ="url('img/background_day.jpg')"
+	}
+	else {
+		document.body.style.backgroundImage ="url('img/background_night.jpg')"
+	}
+}
+
+changeBg();
+setInterval(function(){ changeBg(); }, 300000); //300000 means 5 min
+</script>
 </html>
 

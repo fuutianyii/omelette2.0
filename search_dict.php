@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 17:58:32
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-12-01 18:32:08
+ * @LastEditTime: 2022-12-28 18:26:10
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -211,8 +211,7 @@ function ensure_length(&$string, $length){
 
 // 输入
 $word=$_GET["word"];
-
-
+$word=strtolower($word);
 include("config.php");
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
 if (!preg_match('/^[\x{4e00}-\x{9fa5}]+$/u',$word))
@@ -245,8 +244,20 @@ if (!preg_match('/^[\x{4e00}-\x{9fa5}]+$/u',$word))
                     $posd=substr($ret["basic"]["explains"][$n],0,strpos($ret["basic"]["explains"][$n],"."));
                     $chinese=substr($ret["basic"]["explains"][$n],strpos($ret["basic"]["explains"][$n],".")+1);
                 }
-                $us=$ret["basic"]["us-phonetic"];
-                $uk=$ret["basic"]["uk-phonetic"];
+                if (In_array("us-phonetic",array_keys($ret["basic"])))
+                {
+                    $us=$ret["basic"]["us-phonetic"];
+                }
+                else{
+                    $us="";
+                }
+                if (In_array("uk-phonetic",array_keys($ret["basic"])))
+                {
+                    $uk=$ret["basic"]["uk-phonetic"];
+                }
+                else{
+                    $uk="";
+                }
                 $exam_type=json_encode($ret["basic"]["exam_type"]);
                 $mysqlinsert="INSERT INTO `words`  VALUES(:word_id, :english, :chinese, :posd, :US, :Uk, :exam_type)";
                 $mysqlinsert=$pdo->prepare($mysqlinsert);

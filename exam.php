@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="loading.css">
-    <link type="text/css" rel="styleSheet"  href="dict.css" />
+    <link type="text/css" rel="styleSheet"  href="css/dict.css" />
     <title>exam</title>
-    <script src="jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script>
         exam_words=localStorage.exam_words
         exam_words=JSON.parse(exam_words)
@@ -156,4 +156,5 @@
         mouseup:up
     });
 </script>
+<script src="js/background.js"></script>
 </html>
