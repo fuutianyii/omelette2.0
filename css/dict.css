@@ -248,6 +248,11 @@ ul.active {
 	margin: 10px;
 }
 
+
+.error-typo{
+	display: none;
+}
+
 .basic_div {
 	height: auto;
 	width: 90%;

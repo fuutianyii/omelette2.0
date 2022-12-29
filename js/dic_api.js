@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-11-12 13:40:38
+ * @LastEditTime: 2022-12-29 16:44:11
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -29,6 +29,7 @@ function write_data(word){
         response_data=Http.responseText;
         if (response_data != undefined)
         {
+          // console.log(response_data)
           data=JSON.parse(response_data);
           console.log(data);
           

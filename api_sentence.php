@@ -1,4 +1,13 @@
 <?PHP
+/*
+ * @Author: fuutianyii
+ * @Date: 2022-11-05 15:58:02
+ * @LastEditors: fuutianyii
+ * @LastEditTime: 2022-12-29 17:22:53
+ * @github: https://github.com/fuutianyii
+ * @mail: fuutianyii@gmail.com
+ * @QQ: 1587873181
+ */
 header("Access-Control-Allow-Origin: *");
 function curlHtml($url) {
 	$curl = curl_init();
@@ -59,6 +68,7 @@ function get_html_data($html,$path,$tag=1,$type=true) {
 }
 
 $word=$_GET['word'];
+$word=strtolower($word);
 $html=curlHtml("http://dict.youdao.com/example/".$word."/#keyfrom=dict2.top");
 echo str_replace("ul","dl",get_html_data($html,"/html/body/div[1]/div[2]/div[1]/div[2]/div[2]",2,true));
 ?>
