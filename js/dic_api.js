@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-12-29 16:44:11
+ * @LastEditTime: 2023-01-01 13:26:47
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -17,13 +17,15 @@ function len(o) {
 
 
 function write_data(word){
-  document.getElementsByClassName("mean_word")[0].innerText=word;
   const Http = new XMLHttpRequest();
   const url='https://'+window.location.host+'/search_dict.php?word='+word;
   Http.open("GET", url);
   Http.send(null);
+  document.getElementsByClassName("mean_tag")[0].innerText="搜索中";
+  document.getElementsByClassName("mean_part")[0].innerText="搜索中";
   Http.onreadystatechange=function()
   {
+      document.getElementsByClassName("mean_word")[0].innerText=word;
       var response_data=undefined;
       if(Http.readyState==4)
         response_data=Http.responseText;
@@ -61,7 +63,6 @@ function write_data(word){
                 // console.log(mean_part);
                 var str = explains[i];
                 console.log(str)
-                
                 if (str.indexOf(".") == -1)
                 {
                   mean_part=mean_part+'<li><p class="means">'+str.slice(str.indexOf(".")+1)+'</p></li>';
