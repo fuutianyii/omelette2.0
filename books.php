@@ -34,21 +34,18 @@
     <form name='date' action='books.php' method='post'>
         <input type='hidden' name='data_validity_period' id= "data_validity_period" value=''/>
     </form>
-    <div id="main">
-        <div id="left">
-            <a href="#"><img src="img/menu.png" alt=""></a>
-            <a href="#"><img src="img/user.jpg" alt=""><span>用户名</span></a>
-            <a href="dict.php?page=search"><img src="img/search.png" alt=""><span>查词</span></a>
-            <!-- <a href="dict.php?page=books"></a> -->
-            <a href='javascript:var myDate=new Date();var myDate=myDate.toLocaleDateString();var myDate=localStorage.data_validity_period;document.getElementById("data_validity_period").value=myDate;document.date.submit();'><img src="img/test.png" alt=""><span>测试</span></a>
-            <a href="preference.php"><img src="img/control.png" alt=""><span>偏好</span></a>
-        </div>
+    <div id="main" name="viewport">
+        <?php
+            $file=fopen('menubar.page','rb');
+            echo fread($file,filesize('search.page'));
+            fclose($file);
+        ?>
             <div id="right">
                 <div class="container">
                     <div class="left_top">
                         <div class="search-bar" style="background: rgb(0,49,79);border-radius: 40px;padding: 10px;">
-                        <script src="dic_api.js"></script>
-                        <script src="search.js"></script>
+                        <script src="js/dic_api.js"></script>
+                        <script src="js/search.js"></script>
                             <input class="search-txt" type="text" placeholder="Search from books" onkeydown="enter(event);">
                             <img src="img/search.png" alt="" class="search-btn" onclick="enter(event);">
                         </div>
@@ -60,6 +57,22 @@
                             <div class="books_div">
                                 <div class="add_class">
                                         <h1>+</h1>
+                                </div>
+                                <div class="words_book">
+                                    <h2>专转本2500</h2>
+                                    <p>单词数：2500</p>
+                                </div>
+                                <div class="words_book">
+                                    <h2>专转本2500</h2>
+                                    <p>单词数：2500</p>
+                                </div>
+                                <div class="words_book">
+                                    <h2>专转本2500</h2>
+                                    <p>单词数：2500</p>
+                                </div>
+                                <div class="words_book">
+                                    <h2>专转本2500</h2>
+                                    <p>单词数：2500</p>
                                 </div>
                                 <?php
                                 // for ($book_n=0;$book_n<count($data);$book_n++)

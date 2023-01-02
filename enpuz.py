@@ -1,3 +1,12 @@
+'''
+Author: fuutianyii
+Date: 2022-12-31 12:01:05
+LastEditors: fuutianyii
+LastEditTime: 2023-01-02 15:07:08
+github: https://github.com/fuutianyii
+mail: fuutianyii@gmail.com
+QQ: 1587873181
+'''
 from email import header
 from unicodedata import name
 from wsgiref import headers
@@ -36,7 +45,7 @@ def encode_sentence(q):
 
 
 if __name__ == "__main__":
-    q="It has been locked by the supermarket"
+    q="How long do you study english"
     eq=encode_sentence(q)
     data={"event":"puz",
           "uuid":"",

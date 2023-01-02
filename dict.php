@@ -5,6 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="styleSheet"  href="css/dict.css" />
+    <script src="js/jquery.js"></script>
+    <script>
+
+    var winHeight = $(window).height();
+    var winWidth = $(window).width();
+    var angle=screen.orientation.angle
+    $(window).resize(function() {
+        if(navigator.userAgent.match(/mobile/i)){
+            if (angle !=screen.orientation.angle)
+            {
+                location.reload()
+            }
+            // 解决翻转屏幕无法改变高度
+            
+            $("body").css("height",winHeight+"px");
+            $("body").css("width",winWidth+"px");
+        
+        // document.querySelector("#right > div > div.search-bar > input").value=winHeight+"px"
+        }
+           
+    });
+
+
+
+
+		window.addEventListener('onorientationchange', ()=>{
+			alert(screen.orientation);
+		}, true);
+// 解决手机版输入时的页面挤压
+    </script>
     <title>dict</title>
 </head>
 <body>
@@ -12,13 +42,11 @@
         <input type='hidden' name='data_validity_period' id= "data_validity_period" value=''/>
     </form>
     <div id="main">
-        <div id="left">
-            <a href="#"><img src="img/menu.png" alt=""></a>
-            <a href="#"><img src="img/user.jpg" alt=""><span>用户名</span></a>
-            <a href="dict.php?page=search"><img src="img/search.png" alt=""><span>查词</span></a>
-            <a href='javascript:var myDate=new Date();var myDate=myDate.toLocaleDateString();var myDate=localStorage.data_validity_period;document.getElementById("data_validity_period").value=myDate;document.date.submit();'><img src="img/test.png" alt=""><span>测试</span></a>
-            <a href="preference.php"><img src="img/control.png" alt=""><span>偏好</span></a>
-        </div>
+        <?php
+            $file=fopen('menubar.page','rb');
+            echo fread($file,filesize('search.page'));
+            fclose($file);
+        ?>
         <?php
         @$page=$_GET["page"];
         if ($page=="search")
@@ -45,4 +73,12 @@
     </div>
 </body>
 <script src="js/background.js"></script>
+
+<!-- <script>
+    function() {
+        var winHeight = $(window).height();
+        $("body").css("height",winHeight);
+        document.querySelector("#right > div > div.search-bar > input").value=winHeight
+    }();
+</script> -->
 </html>
