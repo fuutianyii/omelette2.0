@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-01 13:26:47
+ * @LastEditTime: 2023-01-03 11:56:18
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -81,9 +81,7 @@ function write_data(word){
           else{
             document.querySelector("#right > div > div.content_div > div:nth-child(1) > div > div > div:nth-child(1)").style.display="none";
             document.querySelector("#right > div > div.content_div > div:nth-child(1) > div > div > div.error").style.display="block";
-            
           }
-
         }
   };
 

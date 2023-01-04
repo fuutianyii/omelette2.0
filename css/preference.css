@@ -130,7 +130,7 @@
     padding: 0 5px;
     position: relative;
     top: -1px;
-    width: 730px;
+    width: auto;
     touch-action: manipulation;
     writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -213,13 +213,119 @@ input::-webkit-input-placeholder { /* WebKit browsers */
     transition: opacity .2s;
 }
 
+.auto_play{
+    margin: 0 auto;
+    margin: 1rem;
+
+}
+
+
+.auto_play{
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    position: relative;
+}
+.auto_play:before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #7d7d7d;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.auto_play:checked:before{
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 1px solid #2ed573;
+    background:#2ed573;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.auto_play:checked:after{
+    content: '';
+    width: 10px;
+    height:5px;
+    border: 2px solid white;
+    border-top: transparent;
+    border-right: transparent;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 6px;
+    left:5px;
+    vertical-align: middle;
+    transform: rotate(-45deg);
+}
+
+.radio{
+    display: flex;
+    margin: 0 auto;
+    flex-direction: row;
+    min-width: 500px;
+    max-width: 1000px;
+    justify-content: flex-start;
+    align-items: left;
+}
+
+.radio_div{    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+}
+.radio_div span{
+    width: auto;
+}
 
 @media screen and (max-width:600px){
-    .checkboxs {
+    .preference{
         flex-flow: nowrap;
         flex-direction:column;
         overflow: scroll;
-        
-        
+        -webkit-overflow-scrolling: touch;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
     }
+
+    .preference::-webkit-scrollbar {
+        width: 0 !important;
+        display: none;
+      }    
+
+
+    .checkboxs {
+        flex-flow: nowrap;
+        flex-direction:column;
+        /* overflow: scroll; */
+        min-width: auto;
+        max-width: auto;
+        margin: 0 0;
+
+        /* -webkit-overflow-scrolling: touch;
+        overflow: -moz-scrollbars-none;
+        -ms-overflow-style: none;
+        scrollbar-width: none; */
+    }
+
+    /* .checkboxs::-webkit-scrollbar {
+        width: 0 !important;
+        display: none;
+      }       */
+
+
+      /* 隐藏 IE、Edge 和 Firefox 的滚动条 */
+    .checkbox{
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        width: 90%;
+    }
+
+
+    
 }

@@ -237,7 +237,7 @@ a span {
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
-	background-image: url("img/bg_m.jpg");
+	background-image: url("/img/bg_m.jpg");
 	/* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */
 	background-position: top;
 	background-size: cover;
