@@ -130,7 +130,7 @@
     padding: 0 5px;
     position: relative;
     top: -1px;
-    width: auto;
+    width: 200px;
     touch-action: manipulation;
     writing-mode: horizontal-tb !important;
     text-rendering: auto;

@@ -1058,7 +1058,11 @@ a span{
 }
 
 .search-bar{
-	width: 180px;;
+	width: 180px;
+}
+
+#right > div > div.search-bar{
+	width: 240px;
 }
 
 .button_div button{
