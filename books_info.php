@@ -18,8 +18,6 @@ if (($token =="") or ($username == ""))
     Header("Location: index.html");
 }
 
-
-
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
 $mysqlselect="select books_id,books_name from word_books where username=:username";
 $mysqlselect=$pdo->prepare($mysqlselect);
