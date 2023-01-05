@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="css/dict.css" />
     <title>exam</title>
     <script src="js/jquery.js"></script>
     <script>
-        exam_words=localStorage.exam_words
+        getQueryString=function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]); return null;
+        }
+        exam_words=localStorage.getItem(getQueryString("book_name")+"exam_words")
         exam_words=JSON.parse(exam_words)
-        progress=parseInt(localStorage.progress)
+        progress=parseInt(Number(localStorage.getItem(getQueryString("book_name")+"progress")))
         oblivious=Array()
         forgot=false
         function add_to_oblivious(word)
@@ -19,7 +23,7 @@
             if(forgot == false)
             {
                 oblivious.push(word);
-                localStorage.setItem("oblivious_words",oblivious);
+                localStorage.setItem(getQueryString("book_name")+"oblivious_words",oblivious);
             }
         }
         function enter(e)
@@ -31,9 +35,9 @@
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == exam_words[progress][0][0]){
                 forgot=false
-                localStorage.setItem("progress",++progress);
+                localStorage.setItem(getQueryString("book_name")+"progress",++progress);
                 html_data=""
-                i1=localStorage.progress
+                i1=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
                 if(exam_words[i1]===undefined)
                 {
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
@@ -42,10 +46,11 @@
                     document.exam_finished.submit();
                 }
                 else{
-                    for(i2=0;i2<exam_words[i1].length;i2++)
+                    for(i2=0;i2<exam_words[i1].length;i2+1)
                     {
                         html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
-                        localStorage.progress=localStorage.progress++
+                        ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
+                        localStorage.setItem(getQueryString("book_name")+"progress",ls_progress++)
                         document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
                     }
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
@@ -57,7 +62,6 @@
                 add_to_oblivious(exam_words[progress][0][0])
                 forgot=true
             }
-
         }
     </script>
 </head>
@@ -76,7 +80,6 @@
                         <p id='progress'>-/-</p>
                         <div class="inputBox">
                         </div>
-
                         <script>
                                 if (progress !=0)
                                 {
@@ -87,7 +90,6 @@
                                     document.querySelector("#right > div > div > div.inputBox").innerHTML='<input type="text" required="required" oninput="enter(event);" onkeydown="if(event.keyCode==13){search(this);}"><span>click to enter the word</span>';
                                 }
                         </script>
-                        
                         <div class="chinese_means">
                         <div class="search_info_div tip top">
                             <div>
@@ -97,8 +99,6 @@
                             <dl class="mean_part">
                                 <h1>加载中！</h1>
                             </dl>
-                            
-                            <div style="clear:both"></div>
                         </div>
                     </div>
                 </div>
@@ -120,15 +120,16 @@
 <script src="intellective_search.js"></script>
 <script>
     html_data=""
-    i1=localStorage.progress
+    i1=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
     if((exam_words[i1]===undefined))
     {
         document.exam_finished.submit();
     }
-    for(i2=0;i2<exam_words[i1].length;i2++)
+    for(i2=0;i2<exam_words[i1].length;i2+1)
     {
         html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
-        localStorage.progress=localStorage.progress++
+        ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
+        localStorage.setItem(getQueryString("book_name")+"progress",ls_progress++)
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
     document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
@@ -141,8 +142,7 @@
                 document.querySelector("#right > div > div > div.inputBox > input[type=text]").value=exam_words[progress][0][0];
                 add_to_oblivious(exam_words[progress][0][0])
                 forgot=true
-            }
-                    
+            }    
              },600)
         }
         function up(){

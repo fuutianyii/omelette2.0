@@ -639,6 +639,10 @@ b {
 
 }
 
+
+
+
+
 .add_class {
 	width: 250px;
 	height: 100px;
@@ -745,6 +749,7 @@ b {
 }
 
 .words_book p {
+	color: rgb(255,255,255);
 	margin: 10px 30px;
 }
 
@@ -759,6 +764,22 @@ b {
 
 }
 
+.words_book:hover {
+	border-radius: 30px;
+	border-color: #9aadf9;
+}
+
+
+
+.words_book:hover h2 {
+	color: #9aadf9;
+}
+
+
+
+.words_book:hover p {
+	color: #9aadf9;
+}
 
 .more {
 	display: flex;

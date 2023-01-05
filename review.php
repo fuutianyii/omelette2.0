@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="loading.css">
     <link type="text/css" rel="styleSheet"  href="css/dict.css" />
     <title>review</title>
     <script src="js/jquery.js"></script>
     <script>
-        review_words=localStorage.review_words
+        getQueryString=function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+                if (r != null) return decodeURI(r[2]); return null;
+        }
+        review_words=localStorage.getItem(getQueryString("book_name")+"review_words")
         review_words=JSON.parse(review_words)
-        progress=parseInt(localStorage.progress)
+        progress=parseInt(localStorage.getItem(getQueryString("book_name")+"progress"))
         oblivious=Array()
         forgot=false
         function add_to_oblivious(word)
@@ -19,7 +23,7 @@
             if(forgot == false)
             {
                 oblivious.push(word);
-                localStorage.setItem("oblivious_words",oblivious);
+                localStorage.setItem(getQueryString("book_name")+"oblivious_words",oblivious);
             }
         }
         function enter(e)
@@ -31,9 +35,9 @@
             var value=document.querySelector("#right > div > div > div.inputBox > input[type=text]").value;
             if(value == review_words[progress][0][0]){
                 forgot=false
-                localStorage.setItem("progress",++progress);
+                localStorage.setItem(getQueryString("book_name")+"progress",++progress);
                 html_data=""
-                i1=localStorage.progress
+                i1=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
                 if(review_words[i1]===undefined)
                 {
                     document.querySelector("#right > div > div > div.inputBox > input[type=text]").value="";
@@ -45,7 +49,8 @@
                     for(i2=0;i2<review_words[i1].length;i2++)
                     {
                         html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
-                        localStorage.progress=localStorage.progress++
+                        ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
+                        localStorage.setItem(getQueryString("book_name")+"progress",ls_progress++)
                         document.querySelector("#progress").innerHTML=i1+"/"+review_words.length
                     }
                     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
@@ -115,7 +120,7 @@
 <script src="js/intellective_search.js"></script>
 <script>
     html_data=""
-    i1=localStorage.progress
+    i1=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
     if((review_words[i1]===undefined))
     {
         document.review_finished.submit();
@@ -123,7 +128,8 @@
     for(i2=0;i2<review_words[i1].length;i2++)
     {
         html_data+='<li><p class="means"><i>'+review_words[i1][i2][2]+'</i>'+review_words[i1][i2][1]+'</p></li>'
-        localStorage.progress=localStorage.progress++
+        ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
+        localStorage.setItem(getQueryString("book_name")+"progress",ls_progress++)
     }
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
     document.querySelector("#progress").innerHTML=i1+"/"+review_words.length
@@ -137,7 +143,6 @@
                 add_to_oblivious(review_words[progress][0][0])
                 forgot=true
             }
-                    
              },600)
         }
         function up(){

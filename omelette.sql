@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2023-01-04 07:34:45
+-- Generation Time: 2023-01-05 12:10:52
 -- 服务器版本： 5.5.68-MariaDB
 -- PHP Version: 5.4.16
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `exam_progress` (
 --
 
 INSERT INTO `exam_progress` (`books_id`, `username`, `progress`, `last_date`, `last_review`) VALUES
-(1, 'fuutianyii', 2800, '2023-01-04', '2023-01-03');
+(1, 'fuutianyii', 2850, '2023-01-05', '2023-01-05');
 
 -- --------------------------------------------------------
 
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `token`, `preference`) VALUES
-('fty', 'e10adc3949ba59abbe56e057f20f883e', '08d441c0c4ee35ba8dcbf05c24832d4f', ''),
-('fuutianyii', '6829ffaea69f560f59f268dba8f51d62', '0eca72089fa6e344b136b01bcd260879', '["Practice makes perfect.","true","true","true","true","true","true","true","true","false"]');
+('fty', 'e10adc3949ba59abbe56e057f20f883e', '08d441c0c4ee35ba8dcbf05c24832d4f', '["Where there''s a will, there''s a way","true","true","true","true","true","true","true","false","true"]'),
+('fuutianyii', '6829ffaea69f560f59f268dba8f51d62', '0eca72089fa6e344b136b01bcd260879', '["Where there''s a will, there''s a way.","true","true","true","true","true","true","true","true","false"]');
 
 -- --------------------------------------------------------
 
@@ -4582,7 +4582,7 @@ INSERT INTO `words` (`word_id`, `english`, `chinese`, `posd`, `US`, `UK`, `exam_
 (2831, 'owns', ' （Owns）（美）奥恩斯（人名）', 'n', 'oʊnz', 'əʊnz', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
 (2832, '  employee', ' 雇员', 'n', 'ɪmˈplɔɪiː', 'ɪmˈplɔɪiː', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","\\u5546\\u52a1\\u82f1\\u8bed"]'),
 (2833, 'employe', ' <美>雇工，雇员（同 employee）', 'n', 'emˈplɔɪi', 'emˈplɔɪi', 'null'),
-(2834, 'requests', '[计] 请求', '名', 'rɪˈkwests', '', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","\\u5546\\u52a1\\u82f1\\u8bed"]'),
+(2834, 'requests', '[计] 请求', '名', 'rɪˈkwests', 'rɪˈkwests', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","\\u5546\\u52a1\\u82f1\\u8bed"]'),
 (2835, 'understand', ' 理解，懂得；了解，明白（某事物）；谅解，体谅；得知，听说；默认，默许；领会，推断出；解释', 'v', 'ˌʌndərˈstænd', 'ˌʌndəˈstænd', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
 (2836, 'spilt', ' 洒出，溢出；（东西）散落；（一群人）迅速涌出；（球赛中）掉球；向（某人）说出秘密；减少（帆的）受风压力（spill 的过去式和过去分词）', 'v', 'spɪlt', 'spɪlt', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL"]'),
 (2837, 'keep', ' 保持，处于；继续，重复；耽搁，延误；保有，留下；存放，储存；经营，管理；保鲜；保守（秘密）；遵守；记录，记载；关押，拘留（尤在监狱或医院里）；饲养，供养；把守球门；（为性爱）包养（某人，尤指女性）；（按规定）纪念，庆祝；尊重（法律或习俗）', 'v', 'kiːp', 'kiːp', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
@@ -4601,7 +4601,7 @@ INSERT INTO `words` (`word_id`, `english`, `chinese`, `posd`, `US`, `UK`, `exam_
 (2843, 'static', ' 静止的，停滞的；静电的；静力的；（计算机）（储存器，储存）静态的；（计算机）（程序，变量）静态的；（物理）（物体）静止的，不动的', 'adj', 'ˈstætɪk', 'ˈstætɪk', '["CET6","\\u8003\\u7814","IELTS","TOEFL","GRE","GMAT","SAT"]'),
 (2843, 'static', ' 静电；（广播、电视里的）静电噪声，静电干扰；<美，非正式>不停的抱怨，指责；静力学', 'n', 'ˈstætɪk', 'ˈstætɪk', '["CET6","\\u8003\\u7814","IELTS","TOEFL","GRE","GMAT","SAT"]'),
 (2844, '423', 'four hundred and twenty-three', '名', '', '', 'null'),
-(2845, 'automatics', ' 自动学；自动手枪；自动装置（automatic 的复数）', 'n', 'ˌɔtəˈmætɪk', '', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","GRE","GMAT","\\u5546\\u52a1\\u82f1\\u8bed"]'),
+(2845, 'automatics', ' 自动学；自动手枪；自动装置（automatic 的复数）', 'n', 'ˌɔtəˈmætɪk', 'ˌɔtəˈmætɪk', '["\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","GRE","GMAT","\\u5546\\u52a1\\u82f1\\u8bed"]'),
 (2846, 'instruction', ' 用法说明；指示，吩咐；教授，指导；（计算机的）指令，命令；给初级律师（或辩护律师、陪审团）的指示', 'n', 'ɪnˈstrʌkʃ(ə)n', 'ɪnˈstrʌkʃ(ə)n', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","\\u5546\\u52a1\\u82f1\\u8bed"]'),
 (2846, 'instruction', ' 说明用法的', 'adj', 'ɪnˈstrʌkʃ(ə)n', 'ɪnˈstrʌkʃ(ə)n', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS","TOEFL","\\u5546\\u52a1\\u82f1\\u8bed"]'),
 (2847, 'unture', ' 不正确的；不合标准的；不忠实的', 'adj', '', '', 'null'),
@@ -4631,7 +4631,19 @@ INSERT INTO `words` (`word_id`, `english`, `chinese`, `posd`, `US`, `UK`, `exam_
 (2858, 'favorite', ' （同类中）最受喜爱的（等于favourite）', 'adj', 'ˈfeɪvərɪt', 'ˈfeɪvərɪt', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
 (2858, 'favorite', ' 受喜爱的人（或事物）；（比赛或竞赛中）最有希望的获胜者；收藏夹（等于favourite）', 'n', 'ˈfeɪvərɪt', 'ˈfeɪvərɪt', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
 (2858, 'favorite', ' 把……添加到收藏夹（等于favourite）', 'v', 'ˈfeɪvərɪt', 'ˈfeɪvərɪt', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
-(2858, 'favorite', ' （Favorite）（美）费沃里特（人名）', 'n', 'ˈfeɪvərɪt', 'ˈfeɪvərɪt', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]');
+(2858, 'favorite', ' （Favorite）（美）费沃里特（人名）', 'n', 'ˈfeɪvərɪt', 'ˈfeɪvərɪt', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
+(2859, 'stateman', ' 政治家', 'n', '', '', 'null'),
+(2860, 'describe', ' 描述，形容；做……运动，形成……形状', 'v', 'dɪˈskraɪb', 'dɪˈskraɪb', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS"]'),
+(2861, 'memory', ' 记忆力，记性；记忆，回忆；（计算机存储器的）存储量；（计算机的）存储器；对死者的记忆；记忆所及的时间（或范围）', 'n', 'ˈmeməri', 'ˈmeməri', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","\\u5546\\u52a1\\u82f1\\u8bed"]'),
+(2861, 'memory', '【名】 （Memory）（英）梅默里（人名）', '名', 'ˈmeməri', 'ˈmeməri', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","\\u5546\\u52a1\\u82f1\\u8bed"]'),
+(2862, 'none', ' 全无', 'pron', 'nʌn', 'nʌn', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
+(2862, 'none', ' 毫无，绝不（none the）；（与 too 加形容词或副词连用）绝不', 'adv', 'nʌn', 'nʌn', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
+(2862, 'none', ' 申初经（天主教七段祈祷时间中的一部分，通常在一天中的第九个小时 下午3点）', 'n', 'nʌn', 'nʌn', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
+(2862, 'none', '【名】 （None）（葡、罗）诺内（人名）', '名', 'nʌn', 'nʌn', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814"]'),
+(2863, 'quek', ' （Quek）人名；（东南亚国家华语）郭', 'n', '', '', 'null'),
+(2864, 'except', ' 除……外，不包括', 'prep', 'ɪkˈsept', 'ɪkˈsept', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS"]'),
+(2864, 'except', ' 除了，只是；要不是', 'conj', 'ɪkˈsept', 'ɪkˈsept', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS"]'),
+(2864, 'except', ' 不包括，把……排除在外', 'v', 'ɪkˈsept', 'ɪkˈsept', '["\\u521d\\u4e2d","\\u9ad8\\u4e2d","CET4","CET6","\\u8003\\u7814","IELTS"]');
 
 -- --------------------------------------------------------
 
@@ -4642,16 +4654,17 @@ INSERT INTO `words` (`word_id`, `english`, `chinese`, `posd`, `US`, `UK`, `exam_
 CREATE TABLE IF NOT EXISTS `word_books` (
   `username` varchar(10) NOT NULL,
   `books_id` int(10) NOT NULL,
-  `books_name` varchar(20) NOT NULL
+  `books_name` varchar(20) NOT NULL,
+  `word_num` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 转存表中的数据 `word_books`
 --
 
-INSERT INTO `word_books` (`username`, `books_id`, `books_name`) VALUES
-('fuutianyii', 1, '专转本2500'),
-('fuutianyii', 2, '日常累积');
+INSERT INTO `word_books` (`username`, `books_id`, `books_name`, `word_num`) VALUES
+('fuutianyii', 1, '专转本2500', 2446),
+('fuutianyii', 2, '日常累积', 0);
 
 -- --------------------------------------------------------
 

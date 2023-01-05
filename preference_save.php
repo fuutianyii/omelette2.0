@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-04 13:50:49
+ * @LastEditTime: 2023-01-05 11:48:31
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -14,9 +14,8 @@ date_default_timezone_set('PRC');
 $token=$_SESSION['token'];
 $username=$_SESSION['username'];
 if($token != ""){
-    print_r($_POST);
     if (count($_POST)){
-        print($_POST);
+        echo 1;
     }
     else{
         echo 0;

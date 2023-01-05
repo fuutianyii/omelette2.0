@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-04 15:01:30
+ * @LastEditTime: 2023-01-05 13:53:31
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -19,14 +19,14 @@ if (($token =="") or ($username == ""))
 }
 
 $pdo=new PDO("mysql:host=".host.";dbname=".dbname,username,password,array(PDO::MYSQL_ATTR_INIT_COMMAND => "set names utf8"));
-$mysqlselect="select books_id,books_name from word_books where username=:username";
+$mysqlselect="select books_id,books_name,word_num from word_books where username=:username";
 $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->execute(array(':username'=>$username));
 
 $groups=$mysqlselect->fetchAll();
 $data["books"]=$groups;
 $size = count($groups);    //取得数组单元个数
-
+// echo $size;
 for($i=0; $i<$size; $i++)
 {
     $books_id=$groups[$i][0];
@@ -41,6 +41,7 @@ for($i=0; $i<$size; $i++)
     else{
         $progress=(@$progressarray["progress"])-0;
     }
+    
     $mysqlselect="select word_id from word_family where books_id=:books_id order by word_id desc limit 0,1";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
@@ -48,7 +49,7 @@ for($i=0; $i<$size; $i++)
     @$words_count=$words_count[0];
     
     $data[$groups[$i][1]]=array($words_count);
-    
+    // echo $progress;
     $mysqlselect="select word_id from word_family where books_id=:books_id limit ".$progress.",50";
     $mysqlselect=$pdo->prepare($mysqlselect);
     $mysqlselect->execute(array(':books_id'=>$books_id));
@@ -78,12 +79,11 @@ for($i=0; $i<$size; $i++)
                 $posd++;
                 
             }
-
-            
         }
         array_push($data[$groups[$i][1]],$getall);
     }
     else{
+        // echo $groups[$i][1];
         array_push($data[$groups[$i][1]],[]);
     }
 
@@ -159,7 +159,6 @@ for($i=0; $i<$size; $i++)
     else{
         array_push($data[$groups[$i][1]],[]);
     }
-
 }
 
 ?>

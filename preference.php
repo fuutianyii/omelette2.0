@@ -5,7 +5,6 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="js/jquery.js"></script>
-		<link rel="stylesheet" href="css/loading.css">
 		<link type="text/css" rel="styleSheet" href="css/dict.css" />
 		<link type="text/css" rel="styleSheet" href="css/preference.css" />
 		<title>books</title>
@@ -16,6 +15,12 @@
         </form>
 		<?php
             include("preference_select.php");
+
+			$preference=str_replace("'","\'",$preference);
+			$preference=str_replace("\"","\\\"",$preference);
+			// echo $preference;
+			$preference=str_replace("\\\"false\\\"","false",$preference);
+			$preference=str_replace("\\\"true\\\"","true",$preference);
             echo "<script>localStorage.setItem('preference','".$preference."');</script>";
         ?>
 		<div id="main">
@@ -50,7 +55,7 @@
 								<div class="checkbox">
 									<div class="input_div">
 										<input type="checkbox" class="setting" name="保持登录状态" id="保持登录状态" />
-										<label for="保持登录状态">
+										<label for="保持登录状态" onclick="switch_automatic_login()">
 											<div class="ball"></div>
 										</label>
 									</div>
@@ -137,15 +142,14 @@
                                     document.getElementById("回车查询单词").checked = preference[5];
                                     document.getElementById("查询时自动朗读").checked = preference[6];
                                     document.getElementById("输入正确自动朗读").checked = preference[7];
-                                    document.getElementById("自动朗读美式").checked = preference[8]==="false" ? false : true;
-                                    document.getElementById("自动朗读英式").checked = preference[9]==="false" ? false : true;
+                                    document.getElementById("自动朗读美式").checked = preference[8];
+                                    document.getElementById("自动朗读英式").checked = preference[9];
                             </script>
 
 	</body>
 	<script src="js/background.js"></script>
 	<script>
-
-        $('.setting').change(function ()
+		save=function(model="auto")
         {
             aEl = new Array();
             var aEle = document.getElementsByClassName('setting');
@@ -157,16 +161,21 @@
                 }
                 else {
                     // console.log(aEle[i].type)
-                    aEl.push(aEle[i].value);
+					value=aEle[i].value
+					value=value.replace("'","\'")
+					value=value.replace('"','\"')
+                    aEl.push(value);
                 }
             }
+			if (model=="no_save"){
+				aEl[1]=false
+			}
             contextPath = window.location.host;
-            httpPost("https://" + contextPath + "/preference_save.php", aEl);
+            httpPost(window.location.protocol+"//" + contextPath + "/preference_save.php", aEl);
             localStorage.preference=JSON.stringify(aEl)
             //发送POST请求跳转到指定页面
             function httpPost(URL, PARAMS) 
             {
-                console.log(PARAMS)
                 var PARAMS_dict = {}
                 for (var i = 0; i < PARAMS.length; i++) {
                     PARAMS_dict[i] = PARAMS[i];
@@ -197,6 +206,29 @@
                 }
                 http.send(formData);
             }
-        });
+        }
+        $('.setting').change(function(){
+			save()
+		}
+		);
+		switch_automatic_login=function()
+		{
+			if (document.getElementById("保持登录状态").checked)
+			{
+				localStorage.setItem("token", "")
+				save(model="no_save")
+				// document.getElementById("保持登录状态").checked=false
+			}
+			else{
+				if (localStorage.token=="")
+				{
+					save()
+					document.getElementById("保持登录状态").checked=true
+					localStorage.clear()
+					alert("请重新登录");
+					window.location.href="/"
+				}
+			}
+		}
 	</script>
 </html>

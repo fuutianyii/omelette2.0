@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-11 19:51:58
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-12-28 16:17:47
+ * @LastEditTime: 2023-01-05 10:54:09
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -80,7 +80,13 @@ function enter(e)
                 {
                     array.pop()
                 }
-                localStorage.history=JSON.stringify(array)
+                if (JSON.parse(localStorage.preference)[2])
+                {
+                    localStorage.history=JSON.stringify(array);
+                }
+                else{
+                    localStorage.history='[]';
+                }
                 
         
                 // console.log(document.getElementByClassName("search_history").innerHTML);

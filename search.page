@@ -12,6 +12,16 @@
 
         <div class="search_history">
         </div>
+        <script>
+            if (JSON.parse(localStorage.preference)[2])
+            {
+                document.getElementsByClassName("search_history")[0].style.display="none"
+            }
+            else
+            {
+                localStorage.history='[]';
+            }
+        </script>
         <div class="content_div_hidden">
             <div class="basic_div">
             <div class="margin_div">

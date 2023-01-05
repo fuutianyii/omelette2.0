@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-03 11:56:18
+ * @LastEditTime: 2023-01-05 13:14:01
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -18,7 +18,7 @@ function len(o) {
 
 function write_data(word){
   const Http = new XMLHttpRequest();
-  const url='https://'+window.location.host+'/search_dict.php?word='+word;
+  const url=window.location.protocol+'//'+window.location.host+'/search_dict.php?word='+word;
   Http.open("GET", url);
   Http.send(null);
   document.getElementsByClassName("mean_tag")[0].innerText="搜索中";
@@ -31,7 +31,7 @@ function write_data(word){
         response_data=Http.responseText;
         if (response_data != undefined)
         {
-          // console.log(response_data)
+          console.log(response_data)
           data=JSON.parse(response_data);
           console.log(data);
           
@@ -77,6 +77,16 @@ function write_data(word){
             // console.log(mean_part);
             document.getElementsByClassName("mean_part")[0].innerHTML=mean_part
             window.data=data;
+            if (JSON.parse(localStorage.preference)[6])
+            {
+              if (JSON.parse(localStorage.preference)[8])
+              {
+                play(2)
+              }
+              else{
+                play(1)
+              }
+            }
           }
           else{
             document.querySelector("#right > div > div.content_div > div:nth-child(1) > div > div > div:nth-child(1)").style.display="none";
@@ -88,7 +98,7 @@ function write_data(word){
 
 
   const Http_sentence = new XMLHttpRequest();
-  const url_sentence='https://'+window.location.host+'/api_sentence.php?word='+word;
+  const url_sentence=window.location.protocol+'//'+window.location.host+'/api_sentence.php?word='+word;
   Http_sentence.open("GET", url_sentence);
   Http_sentence.send(null);
   Http_sentence.onreadystatechange=function()

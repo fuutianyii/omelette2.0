@@ -21,15 +21,8 @@
             
             $("body").css("height",winHeight+"px");
             $("body").css("width",winWidth+"px");
-        
-        // document.querySelector("#right > div > div.search-bar > input").value=winHeight+"px"
         }
-           
     });
-
-
-
-
 		window.addEventListener('onorientationchange', ()=>{
 			alert(screen.orientation);
 		}, true);
@@ -73,12 +66,4 @@
     </div>
 </body>
 <script src="js/background.js"></script>
-
-<!-- <script>
-    function() {
-        var winHeight = $(window).height();
-        $("body").css("height",winHeight);
-        document.querySelector("#right > div > div.search-bar > input").value=winHeight
-    }();
-</script> -->
 </html>

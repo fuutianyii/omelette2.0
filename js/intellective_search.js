@@ -2,7 +2,7 @@
  * @Author: fuutianyii
  * @Date: 2022-10-12 19:57:43
  * @LastEditors: fuutianyii
- * @LastEditTime: 2022-12-01 21:20:18
+ * @LastEditTime: 2023-01-05 16:07:14
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -18,7 +18,7 @@ function len(o) {
 
 function display_intellective_search(word){
 const Http = new XMLHttpRequest();
-const url='https://'+window.location.host+'/search_dict.php?word='+word;
+const url=window.location.protocol+'//'+window.location.host+'/search_dict.php?word='+word;
 Http.open("GET", url);
 Http.send(null);
 Http.onreadystatechange=function()
@@ -83,7 +83,7 @@ Http.onreadystatechange=function()
 
 
 const Http_sentence = new XMLHttpRequest();
-const url_sentence='https://'+window.location.host+'/api_sentence.php?word='+word;
+const url_sentence=window.location.protocol+'//'+window.location.host+'/api_sentence.php?word='+word;
 Http_sentence.open("GET", url_sentence);
 Http_sentence.send(null);
 Http_sentence.onreadystatechange=function()
