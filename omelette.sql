@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 2023-01-05 12:10:52
+-- Generation Time: 2023-01-06 12:54:01
 -- 服务器版本： 5.5.68-MariaDB
 -- PHP Version: 5.4.16
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `exam_progress` (
 --
 
 INSERT INTO `exam_progress` (`books_id`, `username`, `progress`, `last_date`, `last_review`) VALUES
-(1, 'fuutianyii', 2850, '2023-01-05', '2023-01-05');
+(1, 'fuutianyii', 2900, '2023-01-06', '2023-01-06');
 
 -- --------------------------------------------------------
 
