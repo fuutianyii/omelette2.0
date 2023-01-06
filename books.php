@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="styleSheet"  href="css/dict.css" />
+    <link rel="stylesheet" href="css/manage.css">
     <title>books</title>
 </head>
 <body>
@@ -64,27 +65,16 @@
                                 <div class="add_class" onclick="change_book(this)">
                                         <h1>+</h1>
                                 </div>
-
-                                <?php
-                                // for ($book_n=0;$book_n<count($data);$book_n++)
-                                // {
-                                // print_r("
-                                // <div class=\"words_book\">
-                                //     <h2>
-                                //         ".array_keys($data)[$book_n]."
-                                //     </h2>
-                                //     <p>单词数：".$data[array_keys($data)[$book_n]][0]."</p>
-                                // </div>
-                                // ");
-                                // }
-                                ?>
                             </div>
 
                             <div class="books_view">
-                                <div class="more">
-                                    <h2>more</h2>
-                                    <p>更多</p>
-                                </div>
+
+                                <a href="" id="more">
+                                    <div class="more">
+                                        <h2>more</h2>
+                                        <p>更多</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                 </div>
@@ -127,13 +117,15 @@
             {
                 button_div=document.getElementsByClassName("button_div")[0];
                 document.getElementsByClassName("button_div")[0].innerHTML=document.getElementsByClassName("button_div")[0].innerHTML+"<a href=\"exam.php?book_name="+getQueryString("book_name")+"\"><button>测试</button></a>";
-                document.getElementsByClassName("button_div")[0].innerHTML=document.getElementsByClassName("button_div")[0].innerHTML+"<a href=\"review.php?book_name="+getQueryString("book_name")+"\"><button>复习</button></a>";   
-     
+                document.getElementsByClassName("button_div")[0].innerHTML=document.getElementsByClassName("button_div")[0].innerHTML+"<a href=\"review.php?book_name="+getQueryString("book_name")+"\"><button>复习</button></a>";
+                document.getElementById("more").href="manage.php?book_name="+getQueryString("book_name")+"&limit=10&page_num=1"
+                
             }
             else
             {
                 document.getElementsByClassName("button_div")[0].innerHTML=document.getElementsByClassName("button_div")[0].innerHTML+"<a href=\"exam.php?book_name="+books_info[0]+"\"><button>测试</button></a>";
                 document.getElementsByClassName("button_div")[0].innerHTML=document.getElementsByClassName("button_div")[0].innerHTML+"<a href=\"review.php?book_name="+books_info[0]+"\"><button>复习</button></a>";   
+                document.getElementById("more").href="manage.php?book_name="+books_info[0]+"&limit=10&page_num=1"
             }
 
             //今日单词预览
