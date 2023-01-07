@@ -618,6 +618,14 @@ td{
     position: relative;
     width: 80%;
 }
+.chinese_input:focus 
+{
+    background: transparent;
+    box-shadow: none;
+    border: 0px;
+    outline: 0px;
+}
+
 .manage_means_div{
     text-align:left;
     margin:10px;

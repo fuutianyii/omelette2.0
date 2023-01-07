@@ -3,7 +3,7 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-06 18:14:43
+ * @LastEditTime: 2023-01-07 14:21:28
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
@@ -50,7 +50,7 @@ $book_info=$mysqlselect->fetch();
 $book_id=$book_info[0];
 $word_num=$book_info[1];
 
-$mysqlselect="select word_id from word_family where books_id=:books_id limit :page_num,:limits";
+$mysqlselect="select word_id,self_defining from word_family where books_id=:books_id limit :page_num,:limits";
 $mysqlselect=$pdo->prepare($mysqlselect);
 $mysqlselect->bindValue(':page_num', (int) $page_num, PDO::PARAM_INT);
 $mysqlselect->bindValue(':limits', (int) $limit, PDO::PARAM_INT);
@@ -60,17 +60,35 @@ $word_ids=$mysqlselect->fetchAll();
 $size=count($word_ids);
 $manage_data=array();
 for($i=0; $i<$size; $i++){
-    $mysqlselect="select english,posd,chinese from words where word_id=:word_id";
-    $mysqlselect=$pdo->prepare($mysqlselect);
-    $mysqlselect->execute(array(":word_id"=>$word_ids[$i][0]));
-    $word_info=$mysqlselect->fetchAll();
-    $word_size=count($word_info);
-    $word_posd=array();
-    $posd=array();
-    for($p=0; $p<$word_size; $p++){
-        $posd[$word_info[$p][1]]=$word_info[$p][2];
+    if ($word_ids[$i][1]=="1"){
+        $mysqlselect="select english,posd,chinese from self_defining_means where word_id=:word_id";
+        $mysqlselect=$pdo->prepare($mysqlselect);
+        $mysqlselect->execute(array(":word_id"=>$word_ids[$i][0]));
+        $word_info=$mysqlselect->fetchAll();
+        $word_size=count($word_info);
+        $word_posd=array();
+        $posd=array();
+        for($p=0; $p<$word_size; $p++){
+            $posd[$word_info[$p][1]]=$word_info[$p][2];
+        }
+        $word_posd[$word_info[0][0]]=$posd;
+        array_push($manage_data,$word_posd);
+
     }
-    $word_posd[$word_info[0][0]]=$posd;
-    array_push($manage_data,$word_posd);
+    else{
+        $mysqlselect="select english,posd,chinese from words where word_id=:word_id";
+        $mysqlselect=$pdo->prepare($mysqlselect);
+        $mysqlselect->execute(array(":word_id"=>$word_ids[$i][0]));
+        $word_info=$mysqlselect->fetchAll();
+        $word_size=count($word_info);
+        $word_posd=array();
+        $posd=array();
+        for($p=0; $p<$word_size; $p++){
+            $posd[$word_info[$p][1]]=$word_info[$p][2];
+        }
+        $word_posd[$word_info[0][0]]=$posd;
+        array_push($manage_data,$word_posd);
+    }
 }
+
 ?>

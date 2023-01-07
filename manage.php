@@ -54,13 +54,13 @@
                                     $word_list=$manage_data[$i][$words_list[0]];
                                     // print_r($manage_data);
                                     $word_size=count($word_list);
-                                    print(" <tr class=\"el-table__row\"> <td class=\"\" width=\"150px\">     <div class=\"cell\">         <span>".$words_list[0]."</span>     </div> </td> <td class=\"manage_means_td\">     <div class=\"manage_means_div\">");
+                                    print(" <tr class=\"el-table__row\"> <td class=\"\" width=\"150px\">     <div class=\"cell\">         <span class=\"".$i."\">".$words_list[0]."</span>     </div> </td> <td class=\"manage_means_td\">     <div class=\"manage_means_div\">");
                                     for($p=0;$p<$word_size;$p++)
                                     {
                                         $posd_list=array_keys($word_list);
-                                        echo "<p class=\"means_p\"><span>".$posd_list[$p]."</span><input class=\"chinese_input\" value=\"".$word_list[$posd_list[$p]]."\" readonly=\"\"></p>";
+                                        echo "<p class=\"means_p\"><span>".$posd_list[$p]."</span><input class=\"chinese_input ".$i."\" value=\"".$word_list[$posd_list[$p]]."\" readonly=\"\"></p>";
                                     }
-                                    echo "</div></td><td class=\"\" width=\"200px\"><div class=\"cell manage_button_div\"><button type=\"button\" class=\"el-button el-button--primary el-button--mini\"><span>编辑</span></button><button type=\"button\"class=\"el-button el-button--danger el-button--mini\"><span>删除</span></button></div></td></tr>";
+                                    echo "</div></td><td class=\"\" width=\"200px\"><div class=\"cell manage_button_div\"><button type=\"button\" class=\"el-button el-button--primary el-button--mini ".$i."\" onclick=\"edit_button(this)\"><span>编辑</span></button><button type=\"button\"class=\"el-button el-button--danger el-button--mini ".$i."\" onclick=\"delete_button(this)\"><span>删除</span></button></div></td></tr>";
                                 }
                                 // print_r(count($word_ids));
                             ?>
@@ -174,7 +174,7 @@
 
         var max_page_num=Math.ceil(<?php echo $word_num?>/Number(getQueryString("limit")));
         document.querySelector("#right > div > div > div > span.el-pagination__jump > input").value=getQueryString("page_num")
-
+        document.querySelector("#right > div > div > div > span.el-pagination__sizes > div > select").value=getQueryString("limit")
         // ###############
         // 以下是页数选择栏的显示逻辑        
         if (Number(getQueryString("page_num")) ==1)
@@ -293,6 +293,87 @@
             }
 		}
 		);
-        
+        $(".chinese_input").blur(function(event){
+            event= event|| window.event; // 事件
+            var target = event.target || event.srcElement; // 获得事件源
+            index=target.classList[1]
+            event=document.getElementsByClassName(index)
+            for(i=0;i<event.length;i++)
+            {
+                if (event[i].type == "text")
+                {
+                    event[i].readOnly=true
+                }
+            }
+        });
+        var edit_button=function(button){
+            index=button.classList[3];
+            event=document.getElementsByClassName(index)
+            for(i=0;i<event.length;i++)
+            {
+                if (event[i].type == "text")
+                {
+                    event[i].readOnly=false
+                }
+            }
+		}
+        var delete_word=function(book_name,word,index){
+            const Http_sentence = new XMLHttpRequest();
+            const url_sentence=window.location.protocol+'//'+window.location.host+'/remove_word.php?book_name='+book_name+'&word='+word+'&index='+index;
+            // console.log(url_sentence);
+            Http_sentence.open("GET", url_sentence);
+            Http_sentence.send(null);
+            Http_sentence.onreadystatechange=function()
+            {
+                var response_data=undefined;
+                if(Http_sentence.readyState==4)
+                response_data=Http_sentence.responseText;
+                if (response_data != undefined)
+                {
+                    console.log("succeed");
+                    $(document.getElementsByClassName(index)[0]).parent().parent().parent()[0].style.display="none";
+                }
+            };   
+        }
+
+
+
+        var update_word=function(book_name,word,index,chinese,posd){
+            const Http_sentence = new XMLHttpRequest();
+            const url_sentence=window.location.protocol+'//'+window.location.host+'/update_word.php?book_name='+book_name+'&word='+word+'&index='+index+"&posd="+posd+"&chinese="+chinese;
+            // console.log(url_sentence);
+            Http_sentence.open("GET", url_sentence);
+            Http_sentence.send(null);
+            Http_sentence.onreadystatechange=function()
+            {
+                var response_data=undefined;
+                if(Http_sentence.readyState==4)
+                response_data=Http_sentence.responseText;
+                if (response_data != undefined)
+                {
+                    console.log("succeed");
+                    alert("修改成功");
+                    // $(document.getElementsByClassName(index)[0]).parent().parent().parent()[0].style.display="none";
+                }
+            };   
+        }
+        var delete_button=function(button){
+            index=button.classList[3];
+            event=document.getElementsByClassName(index)
+            english=document.getElementsByClassName(index)[0].innerText;
+            book_name=getQueryString("book_name")
+            delete_word(book_name,english,index)
+            // $(event).parent().parent().parent()[0].style.display="none";
+		}
+        $(".chinese_input").change(function(event){
+            event= event|| window.event; // 事件
+            var target = event.target || event.srcElement; // 获得事件源
+            index=target.classList[1];
+            english=document.getElementsByClassName(index)[0].innerText;
+            posd=$(target).parent()[0].innerText;
+            chinese=target.value;
+            book_name=getQueryString("book_name")
+            update_word(book_name,english,index,chinese,posd)
+        });
     </script>
 </html>
