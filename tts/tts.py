@@ -2,7 +2,7 @@
 Author: fuutianyii
 Date: 2023-01-07 20:26:57
 LastEditors: fuutianyii
-LastEditTime: 2023-01-08 21:02:02
+LastEditTime: 2023-01-08 21:03:32
 github: https://github.com/fuutianyii
 mail: fuutianyii@gmail.com
 QQ: 1587873181
@@ -29,6 +29,7 @@ class produce_audio():
             lang="en")
         chinese=chinese.replace(" ","")
         data=requests.get(f"https://fanyi.sogou.com/reventondc/synthesis?text={chinese}&speed=1&lang=zh-CHS&from=translateweb&speaker=5")
+        ##因为服务器没有gpu，算力不够，只能使用外部中文tts。但是paddlespeech特色是中文tts，可惜了
         f=open(f"{word}_c.wav","wb")
         f.write(data.content)
         f.close()
