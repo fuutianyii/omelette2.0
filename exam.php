@@ -46,7 +46,7 @@
                     document.exam_finished.submit();
                 }
                 else{
-                    for(i2=0;i2<exam_words[i1].length;i2+1)
+                    for(i2=0;i2<exam_words[i1].length;i2++)
                     {
                         html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
                         ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
@@ -117,7 +117,7 @@
         }
 ?>
 </body>
-<script src="intellective_search.js"></script>
+<script src="js/intellective_search.js"></script>
 <script>
     html_data=""
     i1=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
@@ -125,12 +125,14 @@
     {
         document.exam_finished.submit();
     }
-    for(i2=0;i2<exam_words[i1].length;i2+1)
+    for(i2=0;i2<exam_words[i1].length;i2++)
     {
         html_data+='<li><p class="means"><i>'+exam_words[i1][i2][2]+'</i>'+exam_words[i1][i2][1]+'</p></li>'
         ls_progress=Number(localStorage.getItem(getQueryString("book_name")+"progress"))
         localStorage.setItem(getQueryString("book_name")+"progress",ls_progress++)
+        console.log(1)
     }
+
     document.getElementsByClassName("mean_part")[0].innerHTML=html_data;
     document.querySelector("#progress").innerHTML=i1+"/"+exam_words.length
     var mouseDown=0;

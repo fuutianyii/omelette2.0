@@ -3,13 +3,14 @@
  * @Author: fuutianyii
  * @Date: 2022-11-01 17:56:03
  * @LastEditors: fuutianyii
- * @LastEditTime: 2023-01-07 14:21:28
+ * @LastEditTime: 2023-01-09 19:41:22
  * @github: https://github.com/fuutianyii
  * @mail: fuutianyii@gmail.com
  * @QQ: 1587873181
  */
 include("config.php");
 session_start();
+date_default_timezone_set('PRC');
 $token=$_SESSION['token'];
 $username= $_SESSION['username'];
 if (($token =="") or ($username == ""))
